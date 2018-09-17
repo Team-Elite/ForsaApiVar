@@ -30,7 +30,7 @@ namespace ForsaWebAPI.Models
         public string Password { get; set; }
         public string FurtherField1 { get; set; }
         public string FurtherField2 { get; set; }
-        public string LEINumber2 { get; set; }
+        public string FurtherField3 { get; set; }
         public string UserTypeId { get; set; }
         public string RatingAgentur1 { get; set; }
         public string RatingAgenturValue1 { get; set; }

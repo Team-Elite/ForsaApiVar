@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/06/2018 00:22:43</publishTime>
+      <publishTime>09/16/2018 23:05:16</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/06/2018 00:22:43</publishTime>
+      <publishTime>09/16/2018 23:05:16</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/ForsaWebAPI.dll">
-      <publishTime>09/06/2018 00:22:12</publishTime>
+      <publishTime>09/16/2018 23:05:07</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
@@ -84,6 +84,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="EmailTemplates/ForgotPassword.html">
       <publishTime>08/29/2018 02:08:38</publishTime>
     </File>
+    <File Include="EmailTemplates/PasswordUpdated.html">
+      <publishTime>09/11/2018 10:06:08</publishTime>
+    </File>
     <File Include="EmailTemplates/RegistrationTemplate.html">
       <publishTime>08/29/2018 02:08:43</publishTime>
     </File>
@@ -94,10 +97,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/20/2018 10:26:03</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/06/2018 00:22:27</publishTime>
+      <publishTime>09/16/2018 23:05:09</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/03/2018 10:03:16</publishTime>
+      <publishTime>09/11/2018 10:08:31</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -17,7 +17,7 @@ namespace ForsaWebAPI.Controllers
         private ForsaEntities db = new ForsaEntities();
 
         [HttpGet]
-        public DataTable GetRateOfInterestOfBank(int userId)
+        public IHttpActionResult GetRateOfInterestOfBank(int userId)
         {
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", userId);
@@ -25,10 +25,10 @@ namespace ForsaWebAPI.Controllers
             if (dtRates == null)
             {
                 //return NotFound();
-                return null;
+                return Json(new { IsSuccess = false });
             }
 
-            return dtRates;
+            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
         }
 
         [HttpGet]

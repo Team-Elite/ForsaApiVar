@@ -133,7 +133,7 @@ namespace ForsaWebAPI.Controllers
             param[19] = new SqlParameter("@Password", password);
             param[20] = new SqlParameter("@FurtherField1", user.FurtherField1);
             param[21] = new SqlParameter("@FurtherField2", user.FurtherField2);
-            param[22] = new SqlParameter("@LEINumber2", user.LEINumber2);
+            param[22] = new SqlParameter("@FurtherField3", user.FurtherField3);
             param[23] = new SqlParameter("@UserTypeId", user.UserTypeId);
             param[24] = new SqlParameter("@RatingAgentur1", user.RatingAgentur1 == null ? "":user.RatingAgentur1);
             param[25] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1==null?"":user.RatingAgenturValue1);
@@ -191,6 +191,20 @@ namespace ForsaWebAPI.Controllers
             param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", user.UserId);
             dt= SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserById", System.Data.CommandType.StoredProcedure, param);
+
+            // Sending Email on Password updated.
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\PasswordUpdated.html";
+            var bodyOfMail = "";
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
+            {
+                bodyOfMail = reader.ReadToEnd();
+            }
+
+            bodyOfMail = bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
+            bodyOfMail = bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
+            // Sending Email
+            EmailHelper objHelper = new EmailHelper();
+            objHelper.SendEMail(user.EmailAddress, HelperClass.PasswordUpdatedEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true, Message="Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
         }
