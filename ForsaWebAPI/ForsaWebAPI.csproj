@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\LenderModel.cs" />
+    <Compile Include="Models\LenderSendRequestModel.cs" />
     <Compile Include="Models\LenderStartPageModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PagesModel.cs" />

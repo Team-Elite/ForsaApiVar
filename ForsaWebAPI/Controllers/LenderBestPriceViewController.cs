@@ -1,4 +1,5 @@
 ﻿using ForsaWebAPI.Helper;
+using ForsaWebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -39,6 +40,22 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
         }
 
-        
+        [HttpPost]
+        public IHttpActionResult SaveSendRequest(LenderSendRequestModel sendRequestModel)
+        {
+            SqlParameter[] param = new SqlParameter[9];
+            param[0] = new SqlParameter("@LenderId", sendRequestModel.LenderId);
+            param[1] = new SqlParameter("@BorrowerId", sendRequestModel.BorrowerId);
+            param[2] = new SqlParameter("@Amount", sendRequestModel.Amount);
+            param[3] = new SqlParameter("@StartDate", sendRequestModel.StartDate);
+            param[4] = new SqlParameter("@EndDate", sendRequestModel.EndDate);
+            param[5] = new SqlParameter("@NoOfDays", sendRequestModel.NoOfDays);
+            param[6] = new SqlParameter("@InterestConvention", sendRequestModel.InterestConvention);
+            param[7] = new SqlParameter("@Payments", sendRequestModel.Payments);
+            param[8] = new SqlParameter("@IsRequestAccepted", sendRequestModel.IsRequestAccepted );
+
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_Lender_SaveSendRequest", System.Data.CommandType.StoredProcedure, param);
+            return Json(new { IsSuccess = true });
+        }
     }
 }
