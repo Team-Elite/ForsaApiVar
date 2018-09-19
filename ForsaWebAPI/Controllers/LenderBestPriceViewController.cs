@@ -55,6 +55,27 @@ namespace ForsaWebAPI.Controllers
             param[8] = new SqlParameter("@IsRequestAccepted", sendRequestModel.IsRequestAccepted );
 
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_Lender_SaveSendRequest", System.Data.CommandType.StoredProcedure, param);
+
+            // Sending Email.
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\LenderSendRequest.html";
+            var bodyOfMail = "";
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
+            {
+                bodyOfMail = reader.ReadToEnd();
+            }
+
+            bodyOfMail = bodyOfMail.Replace("[FirstName]", sendRequestModel.LenderName);
+            bodyOfMail = bodyOfMail.Replace("[Borrower]", sendRequestModel.BorrowerName);
+            bodyOfMail = bodyOfMail.Replace("[Amount]", sendRequestModel.Amount.ToString());
+            bodyOfMail = bodyOfMail.Replace("[StartDate]", sendRequestModel.StartDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[EndDate]", sendRequestModel.EndDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", sendRequestModel.NoOfDays.ToString());
+            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", sendRequestModel.InterestConventionName);
+            bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
+            // Sending Email
+            EmailHelper objHelper = new EmailHelper();
+            objHelper.SendEMail(sendRequestModel.LenderEmailId, HelperClass.LenderSendRequestSubject, bodyOfMail);
+
             return Json(new { IsSuccess = true });
         }
     }
