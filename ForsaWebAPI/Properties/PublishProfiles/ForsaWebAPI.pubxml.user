@@ -10,10 +10,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/20/2018 23:58:33</publishTime>
+      <publishTime>09/23/2018 22:43:58</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/20/2018 23:58:33</publishTime>
+      <publishTime>09/23/2018 22:43:57</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/02/2015 09:32:26</publishTime>
@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2015 09:32:26</publishTime>
     </File>
     <File Include="bin/ForsaWebAPI.dll">
-      <publishTime>09/20/2018 23:58:12</publishTime>
+      <publishTime>09/23/2018 22:43:34</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
@@ -100,7 +100,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/20/2018 10:26:03</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/20/2018 23:58:20</publishTime>
+      <publishTime>09/23/2018 22:43:44</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>09/19/2018 09:29:07</publishTime>
