@@ -54,11 +54,14 @@ namespace ForsaWebAPI.Controllers
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", userId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null || dt.Rows.Count == 0)
+            if (dt == null)
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            if (dt.Rows.Count == 0){
+                return Json(new { IsSuccess = true,IfDataFound=false});
+            }
+            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
         }
 
     }
