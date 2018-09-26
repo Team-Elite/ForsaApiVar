@@ -25,6 +25,20 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyOrderByColumnName(int userId, string orderBy)
+        {
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@UserId", userId);
+            param[1] = new SqlParameter("@OrderBy", orderBy);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return Json(new { IsSuccess = false });
+            }
+            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
+
+        [HttpGet]
         public IHttpActionResult DeselectBank(int userId, int bankId, Boolean IsSelected)
         {
             SqlParameter[] param = new SqlParameter[3];
