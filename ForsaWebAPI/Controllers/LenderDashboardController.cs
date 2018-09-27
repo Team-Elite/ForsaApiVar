@@ -29,7 +29,7 @@ namespace ForsaWebAPI.Controllers
         {
             SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@UserId", userId);
-            param[1] = new SqlParameter("@OrderBy", orderBy);
+            param[1] = new SqlParameter("@OrderBy", orderBy+ " desc");
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
