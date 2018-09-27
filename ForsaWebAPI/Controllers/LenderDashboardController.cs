@@ -50,10 +50,11 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithStatusIsDeselected(int userId)
+        public IHttpActionResult GetAllBanksWithStatusIsDeselected(int userId, int PageNumber)
         {
-            SqlParameter[] param = new SqlParameter[1];
+            SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@UserId", userId);
+            param[1] = new SqlParameter("@PageNumber", PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_Lender_GetAllBanksWithStatusIsDeselected", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -74,6 +75,41 @@ namespace ForsaWebAPI.Controllers
             }
             if (dt.Rows.Count == 0){
                 return Json(new { IsSuccess = true,IfDataFound=false});
+            }
+            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPagesForLenderSettingStartPage(int userId)
+        {
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@UserId", userId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetPagesForLenderSettingStartPage", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+            {
+                return Json(new { IsSuccess = false });
+            }
+            if (dt.Rows.Count == 0)
+            {
+                return Json(new { IsSuccess = true, IfDataFound = false });
+            }
+            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
+
+        [HttpGet]
+        public IHttpActionResult LenderSaveStartPage(int userId, int pageId)
+        {
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@UserId", userId);
+            param[1] = new SqlParameter("@PageId", pageId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_LenderSaveStartPage", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+            {
+                return Json(new { IsSuccess = false });
+            }
+            if (dt.Rows.Count == 0)
+            {
+                return Json(new { IsSuccess = true, IfDataFound = false });
             }
             return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
         }
