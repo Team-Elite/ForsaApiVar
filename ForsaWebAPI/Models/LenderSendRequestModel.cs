@@ -25,6 +25,10 @@ namespace ForsaWebAPI.Models
         public string InterestConventionName { get; set; }
         public string PaymentsName { get; set; }
         public string LenderEmailId { get; set; }
+        public string BorrowerEmailId { get; set; }
+        public bool? IsAccepted { get; set; }
+        public bool? IsRejected { get; set; }
+        public decimal? RateOfInterest { get; set; }
 
     }
 }

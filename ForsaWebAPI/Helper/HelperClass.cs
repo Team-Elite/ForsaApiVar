@@ -16,6 +16,8 @@ namespace ForsaWebAPI.Helper
         public static string ForgotPasswordEmailSubject = ConfigurationManager.AppSettings["SubjectOfForgotPasswordEmail"].ToString();
         public static string PasswordUpdatedEmailSubject = ConfigurationManager.AppSettings["SubjectOfPasswordUpdatedEmail"].ToString();
         public static string LenderSendRequestSubject = ConfigurationManager.AppSettings["SubjectOfLenderSendRequest"].ToString();
+        public static string LenderSendRequestAccepted = ConfigurationManager.AppSettings["SubjectOfLenderSendRequestAccepted"].ToString();
+        public static string LenderSendRequestRejected = ConfigurationManager.AppSettings["SubjectOfLenderSendRequestRejected"].ToString();
 
         public static string ConnectionString = ConfigurationManager.ConnectionStrings["ForsaDBConnection"].ConnectionString;
         public static void WriteMessage(Exception ex)

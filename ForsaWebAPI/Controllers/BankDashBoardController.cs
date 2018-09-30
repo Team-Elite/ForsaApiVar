@@ -76,5 +76,28 @@ namespace ForsaWebAPI.Controllers
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible", System.Data.CommandType.StoredProcedure, param);
             return Json(new { IsSuccess = true });
         }
+
+        [HttpGet]
+        public IHttpActionResult GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(int borrowerId)
+        {
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@BorrowerId", borrowerId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId", System.Data.CommandType.StoredProcedure, param);
+            if(dt ==null)
+                return Json(new { IsSuccess = false });
+            if (dt.Rows.Count == 0)
+                return Json(new { IsSuccess = false, IfDataFound = false });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
+
+        [HttpPost]
+        public IHttpActionResult UpdateRateOfInterest(LenderSendRequestModel sendRequestModel)
+        {
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@RateOfInterestOfferred", sendRequestModel.RateOfInterest);
+            param[1] = new SqlParameter("@RequestId", sendRequestModel.RequestId);
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_UpdateRateOfInterest", System.Data.CommandType.StoredProcedure, param);
+            return Json(new { IsSuccess = true});
+        }
     }
 }

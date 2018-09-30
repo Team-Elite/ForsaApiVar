@@ -103,6 +103,8 @@
   <ItemGroup>
     <Content Include="EmailTemplates\ForgotPassword.html" />
     <Content Include="EmailTemplates\LenderSendRequest.html" />
+    <Content Include="EmailTemplates\LenderSendRequestAccepted.html" />
+    <Content Include="EmailTemplates\LenderSendRequestRejected.html" />
     <Content Include="EmailTemplates\PasswordUpdated.html" />
     <Content Include="EmailTemplates\RegistrationTemplate.html" />
     <Content Include="Global.asax" />
