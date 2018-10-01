@@ -166,7 +166,7 @@ namespace ForsaWebAPI.Controllers
             bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
             bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
 
-            objHelper.SendEMail(sendRequestModel.LenderEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
+            objHelper.SendEMail(sendRequestModel.BorrowerEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
             #endregion
 
             return Json(new { IsSuccess = true });
@@ -218,7 +218,7 @@ namespace ForsaWebAPI.Controllers
             bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
             bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
 
-            objHelper.SendEMail(sendRequestModel.LenderEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
+            objHelper.SendEMail(sendRequestModel.BorrowerEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
             #endregion
             return Json(new { IsSuccess = true });
         }
