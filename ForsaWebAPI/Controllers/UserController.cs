@@ -249,5 +249,18 @@ namespace ForsaWebAPI.Controllers
         {
             return db.tblUsers.Count(e => e.UserId == id) > 0;
         }
+
+        [HttpGet]
+        public IHttpActionResult GetUserDetailByUserId(int userId)
+        {
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@UserId", userId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+                return Json(new { IsSuccess = false });
+            if (dt.Rows.Count == 0)
+                return Json(new { IsSuccess = false, IfDataFound = false });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
     }
 }
