@@ -262,5 +262,68 @@ namespace ForsaWebAPI.Controllers
                 return Json(new { IsSuccess = false, IfDataFound = false });
             return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
         }
+
+        [HttpPost]
+        public IHttpActionResult UpdateUserDetails(UserModel user)
+        {
+            string password = RandomString(6);
+            SqlParameter[] param = new SqlParameter[34];
+            param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
+            param[1] = new SqlParameter("@Street", user.Street);
+            param[2] = new SqlParameter("@PostalCode", user.PostalCode);
+            param[3] = new SqlParameter("@Place", user.Place);
+            param[4] = new SqlParameter("@AccountHolder", user.AccountHolder);
+            param[5] = new SqlParameter("@Bank", user.Bank);
+            param[6] = new SqlParameter("@IBAN", user.IBAN);
+            param[7] = new SqlParameter("@BICCode", user.BICCode);
+            param[8] = new SqlParameter("@GroupIds", user.GroupIds == null ? "" : user.GroupIds);
+            param[9] = new SqlParameter("@SubGroupId", user.SubGroupId);
+            param[10] = new SqlParameter("@LEINumber", user.LEINumber == null ? "" : user.LEINumber);
+            param[11] = new SqlParameter("@FurtherField4", user.FurtherField4);
+            param[12] = new SqlParameter("@Salutation", user.Salutation);
+            param[13] = new SqlParameter("@Title", user.Title);
+            param[14] = new SqlParameter("@FirstName", user.FirstName);
+            param[15] = new SqlParameter("@SurName", user.SurName);
+            param[16] = new SqlParameter("@ContactNumber", user.ContactNumber);
+            param[17] = new SqlParameter("@EmailAddress", user.EmailAddress);
+            param[18] = new SqlParameter("@UserName", user.UserName);
+            param[19] = new SqlParameter("@FurtherField1", user.FurtherField1);
+            param[20] = new SqlParameter("@FurtherField2", user.FurtherField2);
+            param[21] = new SqlParameter("@FurtherField3", user.FurtherField3);
+            param[22] = new SqlParameter("@UserTypeId", user.UserTypeId);
+            param[23] = new SqlParameter("@RatingAgentur1", user.RatingAgentur1 == null ? "" : user.RatingAgentur1);
+            param[24] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1 == null ? "" : user.RatingAgenturValue1);
+            param[25] = new SqlParameter("@RatingAgentur2", user.RatingAgentur2 == null ? "" : user.RatingAgentur2);
+            param[26] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2 == null ? "" : user.RatingAgenturValue2);
+            param[27] = new SqlParameter("@DepositInsurance", user.DepositInsurance);
+            param[28] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
+            param[29] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
+            param[30] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
+            param[31] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
+            param[32] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
+            param[33] = new SqlParameter("@UserId", user.UserId);
+            param[34] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
+
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserInformation", System.Data.CommandType.StoredProcedure, param);
+
+
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
+            var bodyOfMail = "";
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
+            {
+                bodyOfMail = reader.ReadToEnd();
+            }
+
+            bodyOfMail = bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
+            bodyOfMail = bodyOfMail.Replace("[UserName]", user.UserName.ToString());
+            bodyOfMail = bodyOfMail.Replace("[Password]", "Same which was earlier.");
+            bodyOfMail = bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
+            // Sending Email
+            EmailHelper objHelper = new EmailHelper();
+            objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
+
+            return Json(new { IsSuccess = true });
+        }
+
     }
 }
