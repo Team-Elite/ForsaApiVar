@@ -29,6 +29,8 @@ namespace ForsaWebAPI.Models
         public bool? IsAccepted { get; set; }
         public bool? IsRejected { get; set; }
         public decimal? RateOfInterest { get; set; }
+        public string MessageForForsa { get; set; }
+        public bool IsMessageSentToForsa { get; set; }
 
     }
 }

@@ -223,5 +223,15 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true });
         }
 
+        [HttpPost]
+        public IHttpActionResult SaveForsaMessage(LenderSendRequestModel model)
+        {
+            SqlParameter[] param = new SqlParameter[3];
+            param[0] = new SqlParameter("@MessageForForsa", model.MessageForForsa);
+            param[1] = new SqlParameter("@IsMessageSentToForsa", model.IsMessageSentToForsa);
+            param[2] = new SqlParameter("@RequestId", model.RequestId);
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_SaveForsaMEssage", System.Data.CommandType.StoredProcedure, param);
+            return Json(new { IsSuccess = true });
+        }
     }
 }
