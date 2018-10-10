@@ -233,5 +233,18 @@ namespace ForsaWebAPI.Controllers
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_SaveForsaMEssage", System.Data.CommandType.StoredProcedure, param);
             return Json(new { IsSuccess = true });
         }
+
+        [HttpGet]
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyForKontactUser(string orderBy)
+        {
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@OrderBy", orderBy);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyForKontactUser", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return Json(new { IsSuccess = false, IsDataFound=false });
+            }
+            return Json(new { IsSuccess = true, IsDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+        }
     }
 }
