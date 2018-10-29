@@ -26,8 +26,22 @@ namespace ForsaWebAPI.Models
         }
     
         public DbSet<tblCountry> tblCountries { get; set; }
+        public DbSet<tblCustomerGroup> tblCustomerGroups { get; set; }
+        public DbSet<tblDepositInsurance> tblDepositInsurances { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblLanguage> tblLanguages { get; set; }
+        public DbSet<tblLenderDeselectedBank> tblLenderDeselectedBanks { get; set; }
+        public DbSet<tblLenderSendRequest> tblLenderSendRequests { get; set; }
+        public DbSet<tblLenderStartPage> tblLenderStartPages { get; set; }
+        public DbSet<tblPage> tblPages { get; set; }
+        public DbSet<tblRateOfInterestOfBank> tblRateOfInterestOfBanks { get; set; }
+        public DbSet<tblRatingAgeNtur> tblRatingAgeNturs { get; set; }
+        public DbSet<tblSalutation> tblSalutations { get; set; }
+        public DbSet<tblSubGroup> tblSubGroups { get; set; }
         public DbSet<tblUser> tblUsers { get; set; }
+        public DbSet<tblUser2> tblUser2 { get; set; }
         public DbSet<tblUserType> tblUserTypes { get; set; }
+        public DbSet<tblTimePeriod> tblTimePeriods { get; set; }
+        public DbSet<tmptbl> tmptbls { get; set; }
     }
 }

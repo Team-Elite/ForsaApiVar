@@ -8,7 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -18,9 +20,11 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/Language
         [HttpGet]
-        public IQueryable<tblLanguage> GettblLanguages()
+        public IHttpActionResult GettblLanguages()
         {
-            return db.tblLanguages;
+           // return db.tblLanguages;
+             return Json( new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject((db.tblLanguages))) });
+
         }
 
         // GET: api/Language/5
@@ -34,7 +38,9 @@ namespace ForsaWebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tblLanguage);
+            //return Ok(tblLanguage);
+             return Json( new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject((db.tblCountries))) });
+
         }
 
         // PUT: api/Language/5
@@ -87,6 +93,8 @@ namespace ForsaWebAPI.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tblLanguage.LanguageId }, tblLanguage);
+            // return CreatedAtRoute("DefaultApi", new{ IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(tblLanguage))) }, tblLanguage);
+
         }
 
         // DELETE: api/Language/5

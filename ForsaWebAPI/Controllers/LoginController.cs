@@ -1,5 +1,6 @@
 ﻿using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,6 +14,7 @@ namespace ForsaWebAPI.Controllers
     public class LoginController : ApiController
     {
         private ForsaEntities db = new ForsaEntities();
+     
 
         [HttpPost]
         public IHttpActionResult ValidateUser(LoginModel login)
@@ -22,13 +24,13 @@ namespace ForsaWebAPI.Controllers
             param[1] = new SqlParameter("@password", login.UserPassword);
             param[2] = new SqlParameter("@emailaddress", login.UserEmailId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_ValidateUser", System.Data.CommandType.StoredProcedure,param);
-            if (dt == null || dt.Rows.Count==0)
+            if (dt == null || dt.Rows.Count==0) 
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
         }
-
+       
         [HttpPost]
         public IHttpActionResult ForgotPassword(LoginModel loginModel)
         {
@@ -55,7 +57,8 @@ namespace ForsaWebAPI.Controllers
                 objHelper.SendEMail(loginModel.ForgotPasswordEmailId, HelperClass.ForgotPasswordEmailSubject, bodyOfMail);
             }
 
-            return Json(new { IsSuccess = true, data = "Password sent." });
+            //  return Json(new { IsSuccess = true, data = "Password sent.", Token = JsonConvert.SerializeObject(param) });
+            return Json(new { IsSuccess = true, data = "Password sent."});
 
         }
     }

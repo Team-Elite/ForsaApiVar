@@ -8,7 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -18,9 +20,11 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/Country
         [HttpGet]
-        public IQueryable<tblCountry> GettblCountries()
+        public IHttpActionResult GettblCountries()
         {
-            return db.tblCountries;
+            //return db.tblCountries;
+            return Json( new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(db.tblCountries)) });
+
         }
 
         // GET: api/Country/5
@@ -34,7 +38,9 @@ namespace ForsaWebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tblCountry);
+           // return Ok(tblCountry);
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblCountry)) });
+
         }
 
         // PUT: api/Country/5
@@ -85,8 +91,8 @@ namespace ForsaWebAPI.Controllers
 
             db.tblCountries.Add(tblCountry);
             db.SaveChanges();
-
             return CreatedAtRoute("DefaultApi", new { id = tblCountry.CountryId }, tblCountry);
+          // return Json("DefaultApi", new{ IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(tblCountry))) }, tblCountry);
         }
 
         // DELETE: api/Country/5

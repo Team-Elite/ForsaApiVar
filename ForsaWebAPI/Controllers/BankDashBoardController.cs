@@ -1,5 +1,6 @@
 ﻿using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,15 +13,17 @@ using System.Web.Http;
 
 namespace ForsaWebAPI.Controllers
 {
+   
     public class BankDashBoardController : ApiController
     {
         private ForsaEntities db = new ForsaEntities();
 
         [HttpGet]
-        public IHttpActionResult GetRateOfInterestOfBank(int userId)
+        
+        public IHttpActionResult GetRateOfInterestOfBank(int id)
         {
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetRateOfInterestOfBank", System.Data.CommandType.StoredProcedure, param);
             if (dtRates == null)
             {
@@ -28,14 +31,14 @@ namespace ForsaWebAPI.Controllers
                 return Json(new { IsSuccess = false });
             }
 
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
         }
 
         [HttpGet]
-        public DataTable GetUserGroupForSettingRateOfInterestVisibility(int userId)
+        public IHttpActionResult GetUserGroupForSettingRateOfInterestVisibility(int id)
         {
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserGroupForSettingRateOfInterestVisibility", System.Data.CommandType.StoredProcedure, param);
             if (dtRates == null)
             {
@@ -43,7 +46,11 @@ namespace ForsaWebAPI.Controllers
                 return null;
             }
 
-            return dtRates;
+            // return dtRates;
+            //return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
+            //return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
+
         }
 
         [HttpPost]

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using ForsaWebAPI.Models;
 
 namespace ForsaWebAPI.Helper
 {
@@ -15,6 +17,9 @@ namespace ForsaWebAPI.Helper
         public static string RegistrationEmailSubject = ConfigurationManager.AppSettings["SubjectOfRegistrationEmail"].ToString();
         public static string ForgotPasswordEmailSubject = ConfigurationManager.AppSettings["SubjectOfForgotPasswordEmail"].ToString();
         public static string PasswordUpdatedEmailSubject = ConfigurationManager.AppSettings["SubjectOfPasswordUpdatedEmail"].ToString();
+
+        
+
         public static string LenderSendRequestSubject = ConfigurationManager.AppSettings["SubjectOfLenderSendRequest"].ToString();
         public static string LenderSendRequestAccepted = ConfigurationManager.AppSettings["SubjectOfLenderSendRequestAccepted"].ToString();
         public static string LenderSendRequestRejected = ConfigurationManager.AppSettings["SubjectOfLenderSendRequestRejected"].ToString();

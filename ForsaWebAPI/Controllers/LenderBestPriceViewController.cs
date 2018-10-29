@@ -1,5 +1,6 @@
 ﻿using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,22 +15,24 @@ namespace ForsaWebAPI.Controllers
     {
         [HttpGet]
 
-        public IHttpActionResult GetRatesByTimePeriod(int userId)
+        public IHttpActionResult GetRatesByTimePeriod(int Id)
         {
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", Id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetRatesByTimePeriod", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-        }
+            //  return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
-        public IHttpActionResult GetBanksByTimePeriod(int userId, int TimePeriod, int PageNumber)
+        }
+        [HttpGet]
+        public IHttpActionResult GetBanksByTimePeriod(int id, int TimePeriod, int PageNumber)
         {
             SqlParameter[] param = new SqlParameter[3];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             param[1] = new SqlParameter("@TimePeriodId", TimePeriod);
             param[2] = new SqlParameter("@PageNumber", PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetBanksByTimePeriod", System.Data.CommandType.StoredProcedure, param);
@@ -37,7 +40,9 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpPost]

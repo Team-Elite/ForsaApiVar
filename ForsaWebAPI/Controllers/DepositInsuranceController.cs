@@ -1,4 +1,5 @@
 ﻿using ForsaWebAPI.Helper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +14,7 @@ namespace ForsaWebAPI.Controllers
     public class DepositInsuranceController : ApiController
     {
         [HttpGet]
-        public DataTable GetDepositInsurance()
+        public IHttpActionResult GetDepositInsurance()
         {
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetDepositInsurance", System.Data.CommandType.StoredProcedure);
             if (dtRates == null)
@@ -22,7 +23,9 @@ namespace ForsaWebAPI.Controllers
                 return null;
             }
 
-            return dtRates;
+           // return dtRates;
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates))) });
+
         }
     }
 }

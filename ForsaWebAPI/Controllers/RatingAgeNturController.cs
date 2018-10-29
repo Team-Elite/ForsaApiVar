@@ -1,4 +1,5 @@
 ﻿using ForsaWebAPI.Helper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +13,7 @@ namespace ForsaWebAPI.Controllers
     public class RatingAgeNturController : ApiController
     {
         [HttpGet]
-        public DataTable GetRatingAgeNtur()
+        public IHttpActionResult GetRatingAgeNtur()
         {
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetRatingAgeNtur", System.Data.CommandType.StoredProcedure);
             if (dtRates == null)
@@ -21,7 +22,9 @@ namespace ForsaWebAPI.Controllers
                 return null;
             }
 
-            return dtRates;
+           // return dtRates;
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates))) });
+
         }
     }
 }

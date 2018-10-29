@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -18,9 +19,11 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/UserType
         [HttpGet]
-        public IQueryable<tblUserType> GettblUserTypes()
+        public IHttpActionResult GettblUserTypes()
         {
-            return db.tblUserTypes;
+          //  return db.tblUserTypes;
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(db.tblUserTypes)) });
+
         }
 
         // GET: api/UserType/5
@@ -34,7 +37,9 @@ namespace ForsaWebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tblUserType);
+            // return Ok(tblUserType);
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblUserType)) });
+
         }
 
         // PUT: api/UserType/5

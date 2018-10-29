@@ -12,6 +12,7 @@ using ForsaWebAPI.Models;
 using ForsaWebAPI.Helper;
 using System.Configuration;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -21,9 +22,11 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/User
         [HttpGet]
-        public IQueryable<tblUser> GettblUsers()
+        public IHttpActionResult GettblUsers()
         {
-            return db.tblUsers;
+            // return db.tblUsers;
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(db.tblCountries)) });
+
         }
 
         // GET: api/User/5
@@ -37,7 +40,9 @@ namespace ForsaWebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(tblUser);
+           // return Ok(tblUser);
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblUser)) });
+
         }
 
         [HttpGet]
@@ -165,6 +170,8 @@ namespace ForsaWebAPI.Controllers
             objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true });
+          //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpPost]
@@ -207,11 +214,13 @@ namespace ForsaWebAPI.Controllers
             objHelper.SendEMail(user.EmailAddress, HelperClass.PasswordUpdatedEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true, Message="Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+          //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
 
-            //private static 
-            string RandomString(int length)
+        //private static 
+        string RandomString(int length)
         {
             Random random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -261,6 +270,8 @@ namespace ForsaWebAPI.Controllers
             if (dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false, IfDataFound = false });
             return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpPost]
@@ -320,6 +331,11 @@ namespace ForsaWebAPI.Controllers
             objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true });
+            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
+
+
+
         }
 
     }

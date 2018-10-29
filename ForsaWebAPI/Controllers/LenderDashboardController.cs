@@ -1,5 +1,6 @@
 ﻿using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,30 +14,34 @@ namespace ForsaWebAPI.Controllers
     public class LenderDashboardController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(int userId)
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(int id)
         {
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyOrderByColumnName(int userId, string orderBy)
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyOrderByColumnName(int id, string orderBy)
         {
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             param[1] = new SqlParameter("@OrderBy", orderBy+ " desc");
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //  return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpGet]
@@ -61,7 +66,9 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpGet]
@@ -77,7 +84,9 @@ namespace ForsaWebAPI.Controllers
             if (dt.Rows.Count == 0){
                 return Json(new { IsSuccess = true,IfDataFound=false});
             }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            // return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpGet]
@@ -94,7 +103,9 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = true, IfDataFound = false });
             }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //  return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpGet]
@@ -117,7 +128,9 @@ namespace ForsaWebAPI.Controllers
                 return Json(new { IsSuccess = false });
             if (dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false, IfDataFound = false });
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //  return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpPost]

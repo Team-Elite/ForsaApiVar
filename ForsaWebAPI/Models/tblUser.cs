@@ -15,28 +15,42 @@ namespace ForsaWebAPI.Models
     public partial class tblUser
     {
         public int UserId { get; set; }
-        public int UserTypeId { get; set; }
-        public string BankName { get; set; }
-        public string Address { get; set; }
-        public string ZipCode { get; set; }
-        public string City { get; set; }
-        public Nullable<int> CountryId { get; set; }
-        public Nullable<int> LanguageId { get; set; }
+        public string NameOfCompany { get; set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string Place { get; set; }
+        public string AccountHolder { get; set; }
+        public string Bank { get; set; }
+        public string IBAN { get; set; }
+        public string BICCode { get; set; }
+        public string GroupIds { get; set; }
+        public string SubGroupId { get; set; }
+        public string LEINumber { get; set; }
+        public string FurtherField4 { get; set; }
+        public int Salutation { get; set; }
+        public string Title { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string SurName { get; set; }
         public string ContactNumber { get; set; }
         public string EmailAddress { get; set; }
-        public string LongTermRatingAgency { get; set; }
-        public string LongTermRating { get; set; }
-        public string ShortTermRatingAgency { get; set; }
-        public string ShortTermRating { get; set; }
-        public Nullable<bool> PromissaryNotesLenderOn { get; set; }
-        public Nullable<bool> PromissaryNotesBorrower { get; set; }
-        public Nullable<bool> MoneyMarket { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string FurtherField1 { get; set; }
+        public string FurtherField2 { get; set; }
+        public string FurtherField3 { get; set; }
+        public string UserTypeId { get; set; }
+        public string RatingAgentur1 { get; set; }
+        public string RatingAgenturValue1 { get; set; }
+        public string RatingAgentur2 { get; set; }
+        public string RatingAgenturValue2 { get; set; }
+        public int DepositInsurance { get; set; }
+        public int ClientGroupId { get; set; }
+        public Nullable<bool> AgreeToThePrivacyPolicy { get; set; }
+        public Nullable<bool> AgreeToTheRatingsMayPublish { get; set; }
+        public Nullable<bool> AgreeThatInformationOfCompanyMayBePublished { get; set; }
+        public Nullable<bool> AcceptAGBS { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
     }
 }
