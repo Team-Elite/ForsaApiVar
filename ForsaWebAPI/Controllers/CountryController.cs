@@ -92,7 +92,7 @@ namespace ForsaWebAPI.Controllers
             db.tblCountries.Add(tblCountry);
             db.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = tblCountry.CountryId }, tblCountry);
-          // return Json("DefaultApi", new{ IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(tblCountry))) }, tblCountry);
+          // return Json( new{ IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(tblCountry))) }, tblCountry);
         }
 
         // DELETE: api/Country/5

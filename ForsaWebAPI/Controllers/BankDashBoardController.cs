@@ -48,19 +48,21 @@ namespace ForsaWebAPI.Controllers
 
             // return dtRates;
             //return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
-            //return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates) });
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
 
         }
 
         [HttpPost]
-        public IHttpActionResult PublishAndUnPublish(int userId, bool IsPublished)
+        public IHttpActionResult PublishAndUnPublish(int id, bool IsPublished)
         {
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", id);
             param[1] = new SqlParameter("@IsPublished", IsPublished);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_PublishAndUnPublish", System.Data.CommandType.StoredProcedure, param);
+           
             return Json(new { IsSuccess = true });
+          //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+
         }
 
         [HttpPost]
@@ -70,31 +72,37 @@ namespace ForsaWebAPI.Controllers
             param[0] = new SqlParameter("@Id", objRate.Id);
             param[1] = new SqlParameter("@RateOfInterest", objRate.RateOfInterest);
             param[2] = new SqlParameter("@Modifiedby", objRate.ModifiedBy);
-            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateRateOfInterestOfBank", System.Data.CommandType.StoredProcedure, param);
-            return Json(new { IsSuccess = true });
+           var dt= SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateRateOfInterestOfBank", System.Data.CommandType.StoredProcedure, param);
+           return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+
+            // return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
-        public IHttpActionResult UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(int UserId, string GroupIds)
+        public IHttpActionResult UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(int id, string GroupIds)
         {
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", UserId);
+            param[0] = new SqlParameter("@UserId", id);
             param[1] = new SqlParameter("@GroupIds", GroupIds);
-            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible", System.Data.CommandType.StoredProcedure, param);
-            return Json(new { IsSuccess = true });
+           var dt= SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible", System.Data.CommandType.StoredProcedure, param);
+            // return Json(new { IsSuccess = true });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+
         }
 
         [HttpGet]
-        public IHttpActionResult GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(int borrowerId)
+        public IHttpActionResult GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(int id)
         {
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@BorrowerId", borrowerId);
+            param[0] = new SqlParameter("@BorrowerId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId", System.Data.CommandType.StoredProcedure, param);
             if(dt ==null)
                 return Json(new { IsSuccess = false });
             if (dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false, IfDataFound = false });
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
         }
 
         [HttpPost]

@@ -28,7 +28,7 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = false });
             }
-            return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
         }
        
         [HttpPost]
