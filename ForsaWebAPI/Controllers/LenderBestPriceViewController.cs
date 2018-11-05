@@ -25,7 +25,7 @@ namespace ForsaWebAPI.Controllers
                 return Json(new { IsSuccess = false });
             }
             //  return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
         }
         [HttpGet]
@@ -41,7 +41,7 @@ namespace ForsaWebAPI.Controllers
                 return Json(new { IsSuccess = false });
             }
             // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
         }
 
@@ -95,7 +95,7 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = true, IfDataFound = false });
             }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = JsonConvert.SerializeObject(dt) });
         }
 
         public IHttpActionResult GetBanksByTimePeriodK( int TimePeriod, int PageNumber)
@@ -112,7 +112,7 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = true, IfDataFound=false });
             }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = JsonConvert.SerializeObject(dt) });
         }
     }
 }
