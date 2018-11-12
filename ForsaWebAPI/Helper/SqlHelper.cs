@@ -101,7 +101,7 @@ namespace ForsaWebAPI
                 cmd.CommandType = commandType;
                 cmd.Parameters.AddRange(parameters);
 
-                conn.Open();
+                if(conn.State== ConnectionState.Closed) conn.Open();
                 // When using CommandBehavior.CloseConnection, the connection will be closed when the 
                 // IDataReader is closed.
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);

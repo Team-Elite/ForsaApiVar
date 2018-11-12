@@ -87,15 +87,12 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetRatesByTimePeriodK()
         {
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetRatesByTimePeriodK", System.Data.CommandType.StoredProcedure);
-            if (dt == null )
+            if (dt == null || dt.Rows.Count == 0)
             {
                 return Json(new { IsSuccess = false });
             }
-            else if (dt.Rows.Count == 0)
-            {
-                return Json(new { IsSuccess = true, IfDataFound = false });
-            }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = JsonConvert.SerializeObject(dt) });
+            // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
         }
 
         public IHttpActionResult GetBanksByTimePeriodK( int TimePeriod, int PageNumber)
@@ -104,15 +101,12 @@ namespace ForsaWebAPI.Controllers
             param[0] = new SqlParameter("@TimePeriodId", TimePeriod);
             param[1] = new SqlParameter("@PageNumber", PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetBanksByTimePeriodK", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null )
+            if (dt == null || dt.Rows.Count == 0)
             {
                 return Json(new { IsSuccess = false });
             }
-            else if ( dt.Rows.Count == 0)
-            {
-                return Json(new { IsSuccess = true, IfDataFound=false });
-            }
-            return Json(new { IsSuccess = true, IfDataFound = true, data = JsonConvert.SerializeObject(dt) });
+            // return Json(new { IsSuccess = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
         }
     }
 }

@@ -252,11 +252,7 @@ namespace ForsaWebAPI.Controllers
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@OrderBy", orderBy);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyForKontactUser", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                return Json(new { IsSuccess = false, IsDataFound=false });
-            }
-            return Json(new { IsSuccess = true, IsDataFound = true, data =JsonConvert.SerializeObject(dt)});
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
         }
     }
 }
