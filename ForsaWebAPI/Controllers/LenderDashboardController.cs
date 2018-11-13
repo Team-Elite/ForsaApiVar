@@ -14,8 +14,9 @@ namespace ForsaWebAPI.Controllers
     public class LenderDashboardController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(int id)
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
@@ -29,11 +30,13 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyOrderByColumnName(int id, string orderBy)
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyOrderByColumnName(ApiRequestModel requestModel,string orderBy)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", id);
-            param[1] = new SqlParameter("@OrderBy", orderBy+ " desc");
+            param[0] = new SqlParameter("@UserId", objRate.UserId);
+            param[1] = new SqlParameter("@OrderBy",orderBy+ " desc");
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontaly", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -45,20 +48,24 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult DeselectBank(int id, int bankId, Boolean IsSelected)
+        public IHttpActionResult DeselectBank(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
+
             SqlParameter[] param = new SqlParameter[3];
-            param[0] = new SqlParameter("@UserId", id);
-            param[1] = new SqlParameter("@BankId", bankId);
-            param[2] = new SqlParameter("@IsSelected", IsSelected);
+            param[0] = new SqlParameter("@UserId", objRate.UserId);
+            param[1] = new SqlParameter("@BankId", objRate.bankId);
+            param[2] = new SqlParameter("@IsSelected", objRate.IsSelected);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_DeselectBank ", System.Data.CommandType.StoredProcedure, param);
              return Json(new { IsSuccess = true });
            
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithStatusIsDeselected(int id, int PageNumber)
+        public IHttpActionResult GetAllBanksWithStatusIsDeselected(ApiRequestModel requestModel, int PageNumber)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@UserId", id);
             param[1] = new SqlParameter("@PageNumber", PageNumber);
@@ -73,8 +80,9 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(int id)
+        public IHttpActionResult GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected", System.Data.CommandType.StoredProcedure, param);
@@ -91,8 +99,9 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetPagesForLenderSettingStartPage(int id)
+        public IHttpActionResult GetPagesForLenderSettingStartPage(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetPagesForLenderSettingStartPage", System.Data.CommandType.StoredProcedure, param);
@@ -110,18 +119,22 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult LenderSaveStartPage(int userId, int pageId)
+        public IHttpActionResult LenderSaveStartPage(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LenderStartPageModel objRate = JsonConvert.DeserializeObject<LenderStartPageModel>(data);
+
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", userId);
-            param[1] = new SqlParameter("@PageId", pageId);
+            param[0] = new SqlParameter("@UserId", objRate.UserId);
+            param[1] = new SqlParameter("@PageId", objRate.PageId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSaveStartPage", System.Data.CommandType.StoredProcedure, param);
             return Json(new { IsSuccess = true});
         }
 
         [HttpGet]
-        public IHttpActionResult GetLenderSendRequestPendingLendedRequestByLenderId(int id)
+        public IHttpActionResult GetLenderSendRequestPendingLendedRequestByLenderId(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@LenderId", id);
             var dt =SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestPendingLendedRequestByLenderId", System.Data.CommandType.StoredProcedure, param);
@@ -133,11 +146,13 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult AcceptLendedRequest(LenderSendRequestModel sendRequestModel)
+        public IHttpActionResult AcceptLendedRequest(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LenderSendRequestModel objRate = JsonConvert.DeserializeObject<LenderSendRequestModel>(data);
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@IsAccepted", sendRequestModel.IsAccepted);
-            param[1] = new SqlParameter("@RequestId", sendRequestModel.RequestId);
+            param[0] = new SqlParameter("@IsAccepted", objRate.IsAccepted);
+            param[1] = new SqlParameter("@RequestId", objRate.RequestId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_AcceptLendedRequest", System.Data.CommandType.StoredProcedure, param);
 
             #region Sending Mail to Lender
@@ -149,17 +164,17 @@ namespace ForsaWebAPI.Controllers
                 bodyOfMail = reader.ReadToEnd();
             }
 
-            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>"+sendRequestModel.LenderName+"</b>");
-            bodyOfMail = bodyOfMail.Replace("[Amount]", sendRequestModel.Amount.ToString());
-            bodyOfMail = bodyOfMail.Replace("[StartDate]", sendRequestModel.StartDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[EndDate]", sendRequestModel.EndDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", sendRequestModel.NoOfDays.ToString());
-            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", sendRequestModel.InterestConventionName);
-            bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
-            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
+            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>"+ objRate.LenderName+"</b>");
+            bodyOfMail = bodyOfMail.Replace("[Amount]", objRate.Amount.ToString());
+            bodyOfMail = bodyOfMail.Replace("[StartDate]", objRate.StartDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[EndDate]", objRate.EndDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", objRate.NoOfDays.ToString());
+            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", objRate.InterestConventionName);
+            bodyOfMail = bodyOfMail.Replace("[Payments]", objRate.PaymentsName);
+            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", objRate.RateOfInterest.ToString());
             // Sending Email
             EmailHelper objHelper = new EmailHelper();
-            objHelper.SendEMail(sendRequestModel.LenderEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
+            objHelper.SendEMail(objRate.LenderEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
             #endregion
 
             #region Sending Mail to Borrower
@@ -169,27 +184,29 @@ namespace ForsaWebAPI.Controllers
             {
                 bodyOfMail = reader.ReadToEnd();
             }
-            bodyOfMail = bodyOfMail.Replace("[User]", "Borrower: <b>" + sendRequestModel.BorrowerName + "</b>");
-            bodyOfMail = bodyOfMail.Replace("[Amount]", sendRequestModel.Amount.ToString());
-            bodyOfMail = bodyOfMail.Replace("[StartDate]", sendRequestModel.StartDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[EndDate]", sendRequestModel.EndDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", sendRequestModel.NoOfDays.ToString());
-            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", sendRequestModel.InterestConventionName);
-            bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
-            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
+            bodyOfMail = bodyOfMail.Replace("[User]", "Borrower: <b>" + objRate.BorrowerName + "</b>");
+            bodyOfMail = bodyOfMail.Replace("[Amount]", objRate.Amount.ToString());
+            bodyOfMail = bodyOfMail.Replace("[StartDate]", objRate.StartDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[EndDate]", objRate.EndDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", objRate.NoOfDays.ToString());
+            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", objRate.InterestConventionName);
+            bodyOfMail = bodyOfMail.Replace("[Payments]", objRate.PaymentsName);
+            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", objRate.RateOfInterest.ToString());
 
-            objHelper.SendEMail(sendRequestModel.BorrowerEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
+            objHelper.SendEMail(objRate.BorrowerEmailId, HelperClass.LenderSendRequestAccepted, bodyOfMail);
             #endregion
 
             return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
-        public IHttpActionResult RejectLendedRequest(LenderSendRequestModel sendRequestModel)
+        public IHttpActionResult RejectLendedRequest(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LenderSendRequestModel objRate = JsonConvert.DeserializeObject<LenderSendRequestModel>(data);
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@IsRejected", sendRequestModel.IsRejected);
-            param[1] = new SqlParameter("@RequestId", sendRequestModel.RequestId);
+            param[0] = new SqlParameter("@IsRejected", objRate.IsRejected);
+            param[1] = new SqlParameter("@RequestId", objRate.RequestId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_RejectLendedRequest", System.Data.CommandType.StoredProcedure, param);
 
             #region Sending Mail to Lender
@@ -201,17 +218,17 @@ namespace ForsaWebAPI.Controllers
                 bodyOfMail = reader.ReadToEnd();
             }
 
-            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>" + sendRequestModel.LenderName + "</b>");
-            bodyOfMail = bodyOfMail.Replace("[Amount]", sendRequestModel.Amount.ToString());
-            bodyOfMail = bodyOfMail.Replace("[StartDate]", sendRequestModel.StartDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[EndDate]", sendRequestModel.EndDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", sendRequestModel.NoOfDays.ToString());
-            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", sendRequestModel.InterestConventionName);
-            bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
-            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
+            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>" + objRate.LenderName + "</b>");
+            bodyOfMail = bodyOfMail.Replace("[Amount]", objRate.Amount.ToString());
+            bodyOfMail = bodyOfMail.Replace("[StartDate]", objRate.StartDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[EndDate]", objRate.EndDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", objRate.NoOfDays.ToString());
+            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", objRate.InterestConventionName);
+            bodyOfMail = bodyOfMail.Replace("[Payments]", objRate.PaymentsName);
+            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", objRate.RateOfInterest.ToString());
             // Sending Email
             EmailHelper objHelper = new EmailHelper();
-            objHelper.SendEMail(sendRequestModel.LenderEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
+            objHelper.SendEMail(objRate.LenderEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
             #endregion
 
             #region Sending Mail to Borrower
@@ -221,23 +238,25 @@ namespace ForsaWebAPI.Controllers
             {
                 bodyOfMail = reader.ReadToEnd();
             }
-            bodyOfMail = bodyOfMail.Replace("[User]", "Borrower: <b>" + sendRequestModel.BorrowerName + "</b>");
-            bodyOfMail = bodyOfMail.Replace("[Amount]", sendRequestModel.Amount.ToString());
-            bodyOfMail = bodyOfMail.Replace("[StartDate]", sendRequestModel.StartDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[EndDate]", sendRequestModel.EndDate.ToString("MM/dd/yyyy"));
-            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", sendRequestModel.NoOfDays.ToString());
-            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", sendRequestModel.InterestConventionName);
-            bodyOfMail = bodyOfMail.Replace("[Payments]", sendRequestModel.PaymentsName);
-            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", sendRequestModel.RateOfInterest.ToString());
+            bodyOfMail = bodyOfMail.Replace("[User]", "Borrower: <b>" + objRate.BorrowerName + "</b>");
+            bodyOfMail = bodyOfMail.Replace("[Amount]", objRate.Amount.ToString());
+            bodyOfMail = bodyOfMail.Replace("[StartDate]", objRate.StartDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[EndDate]", objRate.EndDate.ToString("MM/dd/yyyy"));
+            bodyOfMail = bodyOfMail.Replace("[NoOfDay]", objRate.NoOfDays.ToString());
+            bodyOfMail = bodyOfMail.Replace("[INTERESTCONVENTION]", objRate.InterestConventionName);
+            bodyOfMail = bodyOfMail.Replace("[Payments]", objRate.PaymentsName);
+            bodyOfMail = bodyOfMail.Replace("[RateOfInterest]", objRate.RateOfInterest.ToString());
 
-            objHelper.SendEMail(sendRequestModel.BorrowerEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
+            objHelper.SendEMail(objRate.BorrowerEmailId, HelperClass.LenderSendRequestRejected, bodyOfMail);
             #endregion
             return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
-        public IHttpActionResult SaveForsaMessage(LenderSendRequestModel model)
+        public IHttpActionResult SaveForsaMessage(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LenderSendRequestModel model = JsonConvert.DeserializeObject<LenderSendRequestModel>(data);
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@MessageForForsa", model.MessageForForsa);
             param[1] = new SqlParameter("@IsMessageSentToForsa", model.IsMessageSentToForsa);

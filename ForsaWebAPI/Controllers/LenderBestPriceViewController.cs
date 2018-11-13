@@ -15,10 +15,11 @@ namespace ForsaWebAPI.Controllers
     {
         [HttpGet]
 
-        public IHttpActionResult GetRatesByTimePeriod(int Id)
+        public IHttpActionResult GetRatesByTimePeriod(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", Id);
+            param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetRatesByTimePeriod", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -29,11 +30,13 @@ namespace ForsaWebAPI.Controllers
 
         }
         [HttpGet]
-        public IHttpActionResult GetBanksByTimePeriod(int id, int TimePeriod, int PageNumber)
-        {
+        public IHttpActionResult GetBanksByTimePeriod(ApiRequestModel requestModel,int PageNumber)
+        {   
+              var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
             SqlParameter[] param = new SqlParameter[3];
-            param[0] = new SqlParameter("@UserId", id);
-            param[1] = new SqlParameter("@TimePeriodId", TimePeriod);
+            param[0] = new SqlParameter("@UserId", objRate.UserId);
+            param[1] = new SqlParameter("@TimePeriodId", objRate.TimePeriod);
             param[2] = new SqlParameter("@PageNumber", PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetBanksByTimePeriod", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
@@ -46,8 +49,10 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult SaveSendRequest(LenderSendRequestModel sendRequestModel)
+        public IHttpActionResult SaveSendRequest(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LenderSendRequestModel sendRequestModel = JsonConvert.DeserializeObject<LenderSendRequestModel>(data);
             SqlParameter[] param = new SqlParameter[9];
             param[0] = new SqlParameter("@LenderId", sendRequestModel.LenderId);
             param[1] = new SqlParameter("@BorrowerId", sendRequestModel.BorrowerId);
@@ -95,10 +100,12 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
         }
 
-        public IHttpActionResult GetBanksByTimePeriodK( int TimePeriod, int PageNumber)
+        public IHttpActionResult GetBanksByTimePeriodK(ApiRequestModel requestModel, int PageNumber)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@TimePeriodId", TimePeriod);
+            param[0] = new SqlParameter("@TimePeriodId", objRate.TimePeriod);
             param[1] = new SqlParameter("@PageNumber", PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetBanksByTimePeriodK", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
