@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,6 +29,23 @@ namespace ForsaWebAPI
             return token;
         }
 
-       
+        public string DecodeToken(string token)
+        {
+          
+
+
+            //var symmetricKey = Convert.FromBase64String(Secret);
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, data) }),
+            //    Expires = now.AddMinutes(Convert.ToInt32(expireMinutes)),
+            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
+            //};
+            return JsonConvert.SerializeObject(tokenHandler.ReadJwtToken(token).Payload);
+           
+         
+        }
     }
 }
