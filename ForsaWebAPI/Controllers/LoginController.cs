@@ -17,8 +17,11 @@ namespace ForsaWebAPI.Controllers
      
 
         [HttpPost]
-        public IHttpActionResult ValidateUser(LoginModel login)
+        public IHttpActionResult ValidateUser(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LoginModel login = JsonConvert.DeserializeObject<LoginModel>(data);
+
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@userName", login.UserName);
             param[1] = new SqlParameter("@password", login.UserPassword);
@@ -32,8 +35,10 @@ namespace ForsaWebAPI.Controllers
         }
        
         [HttpPost]
-        public IHttpActionResult ForgotPassword(LoginModel loginModel)
+        public IHttpActionResult ForgotPassword(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            LoginModel loginModel = JsonConvert.DeserializeObject<LoginModel>(data);
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@emailaddress", loginModel.ForgotPasswordEmailId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_VerifyEmailAddress", System.Data.CommandType.StoredProcedure, param);

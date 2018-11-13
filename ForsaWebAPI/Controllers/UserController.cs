@@ -31,27 +31,29 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/User/5
         //[ResponseType(typeof(tblUser))]
-        [HttpGet]
-        public IHttpActionResult GettblUser(int id)
+        [HttpPost]
+        public IHttpActionResult GettblUser(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             tblUser tblUser = db.tblUsers.Find(id);
             if (tblUser == null)
             {
                 return NotFound();
             }
 
-           // return Ok(tblUser);
+            // return Ok(tblUser);
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblUser)) });
 
         }
 
-        [HttpGet]
-        public bool IfUserNameAvailable(string userName)
+        [HttpPost]
+        public bool IfUserNameAvailable(ApiRequestModel requestModel)
         {
+            string userName = new JwtTokenManager().DecodeToken(requestModel.Data);
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserName", userName);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserNameExist", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null || dt.Rows.Count ==0)
+            if (dt == null || dt.Rows.Count == 0)
             {
                 //return NotFound();
                 return false;
@@ -59,9 +61,11 @@ namespace ForsaWebAPI.Controllers
             return true;
         }
 
-        [HttpGet]
-        public bool IfEmailIdIsRegistered(string emailId)
+        [HttpPost]
+        public bool IfEmailIdIsRegistered(ApiRequestModel requestModel)
         {
+
+            string emailId = new JwtTokenManager().DecodeToken(requestModel.Data);
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@EmailId", emailId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserEmailIdExist", System.Data.CommandType.StoredProcedure, param);
@@ -75,58 +79,63 @@ namespace ForsaWebAPI.Controllers
 
         // PUT: api/User/5
         //[ResponseType(typeof(void))]
-        [HttpPut]
-        public IHttpActionResult PuttblUser(int id, tblUser tblUser)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpPut]
+        //public IHttpActionResult PuttblUser(ApiRequestModel requestModel)
+        //{
 
-            if (id != tblUser.UserId)
-            {
-                return BadRequest();
-            }
+        //    int id; tblUser tblUser = JsonConvert.DeserializeObject<tblUser>(new JwtTokenManager().DecodeToken(requestModel.Data));
 
-            db.Entry(tblUser).State = EntityState.Modified;
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!tblUserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    if (id != tblUser.UserId)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    db.Entry(tblUser).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!tblUserExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/User
         //[ResponseType(typeof(tblUser))]
         [HttpPost]
-        public IHttpActionResult PosttblUser(UserModel user)
+        public IHttpActionResult RegisterUser(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             string password = RandomString(6);
             SqlParameter[] param = new SqlParameter[34];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
-            param[1] = new SqlParameter("@Street",user.Street );
-            param[2] = new SqlParameter("@PostalCode",user.PostalCode );
+            param[1] = new SqlParameter("@Street", user.Street);
+            param[2] = new SqlParameter("@PostalCode", user.PostalCode);
             param[3] = new SqlParameter("@Place", user.Place);
             param[4] = new SqlParameter("@AccountHolder", user.AccountHolder);
             param[5] = new SqlParameter("@Bank", user.Bank);
             param[6] = new SqlParameter("@IBAN", user.IBAN);
-            param[7] = new SqlParameter("@BICCode",user.BICCode );
-            param[8] = new SqlParameter("@GroupIds",user.GroupIds == null ? "" :user.GroupIds);
+            param[7] = new SqlParameter("@BICCode", user.BICCode);
+            param[8] = new SqlParameter("@GroupIds", user.GroupIds == null ? "" : user.GroupIds);
             param[9] = new SqlParameter("@SubGroupId", user.SubGroupId);
-            param[10] = new SqlParameter("@LEINumber", user.LEINumber == null ? "":user.LEINumber);
+            param[10] = new SqlParameter("@LEINumber", user.LEINumber == null ? "" : user.LEINumber);
             param[11] = new SqlParameter("@FurtherField4", user.FurtherField4);
             param[12] = new SqlParameter("@Salutation", user.Salutation);
             param[13] = new SqlParameter("@Title", user.Title);
@@ -140,51 +149,52 @@ namespace ForsaWebAPI.Controllers
             param[21] = new SqlParameter("@FurtherField2", user.FurtherField2);
             param[22] = new SqlParameter("@FurtherField3", user.FurtherField3);
             param[23] = new SqlParameter("@UserTypeId", user.UserTypeId);
-            param[24] = new SqlParameter("@RatingAgentur1", user.RatingAgentur1 == null ? "":user.RatingAgentur1);
-            param[25] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1==null?"":user.RatingAgenturValue1);
+            param[24] = new SqlParameter("@RatingAgentur1", user.RatingAgentur1 == null ? "" : user.RatingAgentur1);
+            param[25] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1 == null ? "" : user.RatingAgenturValue1);
             param[26] = new SqlParameter("@RatingAgentur2", user.RatingAgentur2 == null ? "" : user.RatingAgentur2);
-            param[27] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2==null ? "":user.RatingAgenturValue2);
+            param[27] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2 == null ? "" : user.RatingAgenturValue2);
             param[28] = new SqlParameter("@DepositInsurance", user.DepositInsurance);
             param[29] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
             param[30] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
             param[31] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
             param[32] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
             param[33] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
-            
-            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
-                        
 
-            var path = AppDomain.CurrentDomain.BaseDirectory+"\\EmailTemplates\\RegistrationTemplate.html";
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
+
+
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
             var bodyOfMail = "";
             using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
             {
                 bodyOfMail = reader.ReadToEnd();
             }
 
-            bodyOfMail=bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
-            bodyOfMail=bodyOfMail.Replace("[UserName]", user.UserName.ToString());
-            bodyOfMail=bodyOfMail.Replace("[Password]", password);
-            bodyOfMail=bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
+            bodyOfMail = bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
+            bodyOfMail = bodyOfMail.Replace("[UserName]", user.UserName.ToString());
+            bodyOfMail = bodyOfMail.Replace("[Password]", password);
+            bodyOfMail = bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
             // Sending Email
             EmailHelper objHelper = new EmailHelper();
             objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true });
-          //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }
 
         [HttpPost]
-        public IHttpActionResult UpdateUser(UserModel user)
+        public IHttpActionResult UpdateUser(ApiRequestModel requestModel)
         {
-
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@UserId", user.UserId);
             param[1] = new SqlParameter("@Password", user.Password);
-            var dt= SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfPasswordIsCorrect", System.Data.CommandType.StoredProcedure, param);
-            if(dt== null || dt.Rows.Count == 0)
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfPasswordIsCorrect", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null || dt.Rows.Count == 0)
             {
-                return Json(new { IsSuccess = false, Message="Old password is not correct." });
+                return Json(new { IsSuccess = false, Message = "Old password is not correct." });
             }
 
             param = new SqlParameter[5];
@@ -197,7 +207,7 @@ namespace ForsaWebAPI.Controllers
 
             param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", user.UserId);
-            dt= SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserById", System.Data.CommandType.StoredProcedure, param);
+            dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserById", System.Data.CommandType.StoredProcedure, param);
 
             // Sending Email on Password updated.
             var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\PasswordUpdated.html";
@@ -213,8 +223,8 @@ namespace ForsaWebAPI.Controllers
             EmailHelper objHelper = new EmailHelper();
             objHelper.SendEMail(user.EmailAddress, HelperClass.PasswordUpdatedEmailSubject, bodyOfMail);
 
-            return Json(new { IsSuccess = true, Message="Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-          //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, Message = "Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }
 
@@ -256,12 +266,14 @@ namespace ForsaWebAPI.Controllers
 
         private bool tblUserExists(int id)
         {
+
             return db.tblUsers.Count(e => e.UserId == id) > 0;
         }
 
-        [HttpGet]
-        public IHttpActionResult GetUserDetailByUserId(int userId)
+        [HttpPost]
+        public IHttpActionResult GetUserDetailByUserId(ApiRequestModel requestModel)
         {
+            int userId = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", userId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);
@@ -274,9 +286,11 @@ namespace ForsaWebAPI.Controllers
 
         }
 
-        [HttpPost]
-        public IHttpActionResult UpdateUserDetails(UserModel user)
+        [HttpPut]
+        public IHttpActionResult UpdateUserDetails(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             string password = RandomString(6);
             SqlParameter[] param = new SqlParameter[32];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
