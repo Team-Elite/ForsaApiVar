@@ -1,4 +1,5 @@
 ﻿using ForsaWebAPI.Helper;
+using ForsaWebAPI.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,9 @@ namespace ForsaWebAPI.Controllers
     public class LenderStartPageController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetLenderStartPage(int id)
+        public IHttpActionResult GetLenderStartPage(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", id);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderStartPage", System.Data.CommandType.StoredProcedure, param);

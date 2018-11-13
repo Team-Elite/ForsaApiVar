@@ -29,8 +29,9 @@ namespace ForsaWebAPI.Controllers
         // GET: api/UserType/5
         //[ResponseType(typeof(tblUserType))]
         [HttpGet]
-        public IHttpActionResult GettblUserType(int id)
+        public IHttpActionResult GettblUserType(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             tblUserType tblUserType = db.tblUserTypes.Find(id);
             if (tblUserType == null)
             {
@@ -47,6 +48,7 @@ namespace ForsaWebAPI.Controllers
         [HttpPut]
         public IHttpActionResult PuttblUserType(int id, tblUserType tblUserType)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -81,8 +83,10 @@ namespace ForsaWebAPI.Controllers
         // POST: api/UserType
         //[ResponseType(typeof(tblUserType))]
         [HttpPost]
-        public IHttpActionResult PosttblUserType(tblUserType tblUserType)
+        public IHttpActionResult PosttblUserType(ApiRequestModel requestModel)
         {
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            tblUserType tblUserType = JsonConvert.DeserializeObject<tblUserType>(data);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -97,8 +101,9 @@ namespace ForsaWebAPI.Controllers
         // DELETE: api/UserType/5
         //[ResponseType(typeof(tblUserType))]
         [HttpDelete]
-        public IHttpActionResult DeletetblUserType(int id)
+        public IHttpActionResult DeletetblUserType(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             tblUserType tblUserType = db.tblUserTypes.Find(id);
             if (tblUserType == null)
             {
@@ -120,8 +125,9 @@ namespace ForsaWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool tblUserTypeExists(int id)
+        private bool tblUserTypeExists(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             return db.tblUserTypes.Count(e => e.UserTypeId == id) > 0;
         }
     }
