@@ -30,8 +30,9 @@ namespace ForsaWebAPI.Controllers
         // GET: api/Country/5
         //[ResponseType(typeof(tblCountry))]
         [HttpGet]
-        public IHttpActionResult GettblCountry(int id)
+        public IHttpActionResult GettblCountry(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             tblCountry tblCountry = db.tblCountries.Find(id);
             if (tblCountry == null)
             {
@@ -98,8 +99,9 @@ namespace ForsaWebAPI.Controllers
         // DELETE: api/Country/5
         //[ResponseType(typeof(tblCountry))]
         [HttpDelete]
-        public IHttpActionResult DeletetblCountry(int id)
+        public IHttpActionResult DeletetblCountry(ApiRequestModel requestModel)
         {
+            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             tblCountry tblCountry = db.tblCountries.Find(id);
             if (tblCountry == null)
             {

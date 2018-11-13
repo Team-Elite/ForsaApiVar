@@ -39,7 +39,7 @@ namespace ForsaWebAPI.Controllers
             }
 
             //return Ok(tblLanguage);
-             return Json( new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject((db.tblCountries))) });
+             return Json( new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject((tblLanguage))) });
 
         }
 

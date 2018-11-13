@@ -11,7 +11,8 @@ namespace ForsaWebAPI.Models
         public int UserId { get; set; }
         public Boolean IsPublished { get; set; }
         public int TimePeriodId { get; set; }
-
+        public int bankId { get; set; }
+        public int IsSelected { get; set; }
         public decimal RateOfInterest { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
