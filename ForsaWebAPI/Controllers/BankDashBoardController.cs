@@ -18,13 +18,13 @@ namespace ForsaWebAPI.Controllers
     {
         private ForsaEntities db = new ForsaEntities();
 
-        [HttpGet]
+        [HttpPost]
         
         public IHttpActionResult GetRateOfInterestOfBank(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var user = JsonConvert.DeserializeObject<UserModel>( (new JwtTokenManager().DecodeToken(requestModel.Data)));
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", id);
+            param[0] = new SqlParameter("@UserId", user.UserId);
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetRateOfInterestOfBank", System.Data.CommandType.StoredProcedure, param);
             if (dtRates == null)
             {
@@ -35,12 +35,12 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
         }
 
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult GetUserGroupForSettingRateOfInterestVisibility(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var user = JsonConvert.DeserializeObject<UserModel>((new JwtTokenManager().DecodeToken(requestModel.Data)));
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", id);
+            param[0] = new SqlParameter("@UserId", user.UserId);
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserGroupForSettingRateOfInterestVisibility", System.Data.CommandType.StoredProcedure, param);
             if (dtRates == null)
             {
@@ -101,7 +101,7 @@ namespace ForsaWebAPI.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(ApiRequestModel requestModel)
         {
             int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));

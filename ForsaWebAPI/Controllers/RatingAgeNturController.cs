@@ -23,7 +23,7 @@ namespace ForsaWebAPI.Controllers
             }
 
            // return dtRates;
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates))) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
 
         }
     }

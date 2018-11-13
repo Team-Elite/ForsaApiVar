@@ -125,9 +125,9 @@ namespace ForsaWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool tblUserTypeExists(ApiRequestModel requestModel)
+        private bool tblUserTypeExists(int id)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+           
             return db.tblUserTypes.Count(e => e.UserTypeId == id) > 0;
         }
     }

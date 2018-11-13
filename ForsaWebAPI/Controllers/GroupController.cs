@@ -16,14 +16,14 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetGroup()
         {
             var dtRates = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetGroup", System.Data.CommandType.StoredProcedure);
-            if (dtRates == null)
+            if (dtRates == null || dtRates.Rows.Count==0)
             {
                 //return NotFound();
                 return null;
             }
 
            // return dtRates;
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dtRates))) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dtRates)) });
 
         }
     }

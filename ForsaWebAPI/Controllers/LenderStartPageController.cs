@@ -13,12 +13,12 @@ namespace ForsaWebAPI.Controllers
 {
     public class LenderStartPageController : ApiController
     {
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult GetLenderStartPage(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", id);
+            param[0] = new SqlParameter("@UserId", user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderStartPage", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {

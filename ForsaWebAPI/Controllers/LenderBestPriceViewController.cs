@@ -13,13 +13,15 @@ namespace ForsaWebAPI.Controllers
 {
     public class LenderBestPriceViewController : ApiController
     {
-        [HttpGet]
+        [HttpPost]
 
         public IHttpActionResult GetRatesByTimePeriod(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel objRate = JsonConvert.DeserializeObject<UserModel>(data);
+            // int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", id);
+            param[0] = new SqlParameter("@UserId", objRate.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetRatesByTimePeriod", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -29,15 +31,15 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
         }
-        [HttpGet]
-        public IHttpActionResult GetBanksByTimePeriod(ApiRequestModel requestModel,int PageNumber)
+        [HttpPost]
+        public IHttpActionResult GetBanksByTimePeriod(ApiRequestModel requestModel)
         {   
               var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@UserId", objRate.UserId);
             param[1] = new SqlParameter("@TimePeriodId", objRate.TimePeriod);
-            param[2] = new SqlParameter("@PageNumber", PageNumber);
+            param[2] = new SqlParameter("@PageNumber", requestModel.PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_BestPriceView_GetBanksByTimePeriod", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
