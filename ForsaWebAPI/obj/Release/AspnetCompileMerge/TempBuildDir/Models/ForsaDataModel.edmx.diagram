@@ -4,11 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6a774cd2083c4c49a018e5866f829f69" Name="Diagram1">
-        <EntityTypeShape EntityType="ForsaModel.tblCountry" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForsaModel.tblLanguage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForsaModel.tblUser" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForsaModel.tblUserType" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="6a774cd2083c4c49a018e5866f829f69" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="ForsaModel.tblCountry" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblCustomerGroup" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblDepositInsurance" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblGroup" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblLanguage" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblLenderDeselectedBank" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblLenderSendRequest" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblLenderStartPage" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblPage" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblRateOfInterestOfBank" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblRatingAgeNtur" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblSalutation" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblSubGroup" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblUser" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblUser2" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblUserType" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ForsaModel.tblTimePeriod" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ForsaModel.tmptbl" Width="1.5" PointX="10.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

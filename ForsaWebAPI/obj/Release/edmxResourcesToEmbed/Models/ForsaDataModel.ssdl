@@ -7,6 +7,28 @@
     <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Country" Type="nvarchar" MaxLength="200" Nullable="false" />
   </EntityType>
+  <EntityType Name="tblCustomerGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerGroup" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblDepositInsurance">
+    <Key>
+      <PropertyRef Name="DepositInsuranceId" />
+    </Key>
+    <Property Name="DepositInsuranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepositInsurance" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GroupName2" Type="nvarchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="tblLanguage">
     <Key>
       <PropertyRef Name="LanguageId" />
@@ -15,7 +37,151 @@
     <Property Name="Language" Type="nvarchar" MaxLength="300" />
     <Property Name="LanguageCode" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="tblLenderDeselectedBanks">
+    <Key>
+      <PropertyRef Name="DeselectedBankId" />
+    </Key>
+    <Property Name="DeselectedBankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="BankIds" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLenderSendRequest">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LenderId" Type="int" Nullable="false" />
+    <Property Name="BorrowerId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="NoOfDays" Type="int" Nullable="false" />
+    <Property Name="InterestConvention" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Payments" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsRequestAccepted" Type="bit" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="date" />
+    <Property Name="RequestCreatedBy" Type="int" />
+    <Property Name="RateOfInterestOfferred" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OfferredOn" Type="datetime" />
+    <Property Name="IsAccepted" Type="bit" />
+    <Property Name="IsRejected" Type="bit" />
+    <Property Name="MessageForForsa" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsMessageSentToForsa" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblLenderStartPage">
+    <Key>
+      <PropertyRef Name="LenderStartPageId" />
+    </Key>
+    <Property Name="LenderStartPageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsStartPage" Type="bit" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPages">
+    <Key>
+      <PropertyRef Name="PageId" />
+    </Key>
+    <Property Name="PageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRateOfInterestOfBank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsPublished" Type="bit" Nullable="false" />
+    <Property Name="TimePeriodId" Type="int" Nullable="false" />
+    <Property Name="RateOfInterest" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="Modifiedby" Type="int" />
+    <Property Name="GroupIds" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tblRatingAgeNtur">
+    <Key>
+      <PropertyRef Name="RatingAgeNturId" />
+    </Key>
+    <Property Name="RatingAgeNturId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RatingAgeNtur" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSalutation">
+    <Key>
+      <PropertyRef Name="SalutationId" />
+    </Key>
+    <Property Name="SalutationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Salutation" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSubGroup">
+    <Key>
+      <PropertyRef Name="SubGroupId" />
+    </Key>
+    <Property Name="SubGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubGroupName" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EWT_Forsa.dbo.tblTimePeriod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblTimePeriod">
+    <Key>
+      <PropertyRef Name="TimePeriodId" />
+      <PropertyRef Name="TimePeriod" />
+    </Key>
+    <Property Name="TimePeriodId" Type="int" Nullable="false" />
+    <Property Name="TimePeriod" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TimePeriodForGrid" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameOfCompany" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Street" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="AccountHolder" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Bank" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IBAN" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="BICCode" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="GroupIds" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="SubGroupId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LEINumber" Type="nvarchar" MaxLength="500" />
+    <Property Name="FurtherField4" Type="nvarchar" MaxLength="500" />
+    <Property Name="Salutation" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FurtherField1" Type="nvarchar" MaxLength="500" />
+    <Property Name="FurtherField2" Type="nvarchar" MaxLength="500" />
+    <Property Name="FurtherField3" Type="nvarchar" MaxLength="500" />
+    <Property Name="UserTypeId" Type="nvarchar" MaxLength="500" />
+    <Property Name="RatingAgentur1" Type="nvarchar" MaxLength="500" />
+    <Property Name="RatingAgenturValue1" Type="nvarchar" MaxLength="500" />
+    <Property Name="RatingAgentur2" Type="nvarchar" MaxLength="500" />
+    <Property Name="RatingAgenturValue2" Type="nvarchar" MaxLength="500" />
+    <Property Name="DepositInsurance" Type="int" Nullable="false" />
+    <Property Name="ClientGroupId" Type="int" Nullable="false" />
+    <Property Name="AgreeToThePrivacyPolicy" Type="bit" />
+    <Property Name="AgreeToTheRatingsMayPublish" Type="bit" />
+    <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" />
+    <Property Name="AcceptAGBS" Type="bit" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUser2">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
@@ -43,6 +209,7 @@
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DateModified" Type="datetime" />
     <Property Name="CreatedBy" Type="int" />
+    <Property Name="GroupIds" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="tblUserType">
     <Key>
@@ -51,10 +218,51 @@
     <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserType" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EWT_Forsa.dbo.tmptbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tmptbl">
+    <Key>
+      <PropertyRef Name="TimePeriod" />
+      <PropertyRef Name="Bank" />
+      <PropertyRef Name="RateOfInterest" />
+      <PropertyRef Name="SrNo" />
+    </Key>
+    <Property Name="TimePeriod" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Bank" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="RateOfInterest" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SrNo" Type="int" Nullable="false" />
+  </EntityType>
   <EntityContainer Name="ForsaModelStoreContainer">
     <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCustomerGroup" EntityType="Self.tblCustomerGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDepositInsurance" EntityType="Self.tblDepositInsurance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblLanguage" EntityType="Self.tblLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLenderDeselectedBanks" EntityType="Self.tblLenderDeselectedBanks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLenderSendRequest" EntityType="Self.tblLenderSendRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLenderStartPage" EntityType="Self.tblLenderStartPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPages" EntityType="Self.tblPages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRateOfInterestOfBank" EntityType="Self.tblRateOfInterestOfBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRatingAgeNtur" EntityType="Self.tblRatingAgeNtur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSalutation" EntityType="Self.tblSalutation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubGroup" EntityType="Self.tblSubGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser2" EntityType="Self.tblUser2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTimePeriod" EntityType="Self.tblTimePeriod" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[tblTimePeriod].[TimePeriodId] AS [TimePeriodId], 
+[tblTimePeriod].[TimePeriod] AS [TimePeriod], 
+[tblTimePeriod].[TimePeriodForGrid] AS [TimePeriodForGrid]
+FROM [dbo].[tblTimePeriod] AS [tblTimePeriod]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tmptbl" EntityType="Self.tmptbl" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[tmptbl].[TimePeriod] AS [TimePeriod], 
+[tmptbl].[Bank] AS [Bank], 
+[tmptbl].[RateOfInterest] AS [RateOfInterest], 
+[tmptbl].[SrNo] AS [SrNo]
+FROM [dbo].[tmptbl] AS [tmptbl]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

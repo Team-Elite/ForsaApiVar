@@ -6,104 +6,131 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects 2\PublishedWebSites\Web</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\Publish\ForsaApi</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/27/2018 09:41:04</publishTime>
+      <publishTime>11/14/2018 16:24:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/27/2018 09:41:04</publishTime>
+      <publishTime>11/14/2018 16:24:20</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>03/02/2015 09:32:26</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>03/02/2015 09:32:26</publishTime>
+      <publishTime>11/14/2018 11:23:16</publishTime>
     </File>
     <File Include="bin/ForsaWebAPI.dll">
-      <publishTime>09/27/2018 09:40:39</publishTime>
+      <publishTime>11/14/2018 16:24:13</publishTime>
+    </File>
+    <File Include="bin/ForsaWebAPI.pdb">
+      <publishTime>11/14/2018 16:24:13</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>06/15/2015 02:06:24</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.dll">
+      <publishTime>10/05/2018 19:35:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.JsonWebTokens.pdb">
+      <publishTime>10/05/2018 19:25:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.dll">
+      <publishTime>10/05/2018 19:36:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.pdb">
+      <publishTime>10/05/2018 19:25:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>10/05/2018 19:42:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.pdb">
+      <publishTime>10/05/2018 19:25:48</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/03/2014 20:33:56</publishTime>
+      <publishTime>03/20/2017 20:03:18</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
-      <publishTime>06/18/2015 20:19:44</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Collections.Immutable.dll">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/System.Reflection.Metadata.dll">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/vbc.exe">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
-      <publishTime>06/18/2015 20:19:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>10/05/2018 19:34:30</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.pdb">
+      <publishTime>10/05/2018 19:25:52</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>05/10/2018 22:38:56</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/System.Web.Cors.dll">
-      <publishTime>05/10/2018 22:37:02</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/System.Web.Http.Cors.dll">
-      <publishTime>05/10/2018 22:39:40</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>05/10/2018 22:39:16</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>01/28/2015 04:03:46</publishTime>
+      <publishTime>11/14/2018 11:23:17</publishTime>
     </File>
     <File Include="EmailTemplates/ForgotPassword.html">
-      <publishTime>08/29/2018 02:08:38</publishTime>
+      <publishTime>11/14/2018 11:23:15</publishTime>
     </File>
     <File Include="EmailTemplates/LenderSendRequest.html">
-      <publishTime>09/19/2018 09:15:30</publishTime>
+      <publishTime>11/14/2018 11:23:15</publishTime>
     </File>
     <File Include="EmailTemplates/PasswordUpdated.html">
-      <publishTime>09/11/2018 10:06:08</publishTime>
+      <publishTime>11/14/2018 11:23:15</publishTime>
     </File>
     <File Include="EmailTemplates/RegistrationTemplate.html">
-      <publishTime>08/29/2018 02:08:43</publishTime>
+      <publishTime>11/14/2018 11:23:15</publishTime>
     </File>
     <File Include="Models/ForsaDataModel.edmx.diagram">
-      <publishTime>08/20/2018 10:14:41</publishTime>
+      <publishTime>11/14/2018 11:36:29</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/20/2018 10:26:03</publishTime>
+      <publishTime>11/14/2018 11:36:29</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/27/2018 09:40:49</publishTime>
+      <publishTime>11/14/2018 16:24:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/19/2018 09:29:07</publishTime>
+      <publishTime>11/14/2018 15:13:58</publishTime>
     </File>
   </ItemGroup>
 </Project>
