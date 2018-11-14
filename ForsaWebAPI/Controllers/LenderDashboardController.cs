@@ -268,7 +268,7 @@ namespace ForsaWebAPI.Controllers
             return Json(new { IsSuccess = true });
         }
 
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult GetAllBanksWithInterestRateHorizontalyForKontactUser(string orderBy)
         {
             SqlParameter[] param = new SqlParameter[1];

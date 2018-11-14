@@ -49,9 +49,11 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public bool IfUserNameAvailable(ApiRequestModel requestModel)
         {
-            string userName = new JwtTokenManager().DecodeToken(requestModel.Data);
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+           
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserName", userName);
+            param[0] = new SqlParameter("@UserName", user.UserName);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserNameExist", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -64,10 +66,11 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public bool IfEmailIdIsRegistered(ApiRequestModel requestModel)
         {
-
-            string emailId = new JwtTokenManager().DecodeToken(requestModel.Data);
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+           
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@EmailId", emailId);
+            param[0] = new SqlParameter("@EmailId", user.EmailAddress);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserEmailIdExist", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -273,16 +276,17 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public IHttpActionResult GetUserDetailByUserId(ApiRequestModel requestModel)
         {
-            int userId = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
+     
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", userId);
+            param[0] = new SqlParameter("@UserId", user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);
             if (dt == null)
                 return Json(new { IsSuccess = false });
             if (dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false, IfDataFound = false });
-            return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }
 

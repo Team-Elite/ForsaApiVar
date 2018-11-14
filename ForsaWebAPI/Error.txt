@@ -10,4 +10,8 @@ Exception at 11/13/2018 7:53:12 PM--------MessageThe SMTP server requires a secu
    at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
    at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
    at System.Net.Mail.SmtpClient.Send(MailMessage message)
-   at ForsaWebAPI.Helper.EmailHelper.SendEMail(String recipient, String subject, String message) in E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\Helper\EmailHelper.cs:line 119
+   at ForsaWebAPI.Helper.EmailHelper.SendEMail(String recipient, String subject, String message) in E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\Helper\EmailHelper.cs:line 119Exception at 11/14/2018 3:02:24 PM--------MessageThe SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at-------- Stack trace    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at ForsaWebAPI.Helper.EmailHelper.SendEMail(String recipient, String subject, String message)
