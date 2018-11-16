@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ForsaModelStoreContainer" CdmEntityContainer="ForsaEntities">
+    <FunctionImportMapping FunctionName="ForsaModel.Store.fn_Split" FunctionImportName="fn_Split">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.fn_Split_Result">
+          <ScalarProperty Name="Items" ColumnName="Items" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetBanksByTimePeriod" FunctionName="ForsaModel.Store.USP_BestPriceView_GetBanksByTimePeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetBanksByTimePeriod_Result">
+          <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetBanksByTimePeriodK" FunctionName="ForsaModel.Store.USP_BestPriceView_GetBanksByTimePeriodK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetBanksByTimePeriodK_Result">
+          <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetRatesByTimePeriod" FunctionName="ForsaModel.Store.USP_BestPriceView_GetRatesByTimePeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetRatesByTimePeriod_Result">
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetRatesByTimePeriodK" FunctionName="ForsaModel.Store.USP_BestPriceView_GetRatesByTimePeriodK">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetRatesByTimePeriodK_Result">
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_CheckIfPasswordIsCorrect" FunctionName="ForsaModel.Store.USP_CheckIfPasswordIsCorrect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfPasswordIsCorrect_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_CheckIfUserEmailIdExist" FunctionName="ForsaModel.Store.USP_CheckIfUserEmailIdExist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfUserEmailIdExist_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_CheckIfUserNameExist" FunctionName="ForsaModel.Store.USP_CheckIfUserNameExist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfUserNameExist_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_DeselectBank" FunctionName="ForsaModel.Store.USP_DeselectBank" />
+    <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontaly" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontaly" />
+    <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" />
+    <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" />
+    <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" />
+    <FunctionImportMapping FunctionImportName="USP_GetDepositInsurance" FunctionName="ForsaModel.Store.USP_GetDepositInsurance">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetDepositInsurance_Result">
+          <ScalarProperty Name="DepositInsuranceId" ColumnName="DepositInsuranceId" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetGroup" FunctionName="ForsaModel.Store.USP_GetGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetGroup_Result">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetLenderSendRequestPendingLendedRequestByLenderId" FunctionName="ForsaModel.Store.USP_GetLenderSendRequestPendingLendedRequestByLenderId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetLenderSendRequestPendingLendedRequestByLenderId_Result">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+          <ScalarProperty Name="Payments" ColumnName="Payments" />
+          <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="BorrowerName" ColumnName="BorrowerName" />
+          <ScalarProperty Name="BorrowerEmailId" ColumnName="BorrowerEmailId" />
+          <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+          <ScalarProperty Name="LenderEmailId" ColumnName="LenderEmailId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId" FunctionName="ForsaModel.Store.USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId_Result">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+          <ScalarProperty Name="Payments" ColumnName="Payments" />
+          <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+          <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
+          <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="BorrowerName" ColumnName="BorrowerName" />
+          <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetLenderStartPage" FunctionName="ForsaModel.Store.USP_GetLenderStartPage" />
+    <FunctionImportMapping FunctionImportName="USP_GetPagesForLenderSettingStartPage" FunctionName="ForsaModel.Store.USP_GetPagesForLenderSettingStartPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetPagesForLenderSettingStartPage_Result">
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+          <ScalarProperty Name="IsStartPage" ColumnName="IsStartPage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetRateOfInterestOfBank" FunctionName="ForsaModel.Store.USP_GetRateOfInterestOfBank">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetRateOfInterestOfBank_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="Modifiedby" ColumnName="Modifiedby" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetRatingAgeNtur" FunctionName="ForsaModel.Store.USP_GetRatingAgeNtur">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetRatingAgeNtur_Result">
+          <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
+          <ScalarProperty Name="RatingAgeNtur" ColumnName="RatingAgeNtur" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetSalutation" FunctionName="ForsaModel.Store.USP_GetSalutation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetSalutation_Result">
+          <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetSubGroup" FunctionName="ForsaModel.Store.USP_GetSubGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetSubGroup_Result">
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetUserById" FunctionName="ForsaModel.Store.USP_GetUserById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserById_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetUserDetailById" FunctionName="ForsaModel.Store.USP_GetUserDetailById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserDetailById_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetUserGroupForSettingRateOfInterestVisibility" FunctionName="ForsaModel.Store.USP_GetUserGroupForSettingRateOfInterestVisibility">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserGroupForSettingRateOfInterestVisibility_Result">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+          <ScalarProperty Name="IfRateWillBeVisible" ColumnName="IfRateWillBeVisible" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetUserPassword" FunctionName="ForsaModel.Store.USP_GetUserPassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserPassword_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_InsertUser" FunctionName="ForsaModel.Store.USP_InsertUser" />
+    <FunctionImportMapping FunctionImportName="USP_Lender_GetAllBanksWithStatusIsDeselected" FunctionName="ForsaModel.Store.USP_Lender_GetAllBanksWithStatusIsDeselected">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_Lender_GetAllBanksWithStatusIsDeselected_Result">
+          <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_Lender_SaveSendRequest" FunctionName="ForsaModel.Store.USP_Lender_SaveSendRequest" />
+    <FunctionImportMapping FunctionImportName="USP_LenderSaveStartPage" FunctionName="ForsaModel.Store.USP_LenderSaveStartPage" />
+    <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_AcceptLendedRequest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_AcceptLendedRequest" />
+    <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_RejectLendedRequest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_RejectLendedRequest" />
+    <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_SaveForsaMEssage" FunctionName="ForsaModel.Store.USP_LenderSendRequest_SaveForsaMEssage" />
+    <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_UpdateRateOfInterest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_UpdateRateOfInterest" />
+    <FunctionImportMapping FunctionImportName="USP_PublishAndUnPublish" FunctionName="ForsaModel.Store.USP_PublishAndUnPublish" />
+    <FunctionImportMapping FunctionImportName="USP_UpdateRateOfInterestOfBank" FunctionName="ForsaModel.Store.USP_UpdateRateOfInterestOfBank" />
+    <FunctionImportMapping FunctionImportName="USP_UpdateUser" FunctionName="ForsaModel.Store.USP_UpdateUser" />
+    <FunctionImportMapping FunctionImportName="USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" FunctionName="ForsaModel.Store.USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" />
+    <FunctionImportMapping FunctionImportName="USP_UpdateUserInformation" FunctionName="ForsaModel.Store.USP_UpdateUserInformation" />
+    <FunctionImportMapping FunctionImportName="USP_ValidateUser" FunctionName="ForsaModel.Store.USP_ValidateUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_ValidateUser_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_VerifyEmailAddress" FunctionName="ForsaModel.Store.USP_VerifyEmailAddress">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_VerifyEmailAddress_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetCountryList" FunctionName="ForsaModel.Store.USP_GetCountryList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetCountryList_Result">
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetLanguageList" FunctionName="ForsaModel.Store.USP_GetLanguageList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetLanguageList_Result">
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetMaturityList" FunctionName="ForsaModel.Store.USP_GetMaturityList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ForsaModel.USP_GetMaturityList_Result">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+          <ScalarProperty Name="Lender" ColumnName="Lender" />
+          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+          <ScalarProperty Name="Borrower" ColumnName="Borrower" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+          <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+          <ScalarProperty Name="Payments" ColumnName="Payments" />
+          <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+          <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+          <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
+          <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="MessageForForsa" ColumnName="MessageForForsa" />
+          <ScalarProperty Name="IsMessageSentToForsa" ColumnName="IsMessageSentToForsa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

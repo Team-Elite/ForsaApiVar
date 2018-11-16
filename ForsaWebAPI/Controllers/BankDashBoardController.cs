@@ -113,7 +113,7 @@ namespace ForsaWebAPI.Controllers
             if (dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false, IfDataFound = false });
             //return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
         }
 

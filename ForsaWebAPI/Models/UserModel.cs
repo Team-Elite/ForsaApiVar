@@ -46,6 +46,8 @@ namespace ForsaWebAPI.Models
         public DateTime DateModified { get; set; }
         public int ModifiedBy { get; set; }
         public string NewPassword { get; set; }
+        public dynamic CommercialRegisterExtract { get; set; }
 
+        public dynamic IdentityCard { get; set; }
     }
 }

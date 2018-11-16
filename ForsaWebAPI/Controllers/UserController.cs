@@ -126,6 +126,19 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+            var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserName); 
+            if (user.CommercialRegisterExtract != null)
+            {
+              
+                user.CommercialRegisterExtract = HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+            }
+
+            if (user.IdentityCard != null)
+            {
+                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+            }
+
+
             string password = RandomString(6);
             SqlParameter[] param = new SqlParameter[34];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
@@ -226,7 +239,7 @@ namespace ForsaWebAPI.Controllers
             EmailHelper objHelper = new EmailHelper();
             objHelper.SendEMail(user.EmailAddress, HelperClass.PasswordUpdatedEmailSubject, bodyOfMail);
 
-            return Json(new { IsSuccess = true, Message = "Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, Message = "Updated", data = JsonConvert.SerializeObject(dt) });
             //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }

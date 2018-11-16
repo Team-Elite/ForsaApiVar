@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +82,9 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.6\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -119,12 +125,12 @@
     <Content Include="EmailTemplates\PasswordUpdated.html" />
     <Content Include="EmailTemplates\RegistrationTemplate.html" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ForsaDataModel.Context.tt">
+    <Content Include="Perrsistance\Data\ForsaDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ForsaDataModel.edmx</DependentUpon>
       <LastGenOutput>ForsaDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ForsaDataModel.tt">
+    <Content Include="Perrsistance\Data\ForsaDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ForsaDataModel.edmx</DependentUpon>
       <LastGenOutput>ForsaDataModel.cs</LastGenOutput>
@@ -154,100 +160,136 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Helper\EnumClass.cs" />
     <Compile Include="Helper\HelperClass.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
+    <Compile Include="Mapper\Mapper.cs" />
     <Compile Include="Models\ApiRequestModel.cs" />
     <Compile Include="Models\DepositInsuranceModel.cs" />
-    <Compile Include="Models\ForsaDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForsaDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ForsaDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ForsaDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForsaDataModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\LenderModel.cs" />
     <Compile Include="Models\LenderSendRequestModel.cs" />
     <Compile Include="Models\LenderStartPageModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MaturityModel.cs" />
     <Compile Include="Models\PagesModel.cs" />
     <Compile Include="Models\RateOfInterestOfBankModel.cs" />
     <Compile Include="Models\RatingAgeNturModel.cs" />
     <Compile Include="Models\SalutationModel.cs" />
     <Compile Include="Models\SubGroupModel.cs" />
-    <Compile Include="Models\tblCountry.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblCustomerGroup.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblDepositInsurance.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblGroup.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblLanguage.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblLenderDeselectedBank.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblLenderSendRequest.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblLenderStartPage.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblPage.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblRateOfInterestOfBank.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblRatingAgeNtur.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblSalutation.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblSubGroup.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblTimePeriod.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblUser.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblUser2.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tblUserType.cs">
-      <DependentUpon>ForsaDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TimePeriodModel.cs" />
-    <Compile Include="Models\tmptbl.cs">
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Perrsistance\Data\fn_Split_Result.cs">
       <DependentUpon>ForsaDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Perrsistance\Data\ForsaDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForsaDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\ForsaDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\ForsaDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForsaDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\SP_GetBankDetails_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_BestPriceView_GetBanksByTimePeriodK_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_BestPriceView_GetBanksByTimePeriod_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_BestPriceView_GetRatesByTimePeriodK_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_BestPriceView_GetRatesByTimePeriod_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_CheckIfPasswordIsCorrect_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_CheckIfUserEmailIdExist_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_CheckIfUserNameExist_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetCountryList_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetDepositInsurance_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetGroup_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetLanguageList_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetLenderSendRequestPendingLendedRequestByLenderId_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetMaturityList_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetPagesForLenderSettingStartPage_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetRateOfInterestOfBank_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetRatingAgeNtur_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetSalutation_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetSubGroup_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetUserById_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetUserDetailById_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetUserGroupForSettingRateOfInterestVisibility_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_GetUserPassword_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_Lender_GetAllBanksWithStatusIsDeselected_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_ValidateUser_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Data\USP_VerifyEmailAddress_Result.cs">
+      <DependentUpon>ForsaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Perrsistance\Repository\Borrower\BorrowerRepositary.cs" />
+    <Compile Include="Perrsistance\Repository\Lender\LenderRepositary.cs" />
+    <Compile Include="Perrsistance\UnitofWork\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\ForsaDataModel.edmx">
+    <EntityDeploy Include="Perrsistance\Data\ForsaDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ForsaDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ForsaDataModel.edmx.diagram">
+    <Content Include="Perrsistance\Data\ForsaDataModel.edmx.diagram">
       <DependentUpon>ForsaDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ForsaWebAPI.pubxml" />

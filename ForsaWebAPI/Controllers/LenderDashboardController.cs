@@ -1,5 +1,8 @@
-﻿using ForsaWebAPI.Helper;
+﻿using AutoMapper;
+using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
+using ForsaWebAPI.Perrsistance.Data;
+using ForsaWebAPI.Persistance;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,35 @@ namespace ForsaWebAPI.Controllers
 {
     public class LenderDashboardController : ApiController
     {
+        private readonly ForsaEntities _context;
+        private IUnitOfWork _unitofWork;
+        public LenderDashboardController(ForsaEntities context, IUnitOfWork unitofWork
+            )
+        {
+            _context = context;
+            _unitofWork = unitofWork;
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetBorrowerMaturityList(ApiRequestModel requestModel)
+        {
+            MaturityModel maturityModel = JsonConvert.DeserializeObject<MaturityModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var response = _unitofWork.borrowerRepositary.GetBorrowerMaturityList(maturityModel.BorrowerId, requestModel.ShowAll);
+            if (response == null)
+            {
+                return Json(new { Success = false });
+            }
+            else
+            {
+
+                var list = Mapper.Map<List<USP_GetMaturityList_Result>, List<MaturityModel>>(response);
+                return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(list)) });
+
+            }
+        }
+
+
+
         [HttpPost]
         public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(ApiRequestModel requestModel)
         {
@@ -58,8 +90,8 @@ namespace ForsaWebAPI.Controllers
             param[1] = new SqlParameter("@BankId", objRate.bankId);
             param[2] = new SqlParameter("@IsSelected", objRate.IsSelected);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_DeselectBank ", System.Data.CommandType.StoredProcedure, param);
-             return Json(new { IsSuccess = true });
-           
+            return Json(new { IsSuccess = true });
+
         }
 
         [HttpPost]
@@ -91,8 +123,9 @@ namespace ForsaWebAPI.Controllers
             {
                 return Json(new { IsSuccess = false });
             }
-            if (dt.Rows.Count == 0){
-                return Json(new { IsSuccess = true,IfDataFound=false});
+            if (dt.Rows.Count == 0)
+            {
+                return Json(new { IsSuccess = true, IfDataFound = false });
             }
             // return Json(new { IsSuccess = true, IfDataFound = true, data = dt });
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
@@ -105,7 +138,7 @@ namespace ForsaWebAPI.Controllers
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel objRate = JsonConvert.DeserializeObject<UserModel>(data);
 
-             SqlParameter[] param = new SqlParameter[1];
+            SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", objRate.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetPagesForLenderSettingStartPage", System.Data.CommandType.StoredProcedure, param);
             if (dt == null)
@@ -131,7 +164,7 @@ namespace ForsaWebAPI.Controllers
             param[0] = new SqlParameter("@UserId", objRate.UserId);
             param[1] = new SqlParameter("@PageId", objRate.PageId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSaveStartPage", System.Data.CommandType.StoredProcedure, param);
-            return Json(new { IsSuccess = true});
+            return Json(new { IsSuccess = true });
         }
 
         [HttpPost]
@@ -140,7 +173,7 @@ namespace ForsaWebAPI.Controllers
             int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@LenderId", id);
-            var dt =SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestPendingLendedRequestByLenderId", System.Data.CommandType.StoredProcedure, param);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestPendingLendedRequestByLenderId", System.Data.CommandType.StoredProcedure, param);
             //if (dt == null || dt.Rows.Count == 0)
             //    return Json(new { IsSuccess = false, IfDataFound = false });
             //  return Json(new { IsSuccess = true, IfDataFound = true, data = dt });
@@ -167,7 +200,7 @@ namespace ForsaWebAPI.Controllers
                 bodyOfMail = reader.ReadToEnd();
             }
 
-            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>"+ objRate.LenderName+"</b>");
+            bodyOfMail = bodyOfMail.Replace("[User]", "Lender: <b>" + objRate.LenderName + "</b>");
             bodyOfMail = bodyOfMail.Replace("[Amount]", objRate.Amount.ToString());
             bodyOfMail = bodyOfMail.Replace("[StartDate]", objRate.StartDate.ToString("MM/dd/yyyy"));
             bodyOfMail = bodyOfMail.Replace("[EndDate]", objRate.EndDate.ToString("MM/dd/yyyy"));

@@ -1,0 +1,1505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ForsaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="fn_Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="delimiter" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Items" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="USP_BestPriceView_GetBanksByTimePeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="TimePeriodId" Type="int" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_BestPriceView_GetBanksByTimePeriodK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TimePeriodId" Type="int" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_BestPriceView_GetRatesByTimePeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_BestPriceView_GetRatesByTimePeriodK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_CheckIfPasswordIsCorrect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_CheckIfUserEmailIdExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_CheckIfUserNameExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_DeselectBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="BankId" Type="int" Mode="In" />
+          <Parameter Name="IsSelected" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USP_GetAllBanksWithInterestRateHorizontaly" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetCountryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetDepositInsurance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetLanguageList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetLenderSendRequestPendingLendedRequestByLenderId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LenderId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BorrowerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetLenderStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetMaturityList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="History" Type="bit" Mode="In" />
+          <Parameter Name="BorrowId" Type="int" Mode="In" />
+          <Parameter Name="LenderId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetPagesForLenderSettingStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetRateOfInterestOfBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetRatingAgeNtur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetSalutation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetSubGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GetUserById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetUserDetailById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetUserGroupForSettingRateOfInterestVisibility" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GetUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_InsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameOfCompany" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Place" Type="nvarchar" Mode="In" />
+          <Parameter Name="AccountHolder" Type="nvarchar" Mode="In" />
+          <Parameter Name="Bank" Type="nvarchar" Mode="In" />
+          <Parameter Name="IBAN" Type="nvarchar" Mode="In" />
+          <Parameter Name="BICCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="GroupIds" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubGroupId" Type="nvarchar" Mode="In" />
+          <Parameter Name="LEINumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField4" Type="nvarchar" Mode="In" />
+          <Parameter Name="Salutation" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SurName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField1" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField2" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField3" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserTypeId" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgentur1" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgenturValue1" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgentur2" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgenturValue2" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepositInsurance" Type="int" Mode="In" />
+          <Parameter Name="ClientGroupId" Type="int" Mode="In" />
+          <Parameter Name="AgreeToThePrivacyPolicy" Type="bit" Mode="In" />
+          <Parameter Name="AgreeToTheRatingsMayPublish" Type="bit" Mode="In" />
+          <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" Mode="In" />
+          <Parameter Name="AcceptAGBS" Type="bit" Mode="In" />
+          <Parameter Name="CommercialRegisterExtract" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdentityCard" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_Lender_GetAllBanksWithStatusIsDeselected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_Lender_SaveSendRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LenderId" Type="int" Mode="In" />
+          <Parameter Name="BorrowerId" Type="int" Mode="In" />
+          <Parameter Name="Amount" Type="decimal" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="NoOfDays" Type="int" Mode="In" />
+          <Parameter Name="InterestConvention" Type="nvarchar" Mode="In" />
+          <Parameter Name="Payments" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsRequestAccepted" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USP_LenderSaveStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="PageId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LenderSendRequest_AcceptLendedRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsAccepted" Type="bit" Mode="In" />
+          <Parameter Name="RequestId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LenderSendRequest_RejectLendedRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsRejected" Type="bit" Mode="In" />
+          <Parameter Name="RequestId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LenderSendRequest_SaveForsaMEssage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MessageForForsa" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsMessageSentToForsa" Type="bit" Mode="In" />
+          <Parameter Name="RequestId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_LenderSendRequest_UpdateRateOfInterest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RateOfInterestOfferred" Type="decimal" Mode="In" />
+          <Parameter Name="RequestId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_PublishAndUnPublish" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="IsPublished" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USP_UpdateRateOfInterestOfBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="RateOfInterest" Type="decimal" Mode="In" />
+          <Parameter Name="Modifiedby" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="SurName" Type="varchar" Mode="In" />
+          <Parameter Name="NameOfCompany" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="GroupIds" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_UpdateUserInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="NameOfCompany" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Place" Type="nvarchar" Mode="In" />
+          <Parameter Name="AccountHolder" Type="nvarchar" Mode="In" />
+          <Parameter Name="Bank" Type="nvarchar" Mode="In" />
+          <Parameter Name="IBAN" Type="nvarchar" Mode="In" />
+          <Parameter Name="BICCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="GroupIds" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubGroupId" Type="nvarchar" Mode="In" />
+          <Parameter Name="LEINumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField4" Type="nvarchar" Mode="In" />
+          <Parameter Name="Salutation" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SurName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField1" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField2" Type="nvarchar" Mode="In" />
+          <Parameter Name="FurtherField3" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserTypeId" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgentur1" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgenturValue1" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgentur2" Type="nvarchar" Mode="In" />
+          <Parameter Name="RatingAgenturValue2" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepositInsurance" Type="int" Mode="In" />
+          <Parameter Name="ClientGroupId" Type="int" Mode="In" />
+          <Parameter Name="AgreeToThePrivacyPolicy" Type="bit" Mode="In" />
+          <Parameter Name="AgreeToTheRatingsMayPublish" Type="bit" Mode="In" />
+          <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" Mode="In" />
+          <Parameter Name="AcceptAGBS" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USP_ValidateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_VerifyEmailAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ForsaModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForsaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_Split_Result">
+          <Property Name="Items" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityContainer Name="ForsaEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="fn_Split" IsComposable="true" ReturnType="Collection(ForsaModel.fn_Split_Result)">
+            <Parameter Name="string" Mode="In" Type="String" />
+            <Parameter Name="delimiter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dbo_tblRateOfInterestOfBank_5c35e743_edc9_492c_a48e_f40f641d4db3_QueueActivationSender" />
+          <FunctionImport Name="SP_GetBankDetails" ReturnType="Collection(ForsaModel.SP_GetBankDetails_Result)">
+            <Parameter Name="UserTypeId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BestPriceView_GetBanksByTimePeriod" ReturnType="Collection(ForsaModel.USP_BestPriceView_GetBanksByTimePeriod_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BestPriceView_GetBanksByTimePeriodK" ReturnType="Collection(ForsaModel.USP_BestPriceView_GetBanksByTimePeriodK_Result)">
+            <Parameter Name="TimePeriodId" Mode="In" Type="Int32" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BestPriceView_GetRatesByTimePeriod" ReturnType="Collection(ForsaModel.USP_BestPriceView_GetRatesByTimePeriod_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BestPriceView_GetRatesByTimePeriodK" ReturnType="Collection(ForsaModel.USP_BestPriceView_GetRatesByTimePeriodK_Result)" />
+          <FunctionImport Name="USP_CheckIfPasswordIsCorrect" ReturnType="Collection(ForsaModel.USP_CheckIfPasswordIsCorrect_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CheckIfUserEmailIdExist" ReturnType="Collection(ForsaModel.USP_CheckIfUserEmailIdExist_Result)">
+          <Parameter Name="EmailId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_CheckIfUserNameExist" ReturnType="Collection(ForsaModel.USP_CheckIfUserNameExist_Result)">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_DeselectBank">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="BankId" Mode="In" Type="Int32" />
+            <Parameter Name="IsSelected" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetAllBanksWithInterestRateHorizontaly">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetAllBanksWithInterestRateHorizontalyForKontactUser">
+          <Parameter Name="OrderBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetDepositInsurance" ReturnType="Collection(ForsaModel.USP_GetDepositInsurance_Result)" />
+          <FunctionImport Name="USP_GetGroup" ReturnType="Collection(ForsaModel.USP_GetGroup_Result)" />
+          <FunctionImport Name="USP_GetLenderSendRequestPendingLendedRequestByLenderId" ReturnType="Collection(ForsaModel.USP_GetLenderSendRequestPendingLendedRequestByLenderId_Result)">
+          <Parameter Name="LenderId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId" ReturnType="Collection(ForsaModel.USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId_Result)">
+          <Parameter Name="BorrowerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetLenderStartPage" ReturnType="Collection(String)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetPagesForLenderSettingStartPage" ReturnType="Collection(ForsaModel.USP_GetPagesForLenderSettingStartPage_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetRateOfInterestOfBank" ReturnType="Collection(ForsaModel.USP_GetRateOfInterestOfBank_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetRatingAgeNtur" ReturnType="Collection(ForsaModel.USP_GetRatingAgeNtur_Result)" />
+          <FunctionImport Name="USP_GetSalutation" ReturnType="Collection(ForsaModel.USP_GetSalutation_Result)" />
+          <FunctionImport Name="USP_GetSubGroup" ReturnType="Collection(ForsaModel.USP_GetSubGroup_Result)" />
+          <FunctionImport Name="USP_GetUserById" ReturnType="Collection(ForsaModel.USP_GetUserById_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetUserDetailById" ReturnType="Collection(ForsaModel.USP_GetUserDetailById_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetUserGroupForSettingRateOfInterestVisibility" ReturnType="Collection(ForsaModel.USP_GetUserGroupForSettingRateOfInterestVisibility_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetUserPassword" ReturnType="Collection(ForsaModel.USP_GetUserPassword_Result)">
+          <Parameter Name="emailaddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_InsertUser">
+            <Parameter Name="NameOfCompany" Mode="In" Type="String" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+            <Parameter Name="Place" Mode="In" Type="String" />
+            <Parameter Name="AccountHolder" Mode="In" Type="String" />
+            <Parameter Name="Bank" Mode="In" Type="String" />
+            <Parameter Name="IBAN" Mode="In" Type="String" />
+            <Parameter Name="BICCode" Mode="In" Type="String" />
+            <Parameter Name="GroupIds" Mode="In" Type="String" />
+            <Parameter Name="SubGroupId" Mode="In" Type="String" />
+            <Parameter Name="LEINumber" Mode="In" Type="String" />
+            <Parameter Name="FurtherField4" Mode="In" Type="String" />
+            <Parameter Name="Salutation" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="SurName" Mode="In" Type="String" />
+            <Parameter Name="ContactNumber" Mode="In" Type="String" />
+            <Parameter Name="EmailAddress" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="FurtherField1" Mode="In" Type="String" />
+            <Parameter Name="FurtherField2" Mode="In" Type="String" />
+            <Parameter Name="FurtherField3" Mode="In" Type="String" />
+            <Parameter Name="UserTypeId" Mode="In" Type="String" />
+            <Parameter Name="RatingAgentur1" Mode="In" Type="String" />
+            <Parameter Name="RatingAgenturValue1" Mode="In" Type="String" />
+            <Parameter Name="RatingAgentur2" Mode="In" Type="String" />
+            <Parameter Name="RatingAgenturValue2" Mode="In" Type="String" />
+            <Parameter Name="DepositInsurance" Mode="In" Type="Int32" />
+            <Parameter Name="ClientGroupId" Mode="In" Type="Int32" />
+            <Parameter Name="AgreeToThePrivacyPolicy" Mode="In" Type="Boolean" />
+            <Parameter Name="AgreeToTheRatingsMayPublish" Mode="In" Type="Boolean" />
+            <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Mode="In" Type="Boolean" />
+            <Parameter Name="AcceptAGBS" Mode="In" Type="Boolean" />
+            <Parameter Name="CommercialRegisterExtract" Mode="In" Type="String" />
+            <Parameter Name="IdentityCard" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_Lender_GetAllBanksWithStatusIsDeselected" ReturnType="Collection(ForsaModel.USP_Lender_GetAllBanksWithStatusIsDeselected_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_Lender_SaveSendRequest">
+            <Parameter Name="LenderId" Mode="In" Type="Int32" />
+            <Parameter Name="BorrowerId" Mode="In" Type="Int32" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="NoOfDays" Mode="In" Type="Int32" />
+            <Parameter Name="InterestConvention" Mode="In" Type="String" />
+            <Parameter Name="Payments" Mode="In" Type="String" />
+            <Parameter Name="IsRequestAccepted" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LenderSaveStartPage">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="PageId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LenderSendRequest_AcceptLendedRequest">
+            <Parameter Name="IsAccepted" Mode="In" Type="Boolean" />
+            <Parameter Name="RequestId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LenderSendRequest_RejectLendedRequest">
+            <Parameter Name="IsRejected" Mode="In" Type="Boolean" />
+            <Parameter Name="RequestId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LenderSendRequest_SaveForsaMEssage">
+            <Parameter Name="MessageForForsa" Mode="In" Type="String" />
+            <Parameter Name="IsMessageSentToForsa" Mode="In" Type="Boolean" />
+            <Parameter Name="RequestId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_LenderSendRequest_UpdateRateOfInterest">
+            <Parameter Name="RateOfInterestOfferred" Mode="In" Type="Decimal" />
+            <Parameter Name="RequestId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_PublishAndUnPublish">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="IsPublished" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="USP_UpdateRateOfInterestOfBank">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="RateOfInterest" Mode="In" Type="Decimal" />
+            <Parameter Name="Modifiedby" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_UpdateUser">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="SurName" Mode="In" Type="String" />
+            <Parameter Name="NameOfCompany" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="GroupIds" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_UpdateUserInformation">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="NameOfCompany" Mode="In" Type="String" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+            <Parameter Name="Place" Mode="In" Type="String" />
+            <Parameter Name="AccountHolder" Mode="In" Type="String" />
+            <Parameter Name="Bank" Mode="In" Type="String" />
+            <Parameter Name="IBAN" Mode="In" Type="String" />
+            <Parameter Name="BICCode" Mode="In" Type="String" />
+            <Parameter Name="GroupIds" Mode="In" Type="String" />
+            <Parameter Name="SubGroupId" Mode="In" Type="String" />
+            <Parameter Name="LEINumber" Mode="In" Type="String" />
+            <Parameter Name="FurtherField4" Mode="In" Type="String" />
+            <Parameter Name="Salutation" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="SurName" Mode="In" Type="String" />
+            <Parameter Name="ContactNumber" Mode="In" Type="String" />
+            <Parameter Name="FurtherField1" Mode="In" Type="String" />
+            <Parameter Name="FurtherField2" Mode="In" Type="String" />
+            <Parameter Name="FurtherField3" Mode="In" Type="String" />
+            <Parameter Name="UserTypeId" Mode="In" Type="String" />
+            <Parameter Name="RatingAgentur1" Mode="In" Type="String" />
+            <Parameter Name="RatingAgenturValue1" Mode="In" Type="String" />
+            <Parameter Name="RatingAgentur2" Mode="In" Type="String" />
+            <Parameter Name="RatingAgenturValue2" Mode="In" Type="String" />
+            <Parameter Name="DepositInsurance" Mode="In" Type="Int32" />
+            <Parameter Name="ClientGroupId" Mode="In" Type="Int32" />
+            <Parameter Name="AgreeToThePrivacyPolicy" Mode="In" Type="Boolean" />
+            <Parameter Name="AgreeToTheRatingsMayPublish" Mode="In" Type="Boolean" />
+            <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Mode="In" Type="Boolean" />
+            <Parameter Name="AcceptAGBS" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ValidateUser" ReturnType="Collection(ForsaModel.USP_ValidateUser_Result)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="emailaddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_VerifyEmailAddress" ReturnType="Collection(ForsaModel.USP_VerifyEmailAddress_Result)">
+          <Parameter Name="emailaddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetCountryList" ReturnType="Collection(ForsaModel.USP_GetCountryList_Result)" />
+          <FunctionImport Name="USP_GetLanguageList" ReturnType="Collection(ForsaModel.USP_GetLanguageList_Result)" />
+          <FunctionImport Name="USP_GetMaturityList" ReturnType="Collection(ForsaModel.USP_GetMaturityList_Result)">
+            <Parameter Name="History" Mode="In" Type="Boolean" />
+            <Parameter Name="BorrowId" Mode="In" Type="Int32" />
+            <Parameter Name="LenderId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_GetBankDetails_Result">
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="Int32" Name="TimePeriodId" Nullable="false" />
+          <Property Type="Decimal" Name="RateOfInterest" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="String" Name="GroupIds" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_BestPriceView_GetBanksByTimePeriod_Result">
+          <Property Type="Int64" Name="SrNo" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="RateOfInterest" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_BestPriceView_GetBanksByTimePeriodK_Result">
+          <Property Type="Int64" Name="SrNo" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="RateOfInterest" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_BestPriceView_GetRatesByTimePeriod_Result">
+          <Property Type="Int32" Name="TimePeriodId" Nullable="false" />
+          <Property Type="String" Name="TimePeriod" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="RateOfInterest" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_BestPriceView_GetRatesByTimePeriodK_Result">
+          <Property Type="Int32" Name="TimePeriodId" Nullable="false" />
+          <Property Type="String" Name="TimePeriod" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="RateOfInterest" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USP_CheckIfPasswordIsCorrect_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_CheckIfUserEmailIdExist_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_CheckIfUserNameExist_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GetDepositInsurance_Result">
+          <Property Type="Int32" Name="DepositInsuranceId" Nullable="false" />
+          <Property Type="String" Name="DepositInsurance" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetGroup_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="GroupName2" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetLenderSendRequestPendingLendedRequestByLenderId_Result">
+          <Property Type="Int32" Name="RequestId" Nullable="false" />
+          <Property Type="Int32" Name="LenderId" Nullable="false" />
+          <Property Type="Int32" Name="BorrowerId" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="StartDate" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="EndDate" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="NoOfDays" Nullable="false" />
+          <Property Type="String" Name="InterestConvention" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Payments" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsRequestAccepted" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" />
+          <Property Type="Int32" Name="RequestCreatedBy" Nullable="true" />
+          <Property Type="Decimal" Name="RateOfInterest" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="OfferredOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsAccepted" Nullable="true" />
+          <Property Type="Boolean" Name="IsRejected" Nullable="true" />
+          <Property Type="String" Name="BorrowerName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BorrowerEmailId" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="LenderName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="LenderEmailId" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId_Result">
+          <Property Type="Int32" Name="RequestId" Nullable="false" />
+          <Property Type="Int32" Name="LenderId" Nullable="false" />
+          <Property Type="Int32" Name="BorrowerId" Nullable="false" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="StartDate" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="EndDate" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="NoOfDays" Nullable="false" />
+          <Property Type="String" Name="InterestConvention" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Payments" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsRequestAccepted" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" />
+          <Property Type="Int32" Name="RequestCreatedBy" Nullable="true" />
+          <Property Type="Decimal" Name="RateOfInterestOfferred" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="OfferredOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsAccepted" Nullable="true" />
+          <Property Type="Boolean" Name="IsRejected" Nullable="true" />
+          <Property Type="String" Name="BorrowerName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="LenderName" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetPagesForLenderSettingStartPage_Result">
+          <Property Type="String" Name="PageName" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="PageId" Nullable="false" />
+          <Property Type="Boolean" Name="IsStartPage" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_GetRateOfInterestOfBank_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Boolean" Name="IsPublished" Nullable="false" />
+          <Property Type="Int32" Name="TimePeriodId" Nullable="false" />
+          <Property Type="String" Name="RateOfInterest" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Modifiedby" Nullable="true" />
+          <Property Type="String" Name="GroupIds" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TimePeriod" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_GetRatingAgeNtur_Result">
+          <Property Type="Int32" Name="RatingAgeNturId" Nullable="false" />
+          <Property Type="String" Name="RatingAgeNtur" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetSalutation_Result">
+          <Property Type="Int32" Name="SalutationId" Nullable="false" />
+          <Property Type="String" Name="Salutation" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetSubGroup_Result">
+          <Property Type="Int32" Name="SubGroupId" Nullable="false" />
+          <Property Type="String" Name="SubGroupName" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_GetUserById_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GetUserDetailById_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GetUserGroupForSettingRateOfInterestVisibility_Result">
+          <Property Type="Int32" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="GroupName2" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IfRateWillBeVisible" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GetUserPassword_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_Lender_GetAllBanksWithStatusIsDeselected_Result">
+          <Property Type="Int64" Name="SrNo" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_ValidateUser_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_VerifyEmailAddress_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="NameOfCompany" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Place" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="AccountHolder" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Bank" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="IBAN" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="BICCode" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="GroupIds" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SubGroupId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LEINumber" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField4" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Salutation" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="SurName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ContactNumber" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="FurtherField1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FurtherField3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UserTypeId" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgentur2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RatingAgenturValue2" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepositInsurance" Nullable="false" />
+          <Property Type="Int32" Name="ClientGroupId" Nullable="false" />
+          <Property Type="Boolean" Name="AgreeToThePrivacyPolicy" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeToTheRatingsMayPublish" Nullable="true" />
+          <Property Type="Boolean" Name="AgreeThatInformationOfCompanyMayBePublished" Nullable="true" />
+          <Property Type="Boolean" Name="AcceptAGBS" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DateModified" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ModifiedBy" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USP_GetCountryList_Result">
+          <Property Type="Int32" Name="CountryId" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="USP_GetLanguageList_Result">
+          <Property Type="Int32" Name="LanguageId" Nullable="false" />
+          <Property Type="String" Name="Language" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="LanguageCode" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_GetMaturityList_Result">
+          <Property Type="Int32" Name="RequestId" Nullable="false" />
+          <Property Type="Int32" Name="LenderId" Nullable="false" />
+          <Property Type="String" Name="Lender" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="BorrowerId" Nullable="false" />
+          <Property Type="String" Name="Borrower" Nullable="false" MaxLength="500" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="NoOfDays" Nullable="false" />
+          <Property Type="String" Name="InterestConvention" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Payments" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="IsRequestAccepted" Nullable="false" />
+          <Property Type="Int32" Name="RequestCreatedBy" Nullable="true" />
+          <Property Type="Decimal" Name="RateOfInterestOfferred" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="OfferredOn" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsAccepted" Nullable="true" />
+          <Property Type="Boolean" Name="IsRejected" Nullable="true" />
+          <Property Type="String" Name="MessageForForsa" Nullable="true" MaxLength="1000" />
+          <Property Type="Boolean" Name="IsMessageSentToForsa" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ForsaModelStoreContainer" CdmEntityContainer="ForsaEntities">
+          <FunctionImportMapping FunctionName="ForsaModel.Store.fn_Split" FunctionImportName="fn_Split">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.fn_Split_Result">
+                <ScalarProperty Name="Items" ColumnName="Items" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetBanksByTimePeriod" FunctionName="ForsaModel.Store.USP_BestPriceView_GetBanksByTimePeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetBanksByTimePeriod_Result">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetBanksByTimePeriodK" FunctionName="ForsaModel.Store.USP_BestPriceView_GetBanksByTimePeriodK">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetBanksByTimePeriodK_Result">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetRatesByTimePeriod" FunctionName="ForsaModel.Store.USP_BestPriceView_GetRatesByTimePeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetRatesByTimePeriod_Result">
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_BestPriceView_GetRatesByTimePeriodK" FunctionName="ForsaModel.Store.USP_BestPriceView_GetRatesByTimePeriodK">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_BestPriceView_GetRatesByTimePeriodK_Result">
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_CheckIfPasswordIsCorrect" FunctionName="ForsaModel.Store.USP_CheckIfPasswordIsCorrect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfPasswordIsCorrect_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_CheckIfUserEmailIdExist" FunctionName="ForsaModel.Store.USP_CheckIfUserEmailIdExist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfUserEmailIdExist_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_CheckIfUserNameExist" FunctionName="ForsaModel.Store.USP_CheckIfUserNameExist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_CheckIfUserNameExist_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_DeselectBank" FunctionName="ForsaModel.Store.USP_DeselectBank" />
+          <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontaly" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontaly" />
+          <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" />
+          <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" />
+          <FunctionImportMapping FunctionImportName="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" FunctionName="ForsaModel.Store.USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" />
+          <FunctionImportMapping FunctionImportName="USP_GetDepositInsurance" FunctionName="ForsaModel.Store.USP_GetDepositInsurance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetDepositInsurance_Result">
+                <ScalarProperty Name="DepositInsuranceId" ColumnName="DepositInsuranceId" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetGroup" FunctionName="ForsaModel.Store.USP_GetGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetGroup_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetLenderSendRequestPendingLendedRequestByLenderId" FunctionName="ForsaModel.Store.USP_GetLenderSendRequestPendingLendedRequestByLenderId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetLenderSendRequestPendingLendedRequestByLenderId_Result">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+                <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="BorrowerName" ColumnName="BorrowerName" />
+                <ScalarProperty Name="BorrowerEmailId" ColumnName="BorrowerEmailId" />
+                <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+                <ScalarProperty Name="LenderEmailId" ColumnName="LenderEmailId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId" FunctionName="ForsaModel.Store.USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId_Result">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+                <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+                <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
+                <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="BorrowerName" ColumnName="BorrowerName" />
+                <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetLenderStartPage" FunctionName="ForsaModel.Store.USP_GetLenderStartPage" />
+          <FunctionImportMapping FunctionImportName="USP_GetPagesForLenderSettingStartPage" FunctionName="ForsaModel.Store.USP_GetPagesForLenderSettingStartPage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetPagesForLenderSettingStartPage_Result">
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="IsStartPage" ColumnName="IsStartPage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetRateOfInterestOfBank" FunctionName="ForsaModel.Store.USP_GetRateOfInterestOfBank">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetRateOfInterestOfBank_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="Modifiedby" ColumnName="Modifiedby" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetRatingAgeNtur" FunctionName="ForsaModel.Store.USP_GetRatingAgeNtur">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetRatingAgeNtur_Result">
+                <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
+                <ScalarProperty Name="RatingAgeNtur" ColumnName="RatingAgeNtur" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetSalutation" FunctionName="ForsaModel.Store.USP_GetSalutation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetSalutation_Result">
+                <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetSubGroup" FunctionName="ForsaModel.Store.USP_GetSubGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetSubGroup_Result">
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetUserById" FunctionName="ForsaModel.Store.USP_GetUserById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserById_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetUserDetailById" FunctionName="ForsaModel.Store.USP_GetUserDetailById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserDetailById_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetUserGroupForSettingRateOfInterestVisibility" FunctionName="ForsaModel.Store.USP_GetUserGroupForSettingRateOfInterestVisibility">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserGroupForSettingRateOfInterestVisibility_Result">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+                <ScalarProperty Name="IfRateWillBeVisible" ColumnName="IfRateWillBeVisible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetUserPassword" FunctionName="ForsaModel.Store.USP_GetUserPassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetUserPassword_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_InsertUser" FunctionName="ForsaModel.Store.USP_InsertUser" />
+          <FunctionImportMapping FunctionImportName="USP_Lender_GetAllBanksWithStatusIsDeselected" FunctionName="ForsaModel.Store.USP_Lender_GetAllBanksWithStatusIsDeselected">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_Lender_GetAllBanksWithStatusIsDeselected_Result">
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_Lender_SaveSendRequest" FunctionName="ForsaModel.Store.USP_Lender_SaveSendRequest" />
+          <FunctionImportMapping FunctionImportName="USP_LenderSaveStartPage" FunctionName="ForsaModel.Store.USP_LenderSaveStartPage" />
+          <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_AcceptLendedRequest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_AcceptLendedRequest" />
+          <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_RejectLendedRequest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_RejectLendedRequest" />
+          <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_SaveForsaMEssage" FunctionName="ForsaModel.Store.USP_LenderSendRequest_SaveForsaMEssage" />
+          <FunctionImportMapping FunctionImportName="USP_LenderSendRequest_UpdateRateOfInterest" FunctionName="ForsaModel.Store.USP_LenderSendRequest_UpdateRateOfInterest" />
+          <FunctionImportMapping FunctionImportName="USP_PublishAndUnPublish" FunctionName="ForsaModel.Store.USP_PublishAndUnPublish" />
+          <FunctionImportMapping FunctionImportName="USP_UpdateRateOfInterestOfBank" FunctionName="ForsaModel.Store.USP_UpdateRateOfInterestOfBank" />
+          <FunctionImportMapping FunctionImportName="USP_UpdateUser" FunctionName="ForsaModel.Store.USP_UpdateUser" />
+          <FunctionImportMapping FunctionImportName="USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" FunctionName="ForsaModel.Store.USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" />
+          <FunctionImportMapping FunctionImportName="USP_UpdateUserInformation" FunctionName="ForsaModel.Store.USP_UpdateUserInformation" />
+          <FunctionImportMapping FunctionImportName="USP_ValidateUser" FunctionName="ForsaModel.Store.USP_ValidateUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_ValidateUser_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_VerifyEmailAddress" FunctionName="ForsaModel.Store.USP_VerifyEmailAddress">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_VerifyEmailAddress_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetCountryList" FunctionName="ForsaModel.Store.USP_GetCountryList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetCountryList_Result">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetLanguageList" FunctionName="ForsaModel.Store.USP_GetLanguageList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetLanguageList_Result">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetMaturityList" FunctionName="ForsaModel.Store.USP_GetMaturityList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ForsaModel.USP_GetMaturityList_Result">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="Lender" ColumnName="Lender" />
+                <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+                <ScalarProperty Name="Borrower" ColumnName="Borrower" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+                <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+                <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+                <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
+                <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="MessageForForsa" ColumnName="MessageForForsa" />
+                <ScalarProperty Name="IsMessageSentToForsa" ColumnName="IsMessageSentToForsa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

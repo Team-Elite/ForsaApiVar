@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ForsaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="fn_Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="delimiter" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Items" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="USP_BestPriceView_GetBanksByTimePeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="TimePeriodId" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_BestPriceView_GetBanksByTimePeriodK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TimePeriodId" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_BestPriceView_GetRatesByTimePeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_BestPriceView_GetRatesByTimePeriodK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_CheckIfPasswordIsCorrect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_CheckIfUserEmailIdExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_CheckIfUserNameExist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_DeselectBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="BankId" Type="int" Mode="In" />
+    <Parameter Name="IsSelected" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_GetAllBanksWithInterestRateHorizontaly" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetAllBanksWithInterestRateHorizontalyForKontactUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelectedK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetCountryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetDepositInsurance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetLanguageList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetLenderSendRequestPendingLendedRequestByLenderId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LenderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BorrowerId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetLenderStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetMaturityList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="History" Type="bit" Mode="In" />
+    <Parameter Name="BorrowId" Type="int" Mode="In" />
+    <Parameter Name="LenderId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetPagesForLenderSettingStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetRateOfInterestOfBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetRatingAgeNtur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetSalutation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetSubGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GetUserById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetUserDetailById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetUserGroupForSettingRateOfInterestVisibility" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_GetUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_InsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NameOfCompany" Type="nvarchar" Mode="In" />
+    <Parameter Name="Street" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Place" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountHolder" Type="nvarchar" Mode="In" />
+    <Parameter Name="Bank" Type="nvarchar" Mode="In" />
+    <Parameter Name="IBAN" Type="nvarchar" Mode="In" />
+    <Parameter Name="BICCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="GroupIds" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubGroupId" Type="nvarchar" Mode="In" />
+    <Parameter Name="LEINumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField4" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salutation" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SurName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField1" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField2" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField3" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserTypeId" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgentur1" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgenturValue1" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgentur2" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgenturValue2" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepositInsurance" Type="int" Mode="In" />
+    <Parameter Name="ClientGroupId" Type="int" Mode="In" />
+    <Parameter Name="AgreeToThePrivacyPolicy" Type="bit" Mode="In" />
+    <Parameter Name="AgreeToTheRatingsMayPublish" Type="bit" Mode="In" />
+    <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" Mode="In" />
+    <Parameter Name="AcceptAGBS" Type="bit" Mode="In" />
+    <Parameter Name="CommercialRegisterExtract" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdentityCard" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_Lender_GetAllBanksWithStatusIsDeselected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_Lender_SaveSendRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LenderId" Type="int" Mode="In" />
+    <Parameter Name="BorrowerId" Type="int" Mode="In" />
+    <Parameter Name="Amount" Type="decimal" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="NoOfDays" Type="int" Mode="In" />
+    <Parameter Name="InterestConvention" Type="nvarchar" Mode="In" />
+    <Parameter Name="Payments" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsRequestAccepted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_LenderSaveStartPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="PageId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_LenderSendRequest_AcceptLendedRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IsAccepted" Type="bit" Mode="In" />
+    <Parameter Name="RequestId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_LenderSendRequest_RejectLendedRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IsRejected" Type="bit" Mode="In" />
+    <Parameter Name="RequestId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_LenderSendRequest_SaveForsaMEssage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MessageForForsa" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsMessageSentToForsa" Type="bit" Mode="In" />
+    <Parameter Name="RequestId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_LenderSendRequest_UpdateRateOfInterest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RateOfInterestOfferred" Type="decimal" Mode="In" />
+    <Parameter Name="RequestId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_PublishAndUnPublish" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="IsPublished" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_UpdateRateOfInterestOfBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="RateOfInterest" Type="decimal" Mode="In" />
+    <Parameter Name="Modifiedby" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="SurName" Type="varchar" Mode="In" />
+    <Parameter Name="NameOfCompany" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="GroupIds" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_UpdateUserInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="NameOfCompany" Type="nvarchar" Mode="In" />
+    <Parameter Name="Street" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Place" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountHolder" Type="nvarchar" Mode="In" />
+    <Parameter Name="Bank" Type="nvarchar" Mode="In" />
+    <Parameter Name="IBAN" Type="nvarchar" Mode="In" />
+    <Parameter Name="BICCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="GroupIds" Type="nvarchar" Mode="In" />
+    <Parameter Name="SubGroupId" Type="nvarchar" Mode="In" />
+    <Parameter Name="LEINumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField4" Type="nvarchar" Mode="In" />
+    <Parameter Name="Salutation" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="SurName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField1" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField2" Type="nvarchar" Mode="In" />
+    <Parameter Name="FurtherField3" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserTypeId" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgentur1" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgenturValue1" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgentur2" Type="nvarchar" Mode="In" />
+    <Parameter Name="RatingAgenturValue2" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepositInsurance" Type="int" Mode="In" />
+    <Parameter Name="ClientGroupId" Type="int" Mode="In" />
+    <Parameter Name="AgreeToThePrivacyPolicy" Type="bit" Mode="In" />
+    <Parameter Name="AgreeToTheRatingsMayPublish" Type="bit" Mode="In" />
+    <Parameter Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" Mode="In" />
+    <Parameter Name="AcceptAGBS" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="USP_ValidateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_VerifyEmailAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="emailaddress" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ForsaModelStoreContainer" />
+</Schema>

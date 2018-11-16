@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using ForsaWebAPI.Models;
+using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Helper
 {
@@ -54,6 +55,18 @@ namespace ForsaWebAPI.Helper
                 parentRow.Add(childRow);
             }
             return jsSerializer.Serialize(parentRow);
+        }
+
+        internal static dynamic UploadDocument(dynamic commercialRegisterExtract, EnumClass.UploadDocumentType documentType, string FilePath)
+        {
+            HttpPostedFile httpPostedFile = commercialRegisterExtract as HttpPostedFile;
+            // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+            if (!Directory.Exists(FilePath)) Directory.CreateDirectory(FilePath);
+            FilePath = String.Format(@"{0}\{1}", FilePath, documentType.ToString());
+            if (!Directory.Exists(FilePath)) Directory.CreateDirectory(FilePath);
+            var FileName = string.Format("{0}/{1}", FilePath, httpPostedFile.FileName);
+            httpPostedFile.SaveAs(FileName);
+            return FileName;
         }
     }
 }
