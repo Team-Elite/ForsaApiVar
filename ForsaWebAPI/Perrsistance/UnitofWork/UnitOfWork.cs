@@ -13,7 +13,7 @@ namespace ForsaWebAPI.Persistance
     {
        // IUserRepository UserRepository { get; }
         ILenderRepositary lenderRepositary { get; }
-        IBorrowerRepositary borrowerRepositary { get}
+        IBorrowerRepositary borrowerRepositary { get; }
         Task SaveChangesAsync();
 
         //Task<IList<T>> GetList();
@@ -26,6 +26,8 @@ namespace ForsaWebAPI.Persistance
        // public IUserRepository UserRepository { get { return new UserRepositary(_dbContext); } }
 
         public ILenderRepositary lenderRepositary { get { return new LenderRepositary(_dbContext); } }
+
+        public IBorrowerRepositary borrowerRepositary { get { return new BorrowerRepositary(_dbContext); } }
 
         public UnitOfWork(ForsaEntities dbContext)
         {
