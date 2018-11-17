@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
-using ForsaWebAPI.Perrsistance.Data;
 using ForsaWebAPI.Persistance;
+using ForsaWebAPI.Persistance.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,9 +16,9 @@ namespace ForsaWebAPI.Controllers
 {
     public class LenderDashboardController : ApiController
     {
-        private readonly ForsaEntities _context;
+        private readonly forsawebEntities _context;
         private IUnitOfWork _unitofWork;
-        public LenderDashboardController(ForsaEntities context, IUnitOfWork unitofWork
+        public LenderDashboardController(forsawebEntities context, IUnitOfWork unitofWork
             )
         {
             _context = context;
@@ -26,7 +26,7 @@ namespace ForsaWebAPI.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult GetBorrowerMaturityList(ApiRequestModel requestModel)
+        public IHttpActionResult GetMaturityList(ApiRequestModel requestModel)
         {
             MaturityModel maturityModel = JsonConvert.DeserializeObject<MaturityModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
             var response = _unitofWork.borrowerRepositary.GetBorrowerMaturityList(maturityModel.BorrowerId, requestModel.ShowAll);
@@ -84,7 +84,7 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
-
+           
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@UserId", objRate.UserId);
             param[1] = new SqlParameter("@BankId", objRate.bankId);
@@ -98,17 +98,21 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetAllBanksWithStatusIsDeselected(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
-            UserModel objRate = JsonConvert.DeserializeObject<UserModel>(data);
-            SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", objRate.UserId);
-            param[1] = new SqlParameter("@PageNumber", requestModel.PageNumber);
-            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_Lender_GetAllBanksWithStatusIsDeselected", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null || dt.Rows.Count == 0)
+            UserModel userModel  = JsonConvert.DeserializeObject<UserModel>(data);
+            var response = _unitofWork.lenderRepositary.GetAllBankListDeselected(userModel.UserId, requestModel.PageNumber);
+            if (response == null)
             {
-                return Json(new { IsSuccess = false });
+                return Json(new { Success = false });
             }
-            // return Json(new { IsSuccess = true, data = dt });
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            else
+            {
+
+                var list = Mapper.Map<List<USP_Lender_GetAllBanksWithStatusIsDeselected_Result>, List<BorrowerModel>>(response);
+                return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(list)) });
+
+            }
+
+         
 
         }
 
@@ -136,21 +140,20 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetPagesForLenderSettingStartPage(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
-            UserModel objRate = JsonConvert.DeserializeObject<UserModel>(data);
+            UserModel userModel = JsonConvert.DeserializeObject<UserModel>(data);
+            var response = _unitofWork.lenderRepositary.GetLenderPages(userModel);
+            if (response == null)
+            {
+                return Json(new { Success = false });
+            }
+            else
+            {
 
-            SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", objRate.UserId);
-            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetPagesForLenderSettingStartPage", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null)
-            {
-                return Json(new { IsSuccess = false });
+                var list = Mapper.Map<List<USP_GetPagesForLenderSettingStartPage_Result>, List<LenderStartPageModel>>(response);
+                return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(list)) });
+
             }
-            if (dt.Rows.Count == 0)
-            {
-                return Json(new { IsSuccess = true, IfDataFound = false });
-            }
-            //  return Json(new { IsSuccess = true, IfDataFound = true, data = dt });
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+          
 
         }
 

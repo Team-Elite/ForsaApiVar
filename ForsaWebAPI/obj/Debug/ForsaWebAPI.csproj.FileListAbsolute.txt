@@ -180,3 +180,5 @@ E:\manish\ApiNewCode\ForsaWebAPI\obj\Debug\ForsaWebAPI.csproj.CoreCompileInputs.
 E:\manish\ApiNewCode\ForsaWebAPI\obj\Debug\ForsaWebAPI.csproj.CopyComplete
 E:\manish\ApiNewCode\ForsaWebAPI\obj\Debug\ForsaWebAPI.dll
 E:\manish\ApiNewCode\ForsaWebAPI\obj\Debug\ForsaWebAPI.pdb
+F:\Yogesh\Project\Forsa\webapi\ForsaWebAPI\obj\Debug\ForsaWebAPI.csprojAssemblyReference.cache
+F:\Yogesh\Project\Forsa\webapi\ForsaWebAPI\obj\Debug\ForsaWebAPI.csproj.CoreCompileInputs.cache
