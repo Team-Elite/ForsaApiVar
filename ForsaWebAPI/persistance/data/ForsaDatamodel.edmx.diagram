@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="34de12ade4e243078e74936996b513b8" Name="Diagram1">
+      <Diagram DiagramId="88f6c67955f649e2b19fa35c4b72a757" Name="Diagram1">
         <EntityTypeShape EntityType="forsawebModel.tbl_UserDocument" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="forsawebModel.tblCountry" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="forsawebModel.tblCustomerGroup" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

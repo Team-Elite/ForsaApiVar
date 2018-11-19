@@ -1,7 +1,7 @@
 ﻿
 using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
-using ForsaWebAPI.persistance.data;
+using ForsaWebAPI.Persistance.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -127,14 +127,16 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public IHttpActionResult GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+           
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@BorrowerId", id);
+            param[0] = new SqlParameter("@BorrowerId", user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestRequestdOnTheBasisOfBorrowerId", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null)
+            if (dt == null || dt.Rows.Count == 0)
                 return Json(new { IsSuccess = false });
-            if (dt.Rows.Count == 0)
-                return Json(new { IsSuccess = false, IfDataFound = false });
+            //if (dt.Rows.Count == 0)
+            //    return Json(new { IsSuccess = false, IfDataFound = false });
             //return Json(new { IsSuccess = true, IfDataFound = true, data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 

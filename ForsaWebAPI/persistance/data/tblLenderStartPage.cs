@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ForsaWebAPI.persistance.data
+namespace ForsaWebAPI.Persistance.Data
 {
     using System;
     using System.Collections.Generic;

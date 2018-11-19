@@ -13,7 +13,7 @@ using ForsaWebAPI.Helper;
 using System.Configuration;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
-using ForsaWebAPI.persistance.data;
+using ForsaWebAPI.Persistance.Data;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -130,13 +130,13 @@ namespace ForsaWebAPI.Controllers
             var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserName); 
             if (user.CommercialRegisterExtract != null)
             {
-              
-                user.CommercialRegisterExtract = HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+
+                user.CommercialRegisterExtract = "";// HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
             }
 
             if (user.IdentityCard != null)
             {
-                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                user.IdentityCard = "";// HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
             }
 
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
-using ForsaWebAPI.Perrsistance.Data;
+using ForsaWebAPI.Persistance.Data;
 using ForsaWebAPI.Persistance;
 using Newtonsoft.Json;
 using System;
@@ -17,31 +17,7 @@ namespace ForsaWebAPI.Controllers
     public class LenderDashboardController : ApiController
     {
         private readonly ForsaEntities _context;
-        private IUnitOfWork _unitofWork;
-        public LenderDashboardController(ForsaEntities context, IUnitOfWork unitofWork
-            )
-        {
-            _context = context;
-            _unitofWork = unitofWork;
-        }
-
-        [HttpPost]
-        public IHttpActionResult GetBorrowerMaturityList(ApiRequestModel requestModel)
-        {
-            MaturityModel maturityModel = JsonConvert.DeserializeObject<MaturityModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
-            var response = _unitofWork.borrowerRepositary.GetBorrowerMaturityList(maturityModel.BorrowerId, requestModel.ShowAll);
-            if (response == null)
-            {
-                return Json(new { Success = false });
-            }
-            else
-            {
-
-                var list = Mapper.Map<List<USP_GetMaturityList_Result>, List<MaturityModel>>(response);
-                return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(list)) });
-
-            }
-        }
+          
 
 
 
