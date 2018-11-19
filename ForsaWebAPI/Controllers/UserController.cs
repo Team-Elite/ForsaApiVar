@@ -13,6 +13,7 @@ using ForsaWebAPI.Helper;
 using System.Configuration;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using ForsaWebAPI.persistance.data;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -226,7 +227,7 @@ namespace ForsaWebAPI.Controllers
             EmailHelper objHelper = new EmailHelper();
             objHelper.SendEMail(user.EmailAddress, HelperClass.PasswordUpdatedEmailSubject, bodyOfMail);
 
-            return Json(new { IsSuccess = true, Message = "Updated", data = HelperClass.DataTableToJSONWithJavaScriptSerializer(dt) });
+            return Json(new { IsSuccess = true, Message = "Updated", data = JsonConvert.SerializeObject(dt) });
             //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }

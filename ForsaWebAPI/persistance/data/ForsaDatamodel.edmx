@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="forsawebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_UserDocument">
+          <Key>
+            <PropertyRef Name="docId" />
+          </Key>
+          <Property Name="docId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="DocumentName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomerGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerGroup" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDepositInsurance">
+          <Key>
+            <PropertyRef Name="DepositInsuranceId" />
+          </Key>
+          <Property Name="DepositInsuranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepositInsurance" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GroupName2" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblLanguage">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language" Type="nvarchar" MaxLength="300" />
+          <Property Name="LanguageCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLenderDeselectedBanks">
+          <Key>
+            <PropertyRef Name="DeselectedBankId" />
+          </Key>
+          <Property Name="DeselectedBankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BankIds" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLenderSendRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderId" Type="int" Nullable="false" />
+          <Property Name="BorrowerId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="NoOfDays" Type="int" Nullable="false" />
+          <Property Name="InterestConvention" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Payments" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsRequestAccepted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="RequestCreatedBy" Type="int" />
+          <Property Name="RateOfInterestOfferred" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OfferredOn" Type="datetime" />
+          <Property Name="IsAccepted" Type="bit" />
+          <Property Name="IsRejected" Type="bit" />
+          <Property Name="MessageForForsa" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsMessageSentToForsa" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblLenderStartPage">
+          <Key>
+            <PropertyRef Name="LenderStartPageId" />
+          </Key>
+          <Property Name="LenderStartPageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsStartPage" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblPages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRateOfInterestOfBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
+          <Property Name="TimePeriodId" Type="int" Nullable="false" />
+          <Property Name="RateOfInterest" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="GroupIds" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblRatingAgeNtur">
+          <Key>
+            <PropertyRef Name="RatingAgeNturId" />
+          </Key>
+          <Property Name="RatingAgeNturId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RatingAgeNtur" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSalutation">
+          <Key>
+            <PropertyRef Name="SalutationId" />
+          </Key>
+          <Property Name="SalutationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupId" />
+          </Key>
+          <Property Name="SubGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubGroupName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblTimePeriod">
+          <Key>
+            <PropertyRef Name="TimePeriodId" />
+            <PropertyRef Name="TimePeriod" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="TimePeriodId" Type="int" Nullable="false" />
+          <Property Name="TimePeriod" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TimePeriodForGrid" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfCompany" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AccountHolder" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IBAN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="BICCode" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="GroupIds" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SubGroupId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LEINumber" Type="nvarchar" MaxLength="500" />
+          <Property Name="FurtherField4" Type="nvarchar" MaxLength="500" />
+          <Property Name="Salutation" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SurName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FurtherField1" Type="nvarchar" MaxLength="500" />
+          <Property Name="FurtherField2" Type="nvarchar" MaxLength="500" />
+          <Property Name="FurtherField3" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserTypeId" Type="nvarchar" MaxLength="500" />
+          <Property Name="RatingAgentur1" Type="nvarchar" MaxLength="500" />
+          <Property Name="RatingAgenturValue1" Type="nvarchar" MaxLength="500" />
+          <Property Name="RatingAgentur2" Type="nvarchar" MaxLength="500" />
+          <Property Name="RatingAgenturValue2" Type="nvarchar" MaxLength="500" />
+          <Property Name="DepositInsurance" Type="int" Nullable="false" />
+          <Property Name="ClientGroupId" Type="int" Nullable="false" />
+          <Property Name="AgreeToThePrivacyPolicy" Type="bit" />
+          <Property Name="AgreeToTheRatingsMayPublish" Type="bit" />
+          <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" />
+          <Property Name="AcceptAGBS" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="CommercialRegisterExtract" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdentityCard" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="forsawebModelStoreContainer">
+          <EntitySet Name="tbl_UserDocument" EntityType="Self.tbl_UserDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomerGroup" EntityType="Self.tblCustomerGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDepositInsurance" EntityType="Self.tblDepositInsurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLanguage" EntityType="Self.tblLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLenderDeselectedBanks" EntityType="Self.tblLenderDeselectedBanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLenderSendRequest" EntityType="Self.tblLenderSendRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLenderStartPage" EntityType="Self.tblLenderStartPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPages" EntityType="Self.tblPages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRateOfInterestOfBank" EntityType="Self.tblRateOfInterestOfBank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRatingAgeNtur" EntityType="Self.tblRatingAgeNtur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSalutation" EntityType="Self.tblSalutation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubGroup" EntityType="Self.tblSubGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTimePeriod" EntityType="Self.tblTimePeriod" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblTimePeriod].[TimePeriodId] AS [TimePeriodId], 
+    [tblTimePeriod].[TimePeriod] AS [TimePeriod], 
+    [tblTimePeriod].[TimePeriodForGrid] AS [TimePeriodForGrid], 
+    [tblTimePeriod].[id] AS [id]
+    FROM [dbo].[tblTimePeriod] AS [tblTimePeriod]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="forsawebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_UserDocument">
+          <Key>
+            <PropertyRef Name="docId" />
+          </Key>
+          <Property Name="docId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="DocumentName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomerGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDepositInsurance">
+          <Key>
+            <PropertyRef Name="DepositInsuranceId" />
+          </Key>
+          <Property Name="DepositInsuranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepositInsurance" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupName2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblLanguage">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLenderDeselectedBank">
+          <Key>
+            <PropertyRef Name="DeselectedBankId" />
+          </Key>
+          <Property Name="DeselectedBankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BankIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblLenderSendRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderId" Type="Int32" Nullable="false" />
+          <Property Name="BorrowerId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoOfDays" Type="Int32" Nullable="false" />
+          <Property Name="InterestConvention" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Payments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsRequestAccepted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="RequestCreatedBy" Type="Int32" />
+          <Property Name="RateOfInterestOfferred" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OfferredOn" Type="DateTime" Precision="3" />
+          <Property Name="IsAccepted" Type="Boolean" />
+          <Property Name="IsRejected" Type="Boolean" />
+          <Property Name="MessageForForsa" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsMessageSentToForsa" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblLenderStartPage">
+          <Key>
+            <PropertyRef Name="LenderStartPageId" />
+          </Key>
+          <Property Name="LenderStartPageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsStartPage" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblPage">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRateOfInterestOfBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="RateOfInterest" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblRatingAgeNtur">
+          <Key>
+            <PropertyRef Name="RatingAgeNturId" />
+          </Key>
+          <Property Name="RatingAgeNturId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RatingAgeNtur" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSalutation">
+          <Key>
+            <PropertyRef Name="SalutationId" />
+          </Key>
+          <Property Name="SalutationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Salutation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupId" />
+          </Key>
+          <Property Name="SubGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubGroupName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfCompany" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Place" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountHolder" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bank" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IBAN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BICCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubGroupId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LEINumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FurtherField4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SurName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FurtherField1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FurtherField2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FurtherField3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RatingAgentur1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RatingAgenturValue1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RatingAgentur2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RatingAgenturValue2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DepositInsurance" Type="Int32" Nullable="false" />
+          <Property Name="ClientGroupId" Type="Int32" Nullable="false" />
+          <Property Name="AgreeToThePrivacyPolicy" Type="Boolean" />
+          <Property Name="AgreeToTheRatingsMayPublish" Type="Boolean" />
+          <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="Boolean" />
+          <Property Name="AcceptAGBS" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="CommercialRegisterExtract" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityCard" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblTimePeriod">
+          <Key>
+            <PropertyRef Name="TimePeriodId" />
+            <PropertyRef Name="TimePeriod" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="TimePeriod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimePeriodForGrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="ForsaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_UserDocument" EntityType="Self.tbl_UserDocument" />
+          <EntitySet Name="tblCountries" EntityType="Self.tblCountry" />
+          <EntitySet Name="tblCustomerGroups" EntityType="Self.tblCustomerGroup" />
+          <EntitySet Name="tblDepositInsurances" EntityType="Self.tblDepositInsurance" />
+          <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+          <EntitySet Name="tblLanguages" EntityType="Self.tblLanguage" />
+          <EntitySet Name="tblLenderDeselectedBanks" EntityType="Self.tblLenderDeselectedBank" />
+          <EntitySet Name="tblLenderSendRequests" EntityType="Self.tblLenderSendRequest" />
+          <EntitySet Name="tblLenderStartPages" EntityType="Self.tblLenderStartPage" />
+          <EntitySet Name="tblPages" EntityType="Self.tblPage" />
+          <EntitySet Name="tblRateOfInterestOfBanks" EntityType="Self.tblRateOfInterestOfBank" />
+          <EntitySet Name="tblRatingAgeNturs" EntityType="Self.tblRatingAgeNtur" />
+          <EntitySet Name="tblSalutations" EntityType="Self.tblSalutation" />
+          <EntitySet Name="tblSubGroups" EntityType="Self.tblSubGroup" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserTypes" EntityType="Self.tblUserType" />
+          <EntitySet Name="tblTimePeriods" EntityType="Self.tblTimePeriod" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="ForsaEntities">
+          <EntitySetMapping Name="tbl_UserDocument">
+            <EntityTypeMapping TypeName="forsawebModel.tbl_UserDocument">
+              <MappingFragment StoreEntitySet="tbl_UserDocument">
+                <ScalarProperty Name="docId" ColumnName="docId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCountries">
+            <EntityTypeMapping TypeName="forsawebModel.tblCountry">
+              <MappingFragment StoreEntitySet="tblCountry">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomerGroups">
+            <EntityTypeMapping TypeName="forsawebModel.tblCustomerGroup">
+              <MappingFragment StoreEntitySet="tblCustomerGroup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustomerGroup" ColumnName="CustomerGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDepositInsurances">
+            <EntityTypeMapping TypeName="forsawebModel.tblDepositInsurance">
+              <MappingFragment StoreEntitySet="tblDepositInsurance">
+                <ScalarProperty Name="DepositInsuranceId" ColumnName="DepositInsuranceId" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="forsawebModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLanguages">
+            <EntityTypeMapping TypeName="forsawebModel.tblLanguage">
+              <MappingFragment StoreEntitySet="tblLanguage">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLenderDeselectedBanks">
+            <EntityTypeMapping TypeName="forsawebModel.tblLenderDeselectedBank">
+              <MappingFragment StoreEntitySet="tblLenderDeselectedBanks">
+                <ScalarProperty Name="DeselectedBankId" ColumnName="DeselectedBankId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BankIds" ColumnName="BankIds" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLenderSendRequests">
+            <EntityTypeMapping TypeName="forsawebModel.tblLenderSendRequest">
+              <MappingFragment StoreEntitySet="tblLenderSendRequest">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
+                <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
+                <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
+                <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="MessageForForsa" ColumnName="MessageForForsa" />
+                <ScalarProperty Name="IsMessageSentToForsa" ColumnName="IsMessageSentToForsa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLenderStartPages">
+            <EntityTypeMapping TypeName="forsawebModel.tblLenderStartPage">
+              <MappingFragment StoreEntitySet="tblLenderStartPage">
+                <ScalarProperty Name="LenderStartPageId" ColumnName="LenderStartPageId" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsStartPage" ColumnName="IsStartPage" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPages">
+            <EntityTypeMapping TypeName="forsawebModel.tblPage">
+              <MappingFragment StoreEntitySet="tblPages">
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRateOfInterestOfBanks">
+            <EntityTypeMapping TypeName="forsawebModel.tblRateOfInterestOfBank">
+              <MappingFragment StoreEntitySet="tblRateOfInterestOfBank">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRatingAgeNturs">
+            <EntityTypeMapping TypeName="forsawebModel.tblRatingAgeNtur">
+              <MappingFragment StoreEntitySet="tblRatingAgeNtur">
+                <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
+                <ScalarProperty Name="RatingAgeNtur" ColumnName="RatingAgeNtur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSalutations">
+            <EntityTypeMapping TypeName="forsawebModel.tblSalutation">
+              <MappingFragment StoreEntitySet="tblSalutation">
+                <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubGroups">
+            <EntityTypeMapping TypeName="forsawebModel.tblSubGroup">
+              <MappingFragment StoreEntitySet="tblSubGroup">
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="forsawebModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+                <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+                <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+                <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+                <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+                <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+                <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+                <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+                <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+                <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+                <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+                <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CommercialRegisterExtract" ColumnName="CommercialRegisterExtract" />
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="forsawebModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTimePeriods">
+            <EntityTypeMapping TypeName="forsawebModel.tblTimePeriod">
+              <MappingFragment StoreEntitySet="tblTimePeriod">
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+                <ScalarProperty Name="TimePeriodForGrid" ColumnName="TimePeriodForGrid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
