@@ -8,7 +8,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using ForsaWebAPI.Models;
-using Newtonsoft.Json;
 
 namespace ForsaWebAPI.Helper
 {
@@ -40,33 +39,21 @@ namespace ForsaWebAPI.Helper
             }
         }
 
-        public static string DataTableToJSONWithJavaScriptSerializer(DataTable table)
-        {
-            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
-            List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
-            Dictionary<string, object> childRow;
-            foreach (DataRow row in table.Rows)
-            {
-                childRow = new Dictionary<string, object>();
-                foreach (DataColumn col in table.Columns)
-                {
-                    childRow.Add(col.ColumnName, row[col]);
-                }
-                parentRow.Add(childRow);
-            }
-            return jsSerializer.Serialize(parentRow);
-        }
-
-        internal static dynamic UploadDocument(dynamic commercialRegisterExtract, EnumClass.UploadDocumentType documentType, string FilePath)
-        {
-            HttpPostedFile httpPostedFile = commercialRegisterExtract as HttpPostedFile;
-            // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
-            if (!Directory.Exists(FilePath)) Directory.CreateDirectory(FilePath);
-            FilePath = String.Format(@"{0}\{1}", FilePath, documentType.ToString());
-            if (!Directory.Exists(FilePath)) Directory.CreateDirectory(FilePath);
-            var FileName = string.Format("{0}/{1}", FilePath, httpPostedFile.FileName);
-            httpPostedFile.SaveAs(FileName);
-            return FileName;
-        }
+        //public static string DataTableToJSONWithJavaScriptSerializer(DataTable table)
+        //{
+        //    JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+        //    List<Dictionary<string, object>> parentRow = new List<Dictionary<string, object>>();
+        //    Dictionary<string, object> childRow;
+        //    foreach (DataRow row in table.Rows)
+        //    {
+        //        childRow = new Dictionary<string, object>();
+        //        foreach (DataColumn col in table.Columns)
+        //        {
+        //            childRow.Add(col.ColumnName, row[col]);
+        //        }
+        //        parentRow.Add(childRow);
+        //    }
+        //    return jsSerializer.Serialize(parentRow);
+        //}
     }
 }

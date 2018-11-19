@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace ForsaWebAPI.Areas.ForsaAPIHelp
+namespace ForsaWebAPI.Areas.Areas
 {
-    public class ForsaAPIHelpAreaRegistration : AreaRegistration 
+    public class AreasAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "ForsaAPIHelp";
+                return "Areas";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "ForsaAPIHelp_default",
-                "ForsaAPIHelp/{controller}/{action}/{id}",
+                "Areas_default",
+                "Areas/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

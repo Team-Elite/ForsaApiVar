@@ -46,6 +46,24 @@ namespace ForsaWebAPI.Controllers
 
 
         [HttpPost]
+        public IHttpActionResult GetMaturityList(ApiRequestModel requestModel)
+        {
+            var user = JsonConvert.DeserializeObject<UserModel>((new JwtTokenManager().DecodeToken(requestModel.Data)));
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@LenderId", user.UserId);
+            param[1] = new SqlParameter("@History", requestModel.ShowAll);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetMaturityList", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+            {
+                //return NotFound();
+                return Json(new { IsSuccess = false });
+            }
+
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+        }
+
+
+        [HttpPost]
         public IHttpActionResult GetAllBanksWithInterestRateHorizontaly(ApiRequestModel requestModel)
         {
             int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
