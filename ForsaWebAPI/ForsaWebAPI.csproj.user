@@ -10,8 +10,8 @@
     <WebStackScaffolding_DbContextTypeFullName>ForsaWebAPI.Models.ForsaEntities</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <NameOfLastUsedPublishProfile>ForsaWebAPI</NameOfLastUsedPublishProfile>
-    <ProjectView>ProjectFiles</ProjectView>
-    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />

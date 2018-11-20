@@ -131,12 +131,12 @@ namespace ForsaWebAPI.Controllers
             if (user.CommercialRegisterExtract != null)
             {
 
-                user.CommercialRegisterExtract = "";// HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+                user.CommercialRegisterExtract =  HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
             }
 
             if (user.IdentityCard != null)
             {
-                user.IdentityCard = "";// HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
             }
 
 
@@ -176,6 +176,8 @@ namespace ForsaWebAPI.Controllers
             param[31] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
             param[32] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
             param[33] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
+            param[33] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
+            param[33] = new SqlParameter("@IdentityCard", user.IdentityCard);
 
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
 

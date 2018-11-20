@@ -131,3 +131,8 @@ E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\obj\Release\ForsaWebAPI.csproj.C
 E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\obj\Release\ForsaWebAPI.csproj.CopyComplete
 E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\obj\Release\ForsaWebAPI.dll
 E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\obj\Release\ForsaWebAPI.pdb
+E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\bin\AutoMapper.dll
+E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\bin\System.ValueTuple.dll
+E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\bin\AutoMapper.pdb
+E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\bin\AutoMapper.xml
+E:\Yogesh\Project\Forsa\ForsaApiJwt\ForsaWebAPI\bin\System.ValueTuple.xml

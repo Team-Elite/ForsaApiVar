@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ForsaWebAPI.Models;
-using ForsaWebAPI.Perrsistance.Data;
+using ForsaWebAPI.Persistance.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

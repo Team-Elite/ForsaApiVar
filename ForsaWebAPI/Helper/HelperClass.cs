@@ -39,6 +39,17 @@ namespace ForsaWebAPI.Helper
             }
         }
 
+        internal static dynamic UploadDocument(HttpPostedFile hpf, EnumClass.UploadDocumentType idendityCard, string filePath)
+        {
+            //  HttpPostedFile hpf = idendityCard ;
+            string exttension = System.IO.Path.GetExtension(hpf.FileName);
+            var filename = string.Format("{0}/{1}", new JwtTokenManager().GenerateToken(hpf.FileName),exttension);
+            if (!Directory.Exists(filePath))Directory.CreateDirectory(filePath);
+            hpf.SaveAs(string.Format("{0}/{1}}", filePath,filename));
+            return filename;
+
+        }
+
         //public static string DataTableToJSONWithJavaScriptSerializer(DataTable table)
         //{
         //    JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
