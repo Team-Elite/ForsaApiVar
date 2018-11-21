@@ -92,9 +92,9 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetAllBanksWithStatusIsDeselected(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
-            UserModel objRate = JsonConvert.DeserializeObject<UserModel>(data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@UserId", objRate.UserId);
+            param[0] = new SqlParameter("@UserId", user.UserId);
             param[1] = new SqlParameter("@PageNumber", requestModel.PageNumber);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_Lender_GetAllBanksWithStatusIsDeselected", System.Data.CommandType.StoredProcedure, param);
             if (dt == null || dt.Rows.Count == 0)
@@ -109,9 +109,10 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public IHttpActionResult GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", id);
+            param[0] = new SqlParameter("@UserId",user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected", System.Data.CommandType.StoredProcedure, param);
             if (dt == null)
             {
