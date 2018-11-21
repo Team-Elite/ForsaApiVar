@@ -306,6 +306,47 @@ namespace ForsaWebAPI.Controllers
 
         }
 
+        [HttpPost]
+        public IHttpActionResult SaveUserDocument(ApiRequestModel requestModel)
+        {
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
+
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@UserId", user.UserId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+                return Json(new { IsSuccess = false });
+            if (dt.Rows.Count == 0)
+                return Json(new { IsSuccess = false, IfDataFound = false });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(DataTableToJSONWithJavaScriptSerializer(dt))) });
+
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetUserDocument(ApiRequestModel requestModel)
+        {
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
+
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@UserId", user.UserId);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDocument", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+                return Json(new { IsSuccess = false });
+            if (dt.Rows.Count == 0)
+                return Json(new { IsSuccess = false, IfDataFound = false });
+            return Json(new { IsSuccess = true, IfDataFound = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(DataTableToJSONWithJavaScriptSerializer(dt))) });
+
+        }
+
+
+
+
+
+
+
+
         [HttpPut]
         public IHttpActionResult UpdateUserDetails(ApiRequestModel requestModel)
         {

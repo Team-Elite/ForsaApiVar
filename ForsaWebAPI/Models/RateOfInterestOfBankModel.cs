@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -20,5 +21,7 @@ namespace ForsaWebAPI.Models
         public string GroupIds { get; set; }
         public string TimePeriod { get; set; }
         public bool IsDoubleTapped { get; set; }
+        public decimal RateOfInterest2 { get;set; }
+        public decimal RateOfInterest3 { get; set; }
     }
 }

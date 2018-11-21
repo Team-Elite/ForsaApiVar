@@ -93,16 +93,19 @@ namespace ForsaWebAPI.Controllers
 
         }
 
+
         [HttpPost]
         public IHttpActionResult UpdateRateOfInterestOfBank(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
 
-            SqlParameter[] param = new SqlParameter[3];
+            SqlParameter[] param = new SqlParameter[5];
             param[0] = new SqlParameter("@Id", objRate.Id);
             param[1] = new SqlParameter("@RateOfInterest", objRate.RateOfInterest);
-            param[2] = new SqlParameter("@Modifiedby", objRate.ModifiedBy);
+            param[2] = new SqlParameter("@RateOfInterest2", objRate.RateOfInterest2);
+            param[3] = new SqlParameter("@RateOfInterest3", objRate.RateOfInterest3);
+            param[4] = new SqlParameter("@Modifiedby", objRate.ModifiedBy);
             var dt = SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateRateOfInterestOfBank", System.Data.CommandType.StoredProcedure, param);
             return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
