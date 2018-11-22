@@ -154,6 +154,7 @@
     <Compile Include="Controllers\LenderDashboardController.cs" />
     <Compile Include="Controllers\LenderStartPageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Models\UserDocumentModel.cs" />
     <Compile Include="Controllers\RatingAgeNturController.cs" />
     <Compile Include="Controllers\SalutationController.cs" />
     <Compile Include="Controllers\SubGroupController.cs" />
@@ -268,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

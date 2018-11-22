@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
 using ForsaWebAPI.Persistance.Data;
+using ForsaWebAPI.Controllers.Models;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -306,19 +307,20 @@ namespace ForsaWebAPI.Controllers
 
         }
 
-        [HttpPost]
-        public IHttpActionResult SaveUserDocument(ApiRequestModel requestModel)
+       // [HttpPost]
+        public void SaveUserDocument(UserDocumentModel userDocumentModel)
         {
-            UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
-
+           
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@UserId", user.UserId);
-            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null)
-                return Json(new { IsSuccess = false });
-            if (dt.Rows.Count == 0)
-                return Json(new { IsSuccess = false, IfDataFound = false });
-            return Json(new { IsSuccess = true, IfDataFound = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            param[0] = new SqlParameter("@UserId", userDocumentModel.UserId);
+            param[0] = new SqlParameter("@DocumentName", userDocumentModel.DocumentName);
+
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_SaveUserDocument", System.Data.CommandType.StoredProcedure, param);
+            //if (dt == null)
+            //    return Json(new { IsSuccess = false });
+            //if (dt.Rows.Count == 0)
+            //    return Json(new { IsSuccess = false, IfDataFound = false });
+            //return Json(new { IsSuccess = true, IfDataFound = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
             //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(DataTableToJSONWithJavaScriptSerializer(dt))) });
 
         }
@@ -340,6 +342,46 @@ namespace ForsaWebAPI.Controllers
 
         }
 
+        [HttpPost()]
+        public string UploadFiles(ApiRequestModel requestModel)
+        {
+            int iUploadedCnt = 0;
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
+            var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserName);
+            //string sPath = "";
+            //sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Test/");
+            //if (!Directory.Exists(sPath))
+            //    Directory.CreateDirectory(sPath);
+            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+
+            // CHECK THE FILE COUNT.
+            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+            {
+                System.Web.HttpPostedFile hpf = hfc[iCnt];
+
+                if (hpf.ContentLength > 0)
+                {
+                    HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+                    // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+                    //if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                    //{
+                    //    // SAVE THE FILES IN THE FOLDER.
+                    //    hpf.SaveAs(sPath + Path.GetFileName(hpf.FileName));
+                    //    iUploadedCnt = iUploadedCnt + 1;
+                    //}
+                }
+            }
+
+            // RETURN A MESSAGE (OPTIONAL).
+            if (iUploadedCnt > 0)
+            {
+                return iUploadedCnt + " Files Uploaded Successfully";
+            }
+            else
+            {
+                return "Upload Failed";
+            }
+        }
 
 
 
