@@ -1,4 +1,5 @@
 ﻿
+using ForsaWebAPI.Controllers.Models;
 using ForsaWebAPI.Helper;
 using ForsaWebAPI.Models;
 using ForsaWebAPI.Persistance.Data;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -156,5 +158,103 @@ namespace ForsaWebAPI.Controllers
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_LenderSendRequest_UpdateRateOfInterest", System.Data.CommandType.StoredProcedure, param);
             return Json(new { IsSuccess = true });
         }
+
+        [HttpPost()]
+        public int UploadFiles()
+        {
+            int iUploadedCnt = 0;
+            int documentId = 0;
+            string sPath = "";
+            //sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Test/");
+            sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Docs/" + Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["userId"]) + "/UserProfile/");
+            if (!Directory.Exists(sPath))
+                Directory.CreateDirectory(sPath);
+            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+            System.Web.HttpPostedFile hpf;
+            // CHECK THE FILE COUNT.
+            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+            {
+                hpf = hfc[iCnt];
+
+                if (hpf.ContentLength > 0)
+                {
+                    // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+                    if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                    {
+                        // SAVE THE FILES IN THE FOLDER.
+                        hpf.SaveAs(sPath + Path.GetFileName(hpf.FileName));
+                        documentId = SaveDocumentInfoInDb(sPath + "/" + hpf.FileName,
+                            "BankUserProfile", Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["userId"]), hpf.FileName);
+                        iUploadedCnt = iUploadedCnt + 1;
+                    }
+                }
+            }
+
+            // RETURN A MESSAGE (OPTIONAL).
+            if (iUploadedCnt > 0)
+            {
+                return documentId;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="documentNameWithPath">Path of file with name</param>
+        /// <param name="calledFrom">That is from Banker Dashboard profile, lender profile etc.</param>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        public int SaveDocumentInfoInDb(string documentNameWithPath, string calledFrom, int UserId, string fileName)
+        {
+
+            SqlParameter[] param = new SqlParameter[4];
+            param[0] = new SqlParameter("@DocumentNameWithPath", documentNameWithPath);
+            param[1] = new SqlParameter("@Type", calledFrom);
+            param[2] = new SqlParameter("@UserId", UserId);
+            param[3] = new SqlParameter("@FileName", fileName);
+            var docId = SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_SaveDocumentInfo", System.Data.CommandType.StoredProcedure, param);
+            return Convert.ToInt32(docId);
+
+        }
+
+        [HttpPost]
+        public IHttpActionResult DeleteDocument(ApiRequestModel requestModel)
+        {
+
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            DocumentModel sendRequestModel = JsonConvert.DeserializeObject<DocumentModel>(data);
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@Id", sendRequestModel.docId);
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_DeleteDocument", System.Data.CommandType.StoredProcedure, param);
+            var sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Docs/" + sendRequestModel.userId + "/UserProfile/");
+            if (sendRequestModel.calledFrom == (int)EnumClass.DocUploadCalledFrom.BankUserProfile)
+                if (File.Exists(sPath + sendRequestModel.docName))
+                    File.Delete(sPath + sendRequestModel.docName);
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken("True") });
+
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetDocList(ApiRequestModel requestModel)
+        {
+            var user = JsonConvert.DeserializeObject<DocumentModel>((new JwtTokenManager().DecodeToken(requestModel.Data)));
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@UserId", user.userId);
+            param[1] = new SqlParameter("@Type", user.type);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetDocList", System.Data.CommandType.StoredProcedure, param);
+            if (dt == null)
+            {
+                //return NotFound();
+                return Json(new { IsSuccess = false });
+            }
+
+            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+        }
+
+
     }
 }

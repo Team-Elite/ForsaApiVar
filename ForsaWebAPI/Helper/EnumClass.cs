@@ -10,8 +10,11 @@ namespace ForsaWebAPI.Helper
         public enum  UploadDocumentType{
 
             IdendityCard,
-            CommercialRegisterExtract
+            CommercialRegisterExtract,
+            Other
         }
+        public enum DocUploadCalledFrom { BankUserProfile, LenderUserProfile }
+
 
     }
 }

@@ -1,9 +1,12 @@
 ﻿namespace ForsaWebAPI.Controllers.Models
 {
-    public class UserDocumentModel
+    public class DocumentModel
     {
-        public int DocId { get; set; }
-        public int UserId { get; set; }
-        public string DocumentName { get; set; }
+        public int userId { get; set; }
+        public int docId { get; set; }
+        public string docName { get; set; }
+        public int calledFrom { get; set; }
+        public string docPathWithName { get; set; }
+        public string type { get; set; }
     }
 }
