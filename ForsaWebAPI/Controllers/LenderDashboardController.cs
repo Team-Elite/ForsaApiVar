@@ -165,9 +165,12 @@ namespace ForsaWebAPI.Controllers
         [HttpPost]
         public IHttpActionResult GetLenderSendRequestPendingLendedRequestByLenderId(ApiRequestModel requestModel)
         {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+
+            var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@LenderId", id);
+            param[0] = new SqlParameter("@LenderId", user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetLenderSendRequestPendingLendedRequestByLenderId", System.Data.CommandType.StoredProcedure, param);
             //if (dt == null || dt.Rows.Count == 0)
             //    return Json(new { IsSuccess = false, IfDataFound = false });
@@ -188,7 +191,7 @@ namespace ForsaWebAPI.Controllers
 
             #region Sending Mail to Lender
             // Sending Email to Lender.
-            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\LenderSendRequestAccepted.html";
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\LenderSendRequest.html";
             var bodyOfMail = "";
             using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
             {
@@ -242,7 +245,7 @@ namespace ForsaWebAPI.Controllers
 
             #region Sending Mail to Lender
             // Sending Email to Lender.
-            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\LenderSendRequestRejected.html";
+            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\LenderSendRequest.html";
             var bodyOfMail = "";
             using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
             {

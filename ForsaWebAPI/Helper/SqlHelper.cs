@@ -94,22 +94,27 @@ namespace ForsaWebAPI
         public static DataTable ExecuteDataTable(String connectionString, String commandText,
             CommandType commandType, params SqlParameter[] parameters)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-
-            using (SqlCommand cmd = new SqlCommand(commandText, conn))
+            try
             {
-                cmd.CommandType = commandType;
-                cmd.Parameters.AddRange(parameters);
+                SqlConnection conn = new SqlConnection(connectionString);
 
-                if(conn.State== ConnectionState.Closed) conn.Open();
-                // When using CommandBehavior.CloseConnection, the connection will be closed when the 
-                // IDataReader is closed.
-                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                DataTable dt = new DataTable();
-                dt.Load(reader);
+                using (SqlCommand cmd = new SqlCommand(commandText, conn))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
 
-                return dt;
+                    if (conn.State == ConnectionState.Closed) conn.Open();
+                    // When using CommandBehavior.CloseConnection, the connection will be closed when the 
+                    // IDataReader is closed.
+                    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    return dt;
+                }
             }
+            finally
+            { }
         }
     }
 }

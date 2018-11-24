@@ -230,7 +230,7 @@ namespace ForsaWebAPI.Controllers
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@Id", sendRequestModel.docId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_DeleteDocument", System.Data.CommandType.StoredProcedure, param);
-            var sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Docs/" + sendRequestModel.userId + "/UserProfile/");
+            var sPath = System.Web.Hosting.HostingEnvironment.MapPath("Uploads/docs/" + sendRequestModel.userId + "/UserProfile/");
             if (sendRequestModel.calledFrom == (int)EnumClass.DocUploadCalledFrom.BankUserProfile)
                 if (File.Exists(sPath + sendRequestModel.docName))
                     File.Delete(sPath + sendRequestModel.docName);
