@@ -128,21 +128,11 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
-            var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserName); 
-            if (user.CommercialRegisterExtract != null)
-            {
 
-                user.CommercialRegisterExtract =  HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
-            }
-
-            if (user.IdentityCard != null)
-            {
-                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
-            }
-
+            var result = 0;
 
             string password = RandomString(6);
-            SqlParameter[] param = new SqlParameter[34];
+            SqlParameter[] param = new SqlParameter[37];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
             param[1] = new SqlParameter("@Street", user.Street);
             param[2] = new SqlParameter("@PostalCode", user.PostalCode);
@@ -177,11 +167,25 @@ namespace ForsaWebAPI.Controllers
             param[31] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
             param[32] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
             param[33] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
-            param[33] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
-            param[33] = new SqlParameter("@IdentityCard", user.IdentityCard);
+            param[34] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
+            param[35] = new SqlParameter("@IdentityCard", user.IdentityCard);
+            param[36] = new SqlParameter("@result", result);
+            param[36].Direction = ParameterDirection.InputOutput;
+            SqlHelper.ExecuteNonQuery(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
 
-            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
+            user.UserId =(int) param[36].Value;
+            if(user.UserId<0) return Json(new { IsSuccess = true });
+            var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
+            if (user.CommercialRegisterExtract != null)
+            {
 
+                user.CommercialRegisterExtract = HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+            }
+
+            if (user.IdentityCard != null)
+            {
+                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+            }
 
             var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
             var bodyOfMail = "";

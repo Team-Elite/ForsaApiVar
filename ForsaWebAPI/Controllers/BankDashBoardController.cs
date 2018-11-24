@@ -193,7 +193,7 @@ namespace ForsaWebAPI.Controllers
             // RETURN A MESSAGE (OPTIONAL).
             if (iUploadedCnt > 0)
             {
-                return documentId;
+                return iUploadedCnt;
             }
             else
             {
