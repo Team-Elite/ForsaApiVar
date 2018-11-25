@@ -166,7 +166,7 @@ namespace ForsaWebAPI.Controllers
             int documentId = 0;
             string sPath = "";
             //sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Test/");
-            sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Docs/" + Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["userId"]) + "/UserProfile/");
+            sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/docs/" + Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["userId"]) + "/UserProfile/");
             if (!Directory.Exists(sPath))
                 Directory.CreateDirectory(sPath);
             System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
@@ -230,7 +230,7 @@ namespace ForsaWebAPI.Controllers
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@Id", sendRequestModel.docId);
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_DeleteDocument", System.Data.CommandType.StoredProcedure, param);
-            var sPath = System.Web.Hosting.HostingEnvironment.MapPath("Uploads/docs/" + sendRequestModel.userId + "/UserProfile/");
+            var sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/docs/" + sendRequestModel.userId + "/UserProfile/");
             if (sendRequestModel.calledFrom == (int)EnumClass.DocUploadCalledFrom.BankUserProfile)
                 if (File.Exists(sPath + sendRequestModel.docName))
                     File.Delete(sPath + sendRequestModel.docName);
