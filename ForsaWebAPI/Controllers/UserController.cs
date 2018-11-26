@@ -167,13 +167,16 @@ namespace ForsaWebAPI.Controllers
             param[31] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
             param[32] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
             param[33] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
-            param[34] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
-            param[35] = new SqlParameter("@IdentityCard", user.IdentityCard);
+            param[34] = new SqlParameter("@CommercialRegisterExtract", string.Empty);
+            param[35] = new SqlParameter("@IdentityCard", string.Empty);
             param[36] = new SqlParameter("@result", result);
             param[36].Direction = ParameterDirection.InputOutput;
             SqlHelper.ExecuteNonQuery(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
 
             user.UserId =(int) param[36].Value;
+          
+
+
             if(user.UserId<0) return Json(new { IsSuccess = true });
             var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
             if (user.CommercialRegisterExtract != null)
@@ -186,7 +189,7 @@ namespace ForsaWebAPI.Controllers
             {
                 user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
             }
-
+            UpdateUserPeronalDocs(user);
             var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
             var bodyOfMail = "";
             using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
@@ -204,6 +207,15 @@ namespace ForsaWebAPI.Controllers
 
             return Json(new { IsSuccess = true });
             //  return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
+        }
+
+        private void UpdateUserPeronalDocs(UserModel user)
+        {
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
+            param[1] = new SqlParameter("@IdentityCard", user.IdentityCard);
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_UpdateUserPeronalDocs", System.Data.CommandType.StoredProcedure, param);
 
         }
 
