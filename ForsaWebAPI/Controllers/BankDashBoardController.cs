@@ -13,7 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Xml.Linq;
 
 namespace ForsaWebAPI.Controllers
 {
@@ -100,20 +100,21 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult UpdateRateOfInterestOfBank(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
-           // RateOfInterestOfBankModel objRate = JsonConvert.DeserializeObject<RateOfInterestOfBankModel>(data);
+            //   List<RateOfInterestOfBankModel> objRate = JsonConvert.DeserializeObject<List<RateOfInterestOfBankModel>>(data);
+            var xml = HelperClass.JsonToXML(data);
 
-            SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@json", data);
+            //SqlParameter[] param = new SqlParameter[1];
+            //param[0] = new SqlParameter("@xml", xml);
 
-            //param[0] = new SqlParameter("@Id", objRate.Id);
-            //param[1] = new SqlParameter("@RateOfInterest", objRate.RateOfInterest);
-            //param[2] = new SqlParameter("@RateOfInterest2", objRate.RateOfInterest2);
-            //param[3] = new SqlParameter("@RateOfInterest3", objRate.RateOfInterest3);
-            //param[4] = new SqlParameter("@Modifiedby", objRate.ModifiedBy);
-            var dt = SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_SaveBankRate", System.Data.CommandType.StoredProcedure, param);
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
+            ////param[0] = new SqlParameter("@Id", objRate.Id);
+            ////param[1] = new SqlParameter("@RateOfInterest", objRate.RateOfInterest);
+            ////param[2] = new SqlParameter("@RateOfInterest2", objRate.RateOfInterest2);
+            ////param[3] = new SqlParameter("@RateOfInterest3", objRate.RateOfInterest3);
+            ////param[4] = new SqlParameter("@Modifiedby", objRate.ModifiedBy);
+            //var dt = SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_SaveBankRate", System.Data.CommandType.StoredProcedure, param);
+            //return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(dt)) });
 
-            // return Json(new { IsSuccess = true });
+             return Json(new { IsSuccess = true });
         }
 
 

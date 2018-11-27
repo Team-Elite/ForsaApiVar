@@ -6,6 +6,7 @@ using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Web;
 
 namespace ForsaWebAPI
@@ -31,20 +32,28 @@ namespace ForsaWebAPI
 
         public string DecodeToken(string token)
         {
-          
-
-
-            //var symmetricKey = Convert.FromBase64String(Secret);
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            //var tokenDescriptor = new SecurityTokenDescriptor
-            //{
-            //    Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, data) }),
-            //    Expires = now.AddMinutes(Convert.ToInt32(expireMinutes)),
-            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
-            //};
-            return JsonConvert.SerializeObject(tokenHandler.ReadJwtToken(token).Payload);
-           
+            try
+            {
+                var decoded = token.Split('.').Take(2).Select(x => Encoding.UTF8.GetString(Convert.FromBase64String(x.PadRight(x.Length + (x.Length % 4), '='))));
+//.Aggregate((s1, s2) => s2);
+                //var symmetricKey = Convert.FromBase64String(Secret);
+
+                //var tokenDescriptor = new SecurityTokenDescriptor
+                //{
+                //    Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, data) }),
+                //    Expires = now.AddMinutes(Convert.ToInt32(expireMinutes)),
+                //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
+                //};
+               return JsonConvert.SerializeObject(tokenHandler.ReadJwtToken(token).Payload);
+            }
+            catch(Exception ex)
+            {
+                var decoded = token.Split('.').Take(2).Select(x => Encoding.UTF8.GetString(Convert.FromBase64String(x.PadRight(x.Length + (x.Length % 4), '='))));
+                //Encoding.UTF8.GetString(Convert.FromBase64String(token.PadRight(token.Length + (token.Length - token.Length % 4) % 4, '=')));
+                return decoded.ToArray()[1];// token.Split('.').Take(2).Select(x => Encoding.UTF8.GetString(Convert.FromBase64String(x.PadRight(x.Length + (x.Length % 4), '='))));
+            }
          
         }
     }

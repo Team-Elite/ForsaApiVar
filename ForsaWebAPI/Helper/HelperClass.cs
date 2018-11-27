@@ -5,8 +5,12 @@ using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Xml;
+using System.Xml.Linq;
 using ForsaWebAPI.Models;
 
 namespace ForsaWebAPI.Helper
@@ -38,7 +42,18 @@ namespace ForsaWebAPI.Helper
                 write.Write("" + "-------- Stack trace " + ex.StackTrace);
             }
         }
+        public static XmlDocument JsonToXML(string json)
+        {
+            XmlDocument doc = new XmlDocument();
 
+            using (var reader = JsonReaderWriterFactory.CreateJsonReader(Encoding.UTF8.GetBytes(json), XmlDictionaryReaderQuotas.Max))
+            {
+                XElement xml = XElement.Load(reader);
+                doc.LoadXml(xml.ToString());
+            }
+
+            return doc;
+        }
         internal static dynamic UploadDocument(HttpPostedFile hpf, EnumClass.UploadDocumentType idendityCard, string filePath)
         {
             //  HttpPostedFile hpf = idendityCard ;
