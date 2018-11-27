@@ -36,16 +36,7 @@ namespace ForsaWebAPI
 
             try
             {
-                var decoded = token.Split('.').Take(2).Select(x => Encoding.UTF8.GetString(Convert.FromBase64String(x.PadRight(x.Length + (x.Length % 4), '='))));
-//.Aggregate((s1, s2) => s2);
-                //var symmetricKey = Convert.FromBase64String(Secret);
-
-                //var tokenDescriptor = new SecurityTokenDescriptor
-                //{
-                //    Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, data) }),
-                //    Expires = now.AddMinutes(Convert.ToInt32(expireMinutes)),
-                //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(symmetricKey), SecurityAlgorithms.HmacSha256Signature)
-                //};
+               
                return JsonConvert.SerializeObject(tokenHandler.ReadJwtToken(token).Payload);
             }
             catch(Exception ex)
