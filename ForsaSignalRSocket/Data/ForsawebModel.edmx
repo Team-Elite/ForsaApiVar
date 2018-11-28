@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="forsawebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblRateOfInterestOfBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" Nullable="false" />
+          <Property Name="TimePeriodId" Type="int" Nullable="false" />
+          <Property Name="MinValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="MaxValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="BaseCurve" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="GroupIds" Type="nvarchar" MaxLength="500" />
+          <Property Name="FractionRate2" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest2" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate3" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest3" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <EntityContainer Name="forsawebModelStoreContainer">
+          <EntitySet Name="tblRateOfInterestOfBank" EntityType="Self.tblRateOfInterestOfBank" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="forsawebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblRateOfInterestOfBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="MinValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="MaxValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="BaseCurve" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FractionRate2" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest2" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate3" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest3" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="forsawebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblRateOfInterestOfBanks" EntityType="Self.tblRateOfInterestOfBank" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="forsawebEntities">
+          <EntitySetMapping Name="tblRateOfInterestOfBanks">
+            <EntityTypeMapping TypeName="forsawebModel.tblRateOfInterestOfBank">
+              <MappingFragment StoreEntitySet="tblRateOfInterestOfBank">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="BaseCurve" ColumnName="BaseCurve" />
+                <ScalarProperty Name="FractionRate" ColumnName="FractionRate" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="FractionRate2" ColumnName="FractionRate2" />
+                <ScalarProperty Name="RateOfInterest2" ColumnName="RateOfInterest2" />
+                <ScalarProperty Name="FractionRate3" ColumnName="FractionRate3" />
+                <ScalarProperty Name="RateOfInterest3" ColumnName="RateOfInterest3" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

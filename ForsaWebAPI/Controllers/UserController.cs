@@ -371,20 +371,20 @@ namespace ForsaWebAPI.Controllers
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserInformation", System.Data.CommandType.StoredProcedure, param);
 
 
-            var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
-            var bodyOfMail = "";
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
-            {
-                bodyOfMail = reader.ReadToEnd();
-            }
+            //var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
+            //var bodyOfMail = "";
+            //using (System.IO.StreamReader reader = new System.IO.StreamReader(path))
+            //{
+            //    bodyOfMail = reader.ReadToEnd();
+            //}
 
-            bodyOfMail = bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
-            bodyOfMail = bodyOfMail.Replace("[UserName]", user.UserName.ToString());
-            bodyOfMail = bodyOfMail.Replace("[Password]", "Same which was earlier.");
-            bodyOfMail = bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
-            // Sending Email
-            EmailHelper objHelper = new EmailHelper();
-            objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
+            //bodyOfMail = bodyOfMail.Replace("[FirstName]", user.FirstName.ToString());
+            //bodyOfMail = bodyOfMail.Replace("[UserName]", user.UserName.ToString());
+            //bodyOfMail = bodyOfMail.Replace("[Password]", "Same which was earlier.");
+            //bodyOfMail = bodyOfMail.Replace("[LoginUrl]", HelperClass.LoginURL);
+            //// Sending Email
+            //EmailHelper objHelper = new EmailHelper();
+            //objHelper.SendEMail(user.EmailAddress, HelperClass.RegistrationEmailSubject, bodyOfMail);
 
             return Json(new { IsSuccess = true });
             //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });

@@ -12,7 +12,7 @@ namespace ForsaWebAPI
     {
         protected void Application_Start()
         {
-
+            new HttpConfiguration().EnableCors();
            // AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
