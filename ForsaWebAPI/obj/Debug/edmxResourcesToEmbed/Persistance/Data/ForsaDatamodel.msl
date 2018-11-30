@@ -1,216 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="ForsaEntities">
-    <EntitySetMapping Name="tbl_UserDocument">
-      <EntityTypeMapping TypeName="forsawebModel.tbl_UserDocument">
-        <MappingFragment StoreEntitySet="tbl_UserDocument">
-          <ScalarProperty Name="docId" ColumnName="docId" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tblCountries">
       <EntityTypeMapping TypeName="forsawebModel.tblCountry">
         <MappingFragment StoreEntitySet="tblCountry">
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
           <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblCustomerGroups">
       <EntityTypeMapping TypeName="forsawebModel.tblCustomerGroup">
         <MappingFragment StoreEntitySet="tblCustomerGroup">
-          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="CustomerGroup" ColumnName="CustomerGroup" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblDepositInsurances">
-      <EntityTypeMapping TypeName="forsawebModel.tblDepositInsurance">
-        <MappingFragment StoreEntitySet="tblDepositInsurance">
-          <ScalarProperty Name="DepositInsuranceId" ColumnName="DepositInsuranceId" />
-          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblGroups">
       <EntityTypeMapping TypeName="forsawebModel.tblGroup">
         <MappingFragment StoreEntitySet="tblGroup">
-          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
           <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblLanguages">
       <EntityTypeMapping TypeName="forsawebModel.tblLanguage">
         <MappingFragment StoreEntitySet="tblLanguage">
-          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-          <ScalarProperty Name="Language" ColumnName="Language" />
           <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblLenderDeselectedBanks">
-      <EntityTypeMapping TypeName="forsawebModel.tblLenderDeselectedBank">
-        <MappingFragment StoreEntitySet="tblLenderDeselectedBanks">
-          <ScalarProperty Name="DeselectedBankId" ColumnName="DeselectedBankId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="BankIds" ColumnName="BankIds" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblLenderSendRequests">
-      <EntityTypeMapping TypeName="forsawebModel.tblLenderSendRequest">
-        <MappingFragment StoreEntitySet="tblLenderSendRequest">
-          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
-          <ScalarProperty Name="LenderId" ColumnName="LenderId" />
-          <ScalarProperty Name="BorrowerId" ColumnName="BorrowerId" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="NoOfDays" ColumnName="NoOfDays" />
-          <ScalarProperty Name="InterestConvention" ColumnName="InterestConvention" />
-          <ScalarProperty Name="Payments" ColumnName="Payments" />
-          <ScalarProperty Name="IsRequestAccepted" ColumnName="IsRequestAccepted" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-          <ScalarProperty Name="RequestCreatedBy" ColumnName="RequestCreatedBy" />
-          <ScalarProperty Name="RateOfInterestOfferred" ColumnName="RateOfInterestOfferred" />
-          <ScalarProperty Name="OfferredOn" ColumnName="OfferredOn" />
-          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
-          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
-          <ScalarProperty Name="MessageForForsa" ColumnName="MessageForForsa" />
-          <ScalarProperty Name="IsMessageSentToForsa" ColumnName="IsMessageSentToForsa" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblLenderStartPages">
-      <EntityTypeMapping TypeName="forsawebModel.tblLenderStartPage">
-        <MappingFragment StoreEntitySet="tblLenderStartPage">
-          <ScalarProperty Name="LenderStartPageId" ColumnName="LenderStartPageId" />
-          <ScalarProperty Name="PageId" ColumnName="PageId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="IsStartPage" ColumnName="IsStartPage" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblPages">
       <EntityTypeMapping TypeName="forsawebModel.tblPage">
         <MappingFragment StoreEntitySet="tblPages">
-          <ScalarProperty Name="PageId" ColumnName="PageId" />
-          <ScalarProperty Name="PageName" ColumnName="PageName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblRateOfInterestOfBanks">
-      <EntityTypeMapping TypeName="forsawebModel.tblRateOfInterestOfBank">
-        <MappingFragment StoreEntitySet="tblRateOfInterestOfBank">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
-          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
-          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblRatingAgeNturs">
       <EntityTypeMapping TypeName="forsawebModel.tblRatingAgeNtur">
         <MappingFragment StoreEntitySet="tblRatingAgeNtur">
-          <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
           <ScalarProperty Name="RatingAgeNtur" ColumnName="RatingAgeNtur" />
+          <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblSalutations">
       <EntityTypeMapping TypeName="forsawebModel.tblSalutation">
         <MappingFragment StoreEntitySet="tblSalutation">
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
           <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
-          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblSubGroups">
-      <EntityTypeMapping TypeName="forsawebModel.tblSubGroup">
-        <MappingFragment StoreEntitySet="tblSubGroup">
-          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
-          <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblUsers">
-      <EntityTypeMapping TypeName="forsawebModel.tblUser">
-        <MappingFragment StoreEntitySet="tblUser">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
-          <ScalarProperty Name="Street" ColumnName="Street" />
-          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-          <ScalarProperty Name="Place" ColumnName="Place" />
-          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
-          <ScalarProperty Name="Bank" ColumnName="Bank" />
-          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
-          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
-          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
-          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
-          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
-          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
-          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="SurName" ColumnName="SurName" />
-          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
-          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
-          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
-          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
-          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
-          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
-          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
-          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
-          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
-          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
-          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
-          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
-          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
-          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="CommercialRegisterExtract" ColumnName="CommercialRegisterExtract" />
-          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tblUserTypes">
-      <EntityTypeMapping TypeName="forsawebModel.tblUserType">
-        <MappingFragment StoreEntitySet="tblUserType">
-          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
-          <ScalarProperty Name="UserType" ColumnName="UserType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tblTimePeriods">
       <EntityTypeMapping TypeName="forsawebModel.tblTimePeriod">
         <MappingFragment StoreEntitySet="tblTimePeriod">
-          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
-          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
-          <ScalarProperty Name="TimePeriodForGrid" ColumnName="TimePeriodForGrid" />
           <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TimePeriodForGrid" ColumnName="TimePeriodForGrid" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserTypes">
+      <EntityTypeMapping TypeName="forsawebModel.tblUserType">
+        <MappingFragment StoreEntitySet="tblUserType">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -203,28 +203,13 @@
     <Compile Include="Persistance\Data\tblCustomerGroup.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persistance\Data\tblDepositInsurance.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persistance\Data\tblGroup.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Data\tblLanguage.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persistance\Data\tblLenderDeselectedBank.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistance\Data\tblLenderSendRequest.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistance\Data\tblLenderStartPage.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persistance\Data\tblPage.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistance\Data\tblRateOfInterestOfBank.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistance\Data\tblRatingAgeNtur.cs">
@@ -233,19 +218,10 @@
     <Compile Include="Persistance\Data\tblSalutation.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persistance\Data\tblSubGroup.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persistance\Data\tblTimePeriod.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persistance\Data\tblUser.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persistance\Data\tblUserType.cs">
-      <DependentUpon>ForsaDatamodel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Persistance\Data\tbl_UserDocument.cs">
       <DependentUpon>ForsaDatamodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

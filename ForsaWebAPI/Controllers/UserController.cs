@@ -33,20 +33,20 @@ namespace ForsaWebAPI.Controllers
 
         // GET: api/User/5
         //[ResponseType(typeof(tblUser))]
-        [HttpPost]
-        public IHttpActionResult GettblUser(ApiRequestModel requestModel)
-        {
-            int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
-            tblUser tblUser = db.tblUsers.Find(id);
-            if (tblUser == null)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //public IHttpActionResult GettblUser(ApiRequestModel requestModel)
+        //{
+        //    int id = int.Parse(new JwtTokenManager().DecodeToken(requestModel.Data));
+        //    tblUser tblUser = db.tblUsers.Find(id);
+        //    if (tblUser == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            // return Ok(tblUser);
-            return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblUser)) });
+        //    // return Ok(tblUser);
+        //    return Json(new { IsSuccess = true, data = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(tblUser)) });
 
-        }
+        //}
 
         [HttpPost]
         public bool IfUserNameAvailable(ApiRequestModel requestModel)
@@ -274,22 +274,22 @@ namespace ForsaWebAPI.Controllers
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        // DELETE: api/User/5
-        //[ResponseType(typeof(tblUser))]
-        [HttpDelete]
-        public IHttpActionResult DeletetblUser(int id)
-        {
-            tblUser tblUser = db.tblUsers.Find(id);
-            if (tblUser == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/User/5
+        ////[ResponseType(typeof(tblUser))]
+        //[HttpDelete]
+        //public IHttpActionResult DeletetblUser(int id)
+        //{
+        //    tblUser tblUser = db.tblUsers.Find(id);
+        //    if (tblUser == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.tblUsers.Remove(tblUser);
-            db.SaveChanges();
+        //    db.tblUsers.Remove(tblUser);
+        //    db.SaveChanges();
 
-            return Ok(tblUser);
-        }
+        //    return Ok(tblUser);
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -300,11 +300,11 @@ namespace ForsaWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool tblUserExists(int id)
-        {
+        //private bool tblUserExists(int id)
+        //{
 
-            return db.tblUsers.Count(e => e.UserId == id) > 0;
-        }
+        //    return db.tblUsers.Count(e => e.UserId == id) > 0;
+        //}
 
         [HttpPost]
         public IHttpActionResult GetUserDetailByUserId(ApiRequestModel requestModel)

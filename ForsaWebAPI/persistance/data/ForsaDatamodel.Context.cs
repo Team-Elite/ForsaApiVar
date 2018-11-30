@@ -25,22 +25,14 @@ namespace ForsaWebAPI.Persistance.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbl_UserDocument> tbl_UserDocument { get; set; }
         public virtual DbSet<tblCountry> tblCountries { get; set; }
         public virtual DbSet<tblCustomerGroup> tblCustomerGroups { get; set; }
-        public virtual DbSet<tblDepositInsurance> tblDepositInsurances { get; set; }
         public virtual DbSet<tblGroup> tblGroups { get; set; }
         public virtual DbSet<tblLanguage> tblLanguages { get; set; }
-        public virtual DbSet<tblLenderDeselectedBank> tblLenderDeselectedBanks { get; set; }
-        public virtual DbSet<tblLenderSendRequest> tblLenderSendRequests { get; set; }
-        public virtual DbSet<tblLenderStartPage> tblLenderStartPages { get; set; }
         public virtual DbSet<tblPage> tblPages { get; set; }
-        public virtual DbSet<tblRateOfInterestOfBank> tblRateOfInterestOfBanks { get; set; }
         public virtual DbSet<tblRatingAgeNtur> tblRatingAgeNturs { get; set; }
         public virtual DbSet<tblSalutation> tblSalutations { get; set; }
-        public virtual DbSet<tblSubGroup> tblSubGroups { get; set; }
-        public virtual DbSet<tblUser> tblUsers { get; set; }
-        public virtual DbSet<tblUserType> tblUserTypes { get; set; }
         public virtual DbSet<tblTimePeriod> tblTimePeriods { get; set; }
+        public virtual DbSet<tblUserType> tblUserTypes { get; set; }
     }
 }
