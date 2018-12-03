@@ -53,7 +53,7 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
-           
+
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserName", user.UserName);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserNameExist", System.Data.CommandType.StoredProcedure, param);
@@ -70,7 +70,7 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
-           
+
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@EmailId", user.EmailAddress);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_CheckIfUserEmailIdExist", System.Data.CommandType.StoredProcedure, param);
@@ -132,7 +132,9 @@ namespace ForsaWebAPI.Controllers
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
 
             var result = 0;
-
+            // CHECK THE FILE COUNT.
+            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+            
             string password = RandomString(6);
             SqlParameter[] param = new SqlParameter[38];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
@@ -165,7 +167,6 @@ namespace ForsaWebAPI.Controllers
             param[27] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2 == null ? "" : user.RatingAgenturValue2);
             param[28] = new SqlParameter("@DepositInsurance", user.DepositInsurance);
             param[29] = new SqlParameter("@DepositInsuranceAmount", user.DepositInsuranceAmount);
-            
             param[30] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
             param[31] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
             param[32] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
@@ -176,22 +177,34 @@ namespace ForsaWebAPI.Controllers
             param[37] = new SqlParameter("@result", result);
             param[37].Direction = ParameterDirection.InputOutput;
             SqlHelper.ExecuteNonQuery(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
-
-            user.UserId =(int) param[37].Value;
-          
-
-
-            if(user.UserId<0) return Json(new { IsSuccess = true });
-            var FilePath = String.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
-            if (user.CommercialRegisterExtract != null)
+            user.UserId = (int)param[37].Value;
+            if (user.UserId < 0) return Json(new { IsSuccess = false });
+            var FilePath = String.Format(@"{0}uploads\docs\{1}\userprofile", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
+            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
             {
+                System.Web.HttpPostedFile hpf = hfc[iCnt];
 
-                user.CommercialRegisterExtract = HelperClass.UploadDocument(user.CommercialRegisterExtract, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
-            }
-
-            if (user.IdentityCard != null)
-            {
-                user.IdentityCard = HelperClass.UploadDocument(user.IdentityCard, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                if (hpf.ContentLength > 0)
+                {
+                    if (iCnt == 0)
+                    {
+                        user.CommercialRegisterExtract = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+                    }
+                    else
+                    {
+                        user.IdentityCard = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                    }
+                    //// CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+                    //if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                    //{
+                    //    // SAVE THE FILES IN THE FOLDER.
+                    //    hpf.SaveAs(sPath + Path.GetFileName(hpf.FileName));
+                    //    if (iCnt == 0)
+                    //        CommercialRegisterExtractFileName = hpf.FileName;
+                    //    else if (iCnt == 1)
+                    //        IdentityCardFileName = hpf.FileName;
+                    //}
+                }
             }
             UpdateUserPeronalDocs(user);
             var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
@@ -216,9 +229,10 @@ namespace ForsaWebAPI.Controllers
 
         private void UpdateUserPeronalDocs(UserModel user)
         {
-            SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
-            param[1] = new SqlParameter("@IdentityCard", user.IdentityCard);
+            SqlParameter[] param = new SqlParameter[3];
+            param[0] = new SqlParameter("@UserId", user.UserId);
+            param[1] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
+            param[2] = new SqlParameter("@IdentityCard", user.IdentityCard);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_UpdateUserPeronalDocs", System.Data.CommandType.StoredProcedure, param);
 
         }
@@ -314,7 +328,7 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetUserDetailByUserId(ApiRequestModel requestModel)
         {
             UserModel user = JsonConvert.DeserializeObject<UserModel>(new JwtTokenManager().DecodeToken(requestModel.Data));
-     
+
             SqlParameter[] param = new SqlParameter[1];
             param[0] = new SqlParameter("@UserId", user.UserId);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetUserDetailById", System.Data.CommandType.StoredProcedure, param);

@@ -58,10 +58,10 @@ namespace ForsaWebAPI.Helper
         {
             //  HttpPostedFile hpf = idendityCard ;
             string exttension = System.IO.Path.GetExtension(hpf.FileName);
-            var filename = string.Format("{0}/{1}", new JwtTokenManager().GenerateToken(hpf.FileName),exttension);
+           // var filename = string.Format("{0}/{1}",hpf.FileName,exttension);
             if (!Directory.Exists(filePath))Directory.CreateDirectory(filePath);
-            hpf.SaveAs(string.Format("{0}/{1}}", filePath,filename));
-            return filename;
+            hpf.SaveAs(string.Format(@"{0}\{1}", filePath, hpf.FileName));
+            return hpf.FileName;
 
         }
 

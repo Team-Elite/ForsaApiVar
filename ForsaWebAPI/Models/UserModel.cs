@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -49,5 +50,6 @@ namespace ForsaWebAPI.Models
         public dynamic CommercialRegisterExtract { get; set; }
 
         public dynamic IdentityCard { get; set; }
+        public decimal DepositInsuranceAmount { get; internal set; }
     }
 }

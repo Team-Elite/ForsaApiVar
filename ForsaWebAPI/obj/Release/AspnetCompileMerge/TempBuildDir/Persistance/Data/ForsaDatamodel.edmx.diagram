@@ -5,23 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="88f6c67955f649e2b19fa35c4b72a757" Name="Diagram1">
-        <EntityTypeShape EntityType="forsawebModel.tbl_UserDocument" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblCountry" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblCustomerGroup" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblDepositInsurance" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblGroup" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblLanguage" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblLenderDeselectedBank" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblLenderSendRequest" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblLenderStartPage" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblPage" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblRateOfInterestOfBank" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblRatingAgeNtur" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblSalutation" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblSubGroup" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblUser" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblUserType" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="forsawebModel.tblTimePeriod" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="forsawebModel.tblCountry" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblCustomerGroup" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblGroup" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblLanguage" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblPage" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblRatingAgeNtur" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblSalutation" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblTimePeriod" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblUserType" Width="1.5" PointX="3.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

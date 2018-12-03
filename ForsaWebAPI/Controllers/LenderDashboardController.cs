@@ -25,11 +25,12 @@ namespace ForsaWebAPI.Controllers
         public IHttpActionResult GetMaturityList(ApiRequestModel requestModel)
         {
             var user = JsonConvert.DeserializeObject<UserModel>((new JwtTokenManager().DecodeToken(requestModel.Data)));
-            SqlParameter[] param = new SqlParameter[2];
+            SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@LenderId", user.UserId);
             param[1] = new SqlParameter("@History", requestModel.ShowAll);
+            param[2] = new SqlParameter("@Orderby", requestModel.orderBy);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetMaturityList", System.Data.CommandType.StoredProcedure, param);
-            if (dt == null)
+            if (dt == null )
             {
                 //return NotFound();
                 return Json(new { IsSuccess = false });
