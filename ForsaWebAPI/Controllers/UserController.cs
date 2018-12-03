@@ -124,15 +124,17 @@ namespace ForsaWebAPI.Controllers
         // POST: api/User
         //[ResponseType(typeof(tblUser))]
         [HttpPost]
-        public IHttpActionResult RegisterUser(ApiRequestModel requestModel)
+        public IHttpActionResult RegisterUser()
         {
+            ApiRequestModel requestModel = JsonConvert.DeserializeObject<ApiRequestModel>(System.Web.HttpContext.Current.Request.Form["encrypted"].ToString());
+
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
 
             var result = 0;
 
             string password = RandomString(6);
-            SqlParameter[] param = new SqlParameter[37];
+            SqlParameter[] param = new SqlParameter[38];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
             param[1] = new SqlParameter("@Street", user.Street);
             param[2] = new SqlParameter("@PostalCode", user.PostalCode);
@@ -162,18 +164,20 @@ namespace ForsaWebAPI.Controllers
             param[26] = new SqlParameter("@RatingAgentur2", user.RatingAgentur2 == null ? "" : user.RatingAgentur2);
             param[27] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2 == null ? "" : user.RatingAgenturValue2);
             param[28] = new SqlParameter("@DepositInsurance", user.DepositInsurance);
-            param[29] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
-            param[30] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
-            param[31] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
-            param[32] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
-            param[33] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
-            param[34] = new SqlParameter("@CommercialRegisterExtract", string.Empty);
-            param[35] = new SqlParameter("@IdentityCard", string.Empty);
-            param[36] = new SqlParameter("@result", result);
-            param[36].Direction = ParameterDirection.InputOutput;
+            param[29] = new SqlParameter("@DepositInsuranceAmount", user.DepositInsuranceAmount);
+            
+            param[30] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
+            param[31] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
+            param[32] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
+            param[33] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
+            param[34] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
+            param[35] = new SqlParameter("@CommercialRegisterExtract", string.Empty);
+            param[36] = new SqlParameter("@IdentityCard", string.Empty);
+            param[37] = new SqlParameter("@result", result);
+            param[37].Direction = ParameterDirection.InputOutput;
             SqlHelper.ExecuteNonQuery(HelperClass.ConnectionString, "USP_InsertUser", System.Data.CommandType.StoredProcedure, param);
 
-            user.UserId =(int) param[36].Value;
+            user.UserId =(int) param[37].Value;
           
 
 
@@ -328,7 +332,7 @@ namespace ForsaWebAPI.Controllers
 
 
 
-        [HttpPut]
+        [HttpPost]
         public IHttpActionResult UpdateUserDetails(ApiRequestModel requestModel)
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
@@ -367,6 +371,7 @@ namespace ForsaWebAPI.Controllers
             param[29] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
             param[30] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
             param[31] = new SqlParameter("@UserId", user.UserId);
+            param[32] = new SqlParameter("@DepositInsuranceAmount", user.DepositInsuranceAmount);
 
             SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserInformation", System.Data.CommandType.StoredProcedure, param);
 
