@@ -134,7 +134,7 @@ namespace ForsaWebAPI.Controllers
             var result = 0;
             // CHECK THE FILE COUNT.
             System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
-            
+
             string password = RandomString(6);
             SqlParameter[] param = new SqlParameter[38];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
@@ -347,12 +347,40 @@ namespace ForsaWebAPI.Controllers
 
 
         [HttpPost]
-        public IHttpActionResult UpdateUserDetails(ApiRequestModel requestModel)
+        public IHttpActionResult UpdateUserDetails()
         {
+
+            ApiRequestModel requestModel = JsonConvert.DeserializeObject<ApiRequestModel>(System.Web.HttpContext.Current.Request.Form["encrypted"].ToString());
+
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+
+
+            // CHECK THE FILE COUNT.
+            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+
+            var FilePath = String.Format(@"{0}uploads\docs\{1}\userprofile", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
+            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+            {
+                System.Web.HttpPostedFile hpf = hfc[iCnt];
+
+                if (hpf.ContentLength > 0)
+                {
+                    if (iCnt == 0)
+                    {
+                        user.CommercialRegisterExtract = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+                    }
+                    else
+                    {
+                        user.IdentityCard = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                    }
+                }
+            }
+
+            //var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+            //UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
             string password = RandomString(6);
-            SqlParameter[] param = new SqlParameter[32];
+            SqlParameter[] param = new SqlParameter[35];
             param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
             param[1] = new SqlParameter("@Street", user.Street);
             param[2] = new SqlParameter("@PostalCode", user.PostalCode);
@@ -386,8 +414,14 @@ namespace ForsaWebAPI.Controllers
             param[30] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
             param[31] = new SqlParameter("@UserId", user.UserId);
             param[32] = new SqlParameter("@DepositInsuranceAmount", user.DepositInsuranceAmount);
+            param[33] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
+            param[34] = new SqlParameter("@IdentityCard", user.IdentityCard);
 
-            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserInformation", System.Data.CommandType.StoredProcedure, param);
+            SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateKontactUserInformation", System.Data.CommandType.StoredProcedure, param);
+
+
+
+
 
 
             //var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";

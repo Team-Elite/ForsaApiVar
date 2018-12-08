@@ -112,8 +112,9 @@ namespace ForsaWebAPI.Controllers
         {
             var data = new JwtTokenManager().DecodeToken(requestModel.Data);
             UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
-            SqlParameter[] param = new SqlParameter[1];
+            SqlParameter[] param = new SqlParameter[2];
             param[0] = new SqlParameter("@UserId",user.UserId);
+            param[1] = new SqlParameter("@orderby", requestModel.orderBy);
             var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected", System.Data.CommandType.StoredProcedure, param);
             if (dt == null)
             {

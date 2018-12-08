@@ -26,9 +26,10 @@ namespace ForsaWebAPI.Controllers
             SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@userName", login.UserName);
             param[1] = new SqlParameter("@password", login.UserPassword);
-            param[2] = new SqlParameter("@emailaddress", login.UserEmailId);
-            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_ValidateUser", System.Data.CommandType.StoredProcedure,param);
-            if (dt == null || dt.Rows.Count==0) 
+            param[2] = new SqlParameter("@loginTime", login.LoginTime);
+
+            var dt = SqlHelper.ExecuteDataTable(HelperClass.ConnectionString, "USP_ValidateUser1", System.Data.CommandType.StoredProcedure,param);
+            if (dt == null || dt.Rows.Count==0 || Convert.ToInt32(dt.Rows[0]["UserId"].ToString()).Equals(-1)) 
             {
                 return Json(new { IsSuccess = false });
             }
