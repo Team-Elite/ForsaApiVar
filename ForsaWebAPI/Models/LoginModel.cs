@@ -12,5 +12,6 @@ namespace ForsaWebAPI.Models
         public string UserPassword { get; set; }
         public string UserEmailId { get; set; }
         public string ForgotPasswordEmailId { get; set; }
+        public DateTime LoginTime { get; set; }
     }
 }
