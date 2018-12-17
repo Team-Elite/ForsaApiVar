@@ -51,5 +51,6 @@ namespace ForsaWebAPI.Models
 
         public dynamic IdentityCard { get; set; }
         public decimal DepositInsuranceAmount { get; internal set; }
+        public string MinVolume { get; internal set; }
     }
 }

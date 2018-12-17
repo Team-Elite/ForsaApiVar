@@ -10,6 +10,7 @@ namespace ForsaSignalRSocket.Controllers
     {
         public ActionResult Index()
         {
+            BankRateTicker.Instance.GetBankRate();
             return View();
         }
 

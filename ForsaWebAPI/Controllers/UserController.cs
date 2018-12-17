@@ -381,43 +381,44 @@ namespace ForsaWebAPI.Controllers
                 //var data = new JwtTokenManager().DecodeToken(requestModel.Data);
                 //UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
                 string password = RandomString(6);
-                SqlParameter[] param = new SqlParameter[35];
-                param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany);
-                param[1] = new SqlParameter("@Street", user.Street);
-                param[2] = new SqlParameter("@PostalCode", user.PostalCode);
-                param[3] = new SqlParameter("@Place", user.Place);
-                param[4] = new SqlParameter("@AccountHolder", user.AccountHolder);
-                param[5] = new SqlParameter("@Bank", user.Bank);
-                param[6] = new SqlParameter("@IBAN", user.IBAN);
-                param[7] = new SqlParameter("@BICCode", user.BICCode);
+                SqlParameter[] param = new SqlParameter[36];
+                param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany == null ? "":user.NameOfCompany);
+                param[1] = new SqlParameter("@Street", user.Street == null ? "": user.Street);
+                param[2] = new SqlParameter("@PostalCode", user.PostalCode == null ? "" : user.PostalCode);
+                param[3] = new SqlParameter("@Place", user.Place == null ? "" : user.Place);
+                param[4] = new SqlParameter("@AccountHolder", user.AccountHolder == null ? "" : user.AccountHolder);
+                param[5] = new SqlParameter("@Bank", user.Bank == null ? "" : user.Bank);
+                param[6] = new SqlParameter("@IBAN", user.IBAN == null ? "" : user.IBAN);
+                param[7] = new SqlParameter("@BICCode", user.BICCode == null ? "" : user.BICCode);
                 param[8] = new SqlParameter("@GroupIds", user.GroupIds == null ? "" : user.GroupIds);
                 param[9] = new SqlParameter("@SubGroupId", user.SubGroupId == null ? "" : user.SubGroupId);
                 param[10] = new SqlParameter("@LEINumber", user.LEINumber == null ? "" : user.LEINumber);
-                param[11] = new SqlParameter("@FurtherField4", user.FurtherField4);
-                param[12] = new SqlParameter("@Salutation", user.Salutation);
-                param[13] = new SqlParameter("@Title", user.Title);
-                param[14] = new SqlParameter("@FirstName", user.FirstName);
-                param[15] = new SqlParameter("@SurName", user.SurName);
-                param[16] = new SqlParameter("@ContactNumber", user.ContactNumber);
-                param[17] = new SqlParameter("@FurtherField1", user.FurtherField1);
-                param[18] = new SqlParameter("@FurtherField2", user.FurtherField2);
-                param[19] = new SqlParameter("@FurtherField3", user.FurtherField3);
-                param[20] = new SqlParameter("@UserTypeId", user.UserTypeId);
+                param[11] = new SqlParameter("@FurtherField4", user.FurtherField4 == null ? "" : user.FurtherField4);
+                param[12] = new SqlParameter("@Salutation", user.Salutation );
+                param[13] = new SqlParameter("@Title", user.Title == null ? "" : user.Title);
+
+                param[14] = new SqlParameter("@FirstName", user.FirstName == null ? "" : user.FirstName);
+                param[15] = new SqlParameter("@SurName", user.SurName == null ? "" : user.SurName);
+                param[16] = new SqlParameter("@ContactNumber", user.ContactNumber == null ? "" : user.ContactNumber);
+                param[17] = new SqlParameter("@FurtherField1", user.FurtherField1 == null ? "" : user.FurtherField1);
+                param[18] = new SqlParameter("@FurtherField2", user.FurtherField2 == null ? "" : user.FurtherField2);
+                param[19] = new SqlParameter("@FurtherField3", user.FurtherField3 == null ? "" : user.FurtherField3);
+                param[20] = new SqlParameter("@UserTypeId", user.UserTypeId == null ? "" : user.UserTypeId);
                 param[21] = new SqlParameter("@RatingAgentur1", user.RatingAgentur1 == null ? "" : user.RatingAgentur1);
                 param[22] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1 == null ? "" : user.RatingAgenturValue1);
                 param[23] = new SqlParameter("@RatingAgentur2", user.RatingAgentur2 == null ? "" : user.RatingAgentur2);
                 param[24] = new SqlParameter("@RatingAgenturValue2", user.RatingAgenturValue2 == null ? "" : user.RatingAgenturValue2);
                 param[25] = new SqlParameter("@DepositInsurance", user.DepositInsurance);
-                param[26] = new SqlParameter("@ClientGroupId", user.ClientGroupId);
-                param[27] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy);
-                param[28] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish);
-                param[29] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished);
-                param[30] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS);
-                param[31] = new SqlParameter("@UserId", user.UserId);
+                param[26] = new SqlParameter("@ClientGroupId", user.ClientGroupId );
+                param[27] = new SqlParameter("@AgreeToThePrivacyPolicy", user.AgreeToThePrivacyPolicy );
+                param[28] = new SqlParameter("@AgreeToTheRatingsMayPublish", user.AgreeToTheRatingsMayPublish );
+                param[29] = new SqlParameter("@AgreeThatInformationOfCompanyMayBePublished", user.AgreeThatInformationOfCompanyMayBePublished );
+                param[30] = new SqlParameter("@AcceptAGBS", user.AcceptAGBS );
+                param[31] = new SqlParameter("@UserId", user.UserId );
                 param[32] = new SqlParameter("@DepositInsuranceAmount", user.DepositInsuranceAmount);
-                param[33] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract);
-                param[34] = new SqlParameter("@IdentityCard", user.IdentityCard);
-
+                param[33] = new SqlParameter("@CommercialRegisterExtract", user.CommercialRegisterExtract == null ? "" : user.CommercialRegisterExtract);
+                param[34] = new SqlParameter("@IdentityCard", user.IdentityCard == null ? "" : user.IdentityCard);
+                param[35] = new SqlParameter("@UserName",string.IsNullOrEmpty( user.UserName) ? string.Empty : user.UserName);
                 SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateKontactUserInformation", System.Data.CommandType.StoredProcedure, param);
 
                 var path = AppDomain.CurrentDomain.BaseDirectory + "\\EmailTemplates\\RegistrationTemplate.html";
@@ -440,7 +441,73 @@ namespace ForsaWebAPI.Controllers
                 //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
 
             }
-            catch
+            catch( Exception ex)
+            {
+                return Json(new { IsSuccess = false });
+            }
+
+
+        }
+
+        [HttpPost]
+        public IHttpActionResult UpdateUserProfile2()
+        {
+            try
+            {
+                ApiRequestModel requestModel = JsonConvert.DeserializeObject<ApiRequestModel>(System.Web.HttpContext.Current.Request.Form["encrypted"].ToString());
+
+                var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+                UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+
+
+                // CHECK THE FILE COUNT.
+                System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+
+                var FilePath = String.Format(@"{0}uploads\docs\{1}\userprofile", AppDomain.CurrentDomain.BaseDirectory, user.UserId);
+                for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+                {
+                    System.Web.HttpPostedFile hpf = hfc[iCnt];
+
+                    if (hpf.ContentLength > 0)
+                    {
+                        if (iCnt == 0)
+                        {
+                            user.CommercialRegisterExtract = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.CommercialRegisterExtract, FilePath);
+                        }
+                        else
+                        {
+                            user.IdentityCard = HelperClass.UploadDocument(hpf, EnumClass.UploadDocumentType.IdendityCard, FilePath);
+                        }
+                    }
+                }
+
+                //var data = new JwtTokenManager().DecodeToken(requestModel.Data);
+                //UserModel user = JsonConvert.DeserializeObject<UserModel>(data);
+                string password = RandomString(6);
+                SqlParameter[] param = new SqlParameter[15];
+                param[0] = new SqlParameter("@NameOfCompany", user.NameOfCompany == null ? "" : user.NameOfCompany);
+                param[1] = new SqlParameter("@Street", user.Street == null ? "" : user.Street);
+                param[2] = new SqlParameter("@PostalCode", user.PostalCode == null ? "" : user.PostalCode);
+                param[3] = new SqlParameter("@Place", user.Place == null ? "" : user.Place);
+                param[4] = new SqlParameter("@AccountHolder", user.AccountHolder == null ? "" : user.AccountHolder);
+                param[5] = new SqlParameter("@Bank", user.Bank == null ? "" : user.Bank);
+                param[6] = new SqlParameter("@IBAN", user.IBAN == null ? "" : user.IBAN);
+                param[7] = new SqlParameter("@BICCode", user.BICCode == null ? "" : user.BICCode);
+                param[8] = new SqlParameter("@Title", user.Title == null ? "" : user.Title);
+                param[9] = new SqlParameter("@FirstName", user.FirstName == null ? "" : user.FirstName);
+                param[10] = new SqlParameter("@SurName", user.SurName == null ? "" : user.SurName);
+                param[11] = new SqlParameter("@ContactNumber", user.ContactNumber == null ? "" : user.ContactNumber);
+                param[12] = new SqlParameter("@RatingAgenturValue1", user.RatingAgenturValue1 == null ? "" : user.RatingAgenturValue1);
+                param[13] = new SqlParameter("@MinVolume", user.MinVolume );
+                param[14] = new SqlParameter("@UserId", user.UserId);
+                
+                SqlHelper.ExecuteScalar(HelperClass.ConnectionString, "USP_UpdateUserProfile", System.Data.CommandType.StoredProcedure, param);
+
+                return Json(new { IsSuccess = true });
+                //  return Json(new { IsSuccess = true, data  = new JwtTokenManager().GenerateToken(JsonConvert.SerializeObject(HelperClass.DataTableToJSONWithJavaScriptSerializer(dt))) });
+
+            }
+            catch (Exception ex)
             {
                 return Json(new { IsSuccess = false });
             }
