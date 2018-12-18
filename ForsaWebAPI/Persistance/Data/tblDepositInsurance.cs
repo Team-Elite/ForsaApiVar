@@ -12,12 +12,9 @@ namespace ForsaWebAPI.Persistance.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPage
+    public partial class tblDepositInsurance
     {
-        public int PageId { get; set; }
-        public string PageName { get; set; }
-        public string Description { get; set; }
-        public bool IsDeleted { get; set; }
-        public string PageNameGr { get; set; }
+        public int DepositInsuranceId { get; set; }
+        public string DepositInsurance { get; set; }
     }
 }

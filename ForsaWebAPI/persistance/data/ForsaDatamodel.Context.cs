@@ -27,11 +27,13 @@ namespace ForsaWebAPI.Persistance.Data
     
         public virtual DbSet<tblCountry> tblCountries { get; set; }
         public virtual DbSet<tblCustomerGroup> tblCustomerGroups { get; set; }
+        public virtual DbSet<tblDepositInsurance> tblDepositInsurances { get; set; }
         public virtual DbSet<tblGroup> tblGroups { get; set; }
         public virtual DbSet<tblLanguage> tblLanguages { get; set; }
         public virtual DbSet<tblPage> tblPages { get; set; }
         public virtual DbSet<tblRatingAgeNtur> tblRatingAgeNturs { get; set; }
         public virtual DbSet<tblSalutation> tblSalutations { get; set; }
+        public virtual DbSet<tblSubGroup> tblSubGroups { get; set; }
         public virtual DbSet<tblTimePeriod> tblTimePeriods { get; set; }
         public virtual DbSet<tblUserType> tblUserTypes { get; set; }
     }

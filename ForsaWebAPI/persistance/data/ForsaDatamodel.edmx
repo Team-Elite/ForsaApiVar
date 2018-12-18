@@ -19,6 +19,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerGroup" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="tblDepositInsurance">
+          <Key>
+            <PropertyRef Name="DepositInsuranceId" />
+          </Key>
+          <Property Name="DepositInsuranceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepositInsurance" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblGroup">
           <Key>
             <PropertyRef Name="GroupId" />
@@ -43,6 +50,7 @@
           <Property Name="PageName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="PageNameGr" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="tblRatingAgeNtur">
           <Key>
@@ -58,6 +66,13 @@
           <Property Name="SalutationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Salutation" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblSubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupId" />
+          </Key>
+          <Property Name="SubGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubGroupName" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tblTimePeriod">
@@ -67,9 +82,10 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
             <PropertyRef Name="id" />
           </Key>
           <Property Name="TimePeriodId" Type="int" Nullable="false" />
+          <Property Name="TimePeriodGR" Type="nvarchar" MaxLength="50" />
           <Property Name="TimePeriod" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TimePeriodForGrid" Type="varchar" MaxLength="50" />
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUserType">
           <Key>
@@ -81,15 +97,18 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
         <EntityContainer Name="forsawebModelStoreContainer">
           <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCustomerGroup" EntityType="Self.tblCustomerGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDepositInsurance" EntityType="Self.tblDepositInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLanguage" EntityType="Self.tblLanguage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPages" EntityType="Self.tblPages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRatingAgeNtur" EntityType="Self.tblRatingAgeNtur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSalutation" EntityType="Self.tblSalutation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubGroup" EntityType="Self.tblSubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTimePeriod" EntityType="Self.tblTimePeriod" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [tblTimePeriod].[TimePeriodId] AS [TimePeriodId], 
+    [tblTimePeriod].[TimePeriodGR] AS [TimePeriodGR], 
     [tblTimePeriod].[TimePeriod] AS [TimePeriod], 
     [tblTimePeriod].[TimePeriodForGrid] AS [TimePeriodForGrid], 
     [tblTimePeriod].[id] AS [id]
@@ -103,11 +122,13 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
         <EntityContainer Name="ForsaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblCountries" EntityType="forsawebModel.tblCountry" />
           <EntitySet Name="tblCustomerGroups" EntityType="forsawebModel.tblCustomerGroup" />
+          <EntitySet Name="tblDepositInsurances" EntityType="forsawebModel.tblDepositInsurance" />
           <EntitySet Name="tblGroups" EntityType="forsawebModel.tblGroup" />
           <EntitySet Name="tblLanguages" EntityType="forsawebModel.tblLanguage" />
           <EntitySet Name="tblPages" EntityType="forsawebModel.tblPage" />
           <EntitySet Name="tblRatingAgeNturs" EntityType="forsawebModel.tblRatingAgeNtur" />
           <EntitySet Name="tblSalutations" EntityType="forsawebModel.tblSalutation" />
+          <EntitySet Name="tblSubGroups" EntityType="forsawebModel.tblSubGroup" />
           <EntitySet Name="tblTimePeriods" EntityType="forsawebModel.tblTimePeriod" />
           <EntitySet Name="tblUserTypes" EntityType="forsawebModel.tblUserType" />
         </EntityContainer>
@@ -124,6 +145,13 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDepositInsurance">
+          <Key>
+            <PropertyRef Name="DepositInsuranceId" />
+          </Key>
+          <Property Name="DepositInsuranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepositInsurance" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblGroup">
           <Key>
@@ -149,6 +177,7 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
           <Property Name="PageName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="PageNameGr" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblRatingAgeNtur">
           <Key>
@@ -164,6 +193,13 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
           <Property Name="SalutationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Salutation" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblSubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupId" />
+          </Key>
+          <Property Name="SubGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubGroupName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblTimePeriod">
           <Key>
             <PropertyRef Name="TimePeriodId" />
@@ -171,9 +207,10 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
             <PropertyRef Name="id" />
           </Key>
           <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="TimePeriodGR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TimePeriod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TimePeriodForGrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUserType">
           <Key>
@@ -182,7 +219,7 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
           <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -201,6 +238,14 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
               <MappingFragment StoreEntitySet="tblCustomerGroup">
                 <ScalarProperty Name="CustomerGroup" ColumnName="CustomerGroup" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDepositInsurances">
+            <EntityTypeMapping TypeName="forsawebModel.tblDepositInsurance">
+              <MappingFragment StoreEntitySet="tblDepositInsurance">
+                <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+                <ScalarProperty Name="DepositInsuranceId" ColumnName="DepositInsuranceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -225,6 +270,7 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
           <EntitySetMapping Name="tblPages">
             <EntityTypeMapping TypeName="forsawebModel.tblPage">
               <MappingFragment StoreEntitySet="tblPages">
+                <ScalarProperty Name="PageNameGr" ColumnName="PageNameGr" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PageName" ColumnName="PageName" />
@@ -248,12 +294,21 @@ warning 6002: The table/view 'forsaweb.dbo.tblTimePeriod' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblSubGroups">
+            <EntityTypeMapping TypeName="forsawebModel.tblSubGroup">
+              <MappingFragment StoreEntitySet="tblSubGroup">
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblTimePeriods">
             <EntityTypeMapping TypeName="forsawebModel.tblTimePeriod">
               <MappingFragment StoreEntitySet="tblTimePeriod">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="TimePeriodForGrid" ColumnName="TimePeriodForGrid" />
                 <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+                <ScalarProperty Name="TimePeriodGR" ColumnName="TimePeriodGR" />
                 <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
               </MappingFragment>
             </EntityTypeMapping>

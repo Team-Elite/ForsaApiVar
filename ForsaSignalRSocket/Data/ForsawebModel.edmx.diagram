@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa78563b3272458ab18fc623a622ad08" Name="Diagram1">
-        <EntityTypeShape EntityType="forsawebModel.tblRateOfInterestOfBank" Width="1.5" PointX="0.75" PointY="0.75" />
+      <Diagram DiagramId="87e9be8016574c92b6926c69ed5abcdb" Name="Diagram1">
+        <EntityTypeShape EntityType="forsawebModel.tblRateOfInterestOfBank" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,6 +15,7 @@ namespace ForsaWebAPI.Persistance.Data
     public partial class tblTimePeriod
     {
         public int TimePeriodId { get; set; }
+        public string TimePeriodGR { get; set; }
         public string TimePeriod { get; set; }
         public string TimePeriodForGrid { get; set; }
         public int id { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="forsawebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="forsawebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblRateOfInterestOfBank">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,13 +30,11 @@
         <EntityContainer Name="forsawebModelStoreContainer">
           <EntitySet Name="tblRateOfInterestOfBank" EntityType="Self.tblRateOfInterestOfBank" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="forsawebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="forsawebEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblRateOfInterestOfBanks" EntityType="forsawebModel.tblRateOfInterestOfBank" />
-        </EntityContainer>
         <EntityType Name="tblRateOfInterestOfBank">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,6 +57,9 @@
           <Property Name="DateModified" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
         </EntityType>
+        <EntityContainer Name="forsawebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblRateOfInterestOfBanks" EntityType="Self.tblRateOfInterestOfBank" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -68,23 +69,23 @@
           <EntitySetMapping Name="tblRateOfInterestOfBanks">
             <EntityTypeMapping TypeName="forsawebModel.tblRateOfInterestOfBank">
               <MappingFragment StoreEntitySet="tblRateOfInterestOfBank">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="RateOfInterest3" ColumnName="RateOfInterest3" />
-                <ScalarProperty Name="FractionRate3" ColumnName="FractionRate3" />
-                <ScalarProperty Name="RateOfInterest2" ColumnName="RateOfInterest2" />
-                <ScalarProperty Name="FractionRate2" ColumnName="FractionRate2" />
-                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
-                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
-                <ScalarProperty Name="FractionRate" ColumnName="FractionRate" />
-                <ScalarProperty Name="BaseCurve" ColumnName="BaseCurve" />
-                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
-                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
-                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
-                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="BaseCurve" ColumnName="BaseCurve" />
+                <ScalarProperty Name="FractionRate" ColumnName="FractionRate" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+                <ScalarProperty Name="FractionRate2" ColumnName="FractionRate2" />
+                <ScalarProperty Name="RateOfInterest2" ColumnName="RateOfInterest2" />
+                <ScalarProperty Name="FractionRate3" ColumnName="FractionRate3" />
+                <ScalarProperty Name="RateOfInterest3" ColumnName="RateOfInterest3" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

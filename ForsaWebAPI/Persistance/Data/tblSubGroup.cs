@@ -12,12 +12,9 @@ namespace ForsaWebAPI.Persistance.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPage
+    public partial class tblSubGroup
     {
-        public int PageId { get; set; }
-        public string PageName { get; set; }
-        public string Description { get; set; }
-        public bool IsDeleted { get; set; }
-        public string PageNameGr { get; set; }
+        public int SubGroupId { get; set; }
+        public string SubGroupName { get; set; }
     }
 }
