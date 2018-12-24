@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="fa78563b3272458ab18fc623a622ad08" Name="Diagram1">
         <EntityTypeShape EntityType="forsawebModel.tblRateOfInterestOfBank" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="forsawebModel.tblUser" Width="1.5" PointX="2.75" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ForsaSignalRSocket
 {
-    public class BankRateInterestModel
+    public class UserMode
     {
         public int Id { get; set; }
         public int UserId { get; set; }

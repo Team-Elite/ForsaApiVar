@@ -7,28 +7,28 @@ using Microsoft.AspNet.SignalR;
 
 namespace ForsaSignalRSocket
 {
-    public class ForsaHub : Hub
+    public class UserConfigurationHub: Hub
     {
-        private readonly BankRateTicker _bankRateTicker;
+        private readonly UserConfigurationTicker _bankRateTicker;
 
-        public ForsaHub() :
-            this(BankRateTicker.Instance)
+        public UserConfigurationHub() :
+            this(UserConfigurationTicker.Instance)
         {
 
         }
 
-        public ForsaHub(BankRateTicker bankRateTicker )
+        public UserConfigurationHub(UserConfigurationTicker bankRateTicker)
         {
             _bankRateTicker = bankRateTicker;
         }
-        public void SendBankRate(List<UserMode> bankRateInterests)
+        public void SendConfiguration(List<UserMode> bankRateInterests)
         {
             Clients.All.broadcastbankrate(bankRateInterests);
         }
 
-        public List<UserMode> GetBankRate()
+        public List<UserModel> GetBankRate()
         {
-            return _bankRateTicker.GetBankRate();
+            return _bankRateTicker.GetConfiguration();
         }
         public override Task OnConnected()
         {

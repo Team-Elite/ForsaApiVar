@@ -26,5 +26,6 @@ namespace ForsaSignalRSocket.Data
         }
     
         public virtual DbSet<tblRateOfInterestOfBank> tblRateOfInterestOfBanks { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
     }
 }
