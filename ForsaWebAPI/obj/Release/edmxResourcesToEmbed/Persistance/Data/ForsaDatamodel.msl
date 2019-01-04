@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="ForsaEntities">
+    <EntitySetMapping Name="tblCountries">
+      <EntityTypeMapping TypeName="forsawebModel.tblCountry">
+        <MappingFragment StoreEntitySet="tblCountry">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomerGroups">
+      <EntityTypeMapping TypeName="forsawebModel.tblCustomerGroup">
+        <MappingFragment StoreEntitySet="tblCustomerGroup">
+          <ScalarProperty Name="CustomerGroup" ColumnName="CustomerGroup" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblGroups">
+      <EntityTypeMapping TypeName="forsawebModel.tblGroup">
+        <MappingFragment StoreEntitySet="tblGroup">
+          <ScalarProperty Name="GroupName2" ColumnName="GroupName2" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLanguages">
+      <EntityTypeMapping TypeName="forsawebModel.tblLanguage">
+        <MappingFragment StoreEntitySet="tblLanguage">
+          <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPages">
+      <EntityTypeMapping TypeName="forsawebModel.tblPage">
+        <MappingFragment StoreEntitySet="tblPages">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageId" ColumnName="PageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRatingAgeNturs">
+      <EntityTypeMapping TypeName="forsawebModel.tblRatingAgeNtur">
+        <MappingFragment StoreEntitySet="tblRatingAgeNtur">
+          <ScalarProperty Name="RatingAgeNtur" ColumnName="RatingAgeNtur" />
+          <ScalarProperty Name="RatingAgeNturId" ColumnName="RatingAgeNturId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSalutations">
+      <EntityTypeMapping TypeName="forsawebModel.tblSalutation">
+        <MappingFragment StoreEntitySet="tblSalutation">
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="SalutationId" ColumnName="SalutationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTimePeriods">
+      <EntityTypeMapping TypeName="forsawebModel.tblTimePeriod">
+        <MappingFragment StoreEntitySet="tblTimePeriod">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TimePeriodForGrid" ColumnName="TimePeriodForGrid" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserTypes">
+      <EntityTypeMapping TypeName="forsawebModel.tblUserType">
+        <MappingFragment StoreEntitySet="tblUserType">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

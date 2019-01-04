@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="forsawebEntities">
+    <EntitySetMapping Name="tblRateOfInterestOfBanks">
+      <EntityTypeMapping TypeName="forsawebModel.tblRateOfInterestOfBank">
+        <MappingFragment StoreEntitySet="tblRateOfInterestOfBank">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="RateOfInterest3" ColumnName="RateOfInterest3" />
+          <ScalarProperty Name="FractionRate3" ColumnName="FractionRate3" />
+          <ScalarProperty Name="RateOfInterest2" ColumnName="RateOfInterest2" />
+          <ScalarProperty Name="FractionRate2" ColumnName="FractionRate2" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="FractionRate" ColumnName="FractionRate" />
+          <ScalarProperty Name="BaseCurve" ColumnName="BaseCurve" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+          <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

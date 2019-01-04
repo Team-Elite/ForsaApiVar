@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="forsawebModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="forsawebModelStoreContainer">
+    <EntitySet Name="tblRateOfInterestOfBanks" EntityType="forsawebModel.Store.tblRateOfInterestOfBanks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tblUsers" EntityType="forsawebModel.Store.tblUsers" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="tblRateOfInterestOfBanks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsPublished" Type="bit" Nullable="false" />
+    <Property Name="TimePeriodId" Type="int" Nullable="false" />
+    <Property Name="MinValue" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="MaxValue" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="BaseCurve" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="FractionRate" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="GroupIds" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="FractionRate2" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest2" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="FractionRate3" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest3" Type="decimal" Nullable="true" Precision="18" Scale="4" />
+    <Property Name="DateCreated" Type="datetime" Nullable="true" />
+    <Property Name="DateModified" Type="datetime" Nullable="true" />
+    <Property Name="ModifiedBy" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameOfCompany" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Place" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountHolder" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bank" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IBAN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BICCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GroupIds" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubGroupId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LEINumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FurtherField4" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Salutation" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FurtherField1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FurtherField2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FurtherField3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserTypeId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RatingAgentur1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RatingAgenturValue1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RatingAgentur2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RatingAgenturValue2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepositInsurance" Type="int" Nullable="false" />
+    <Property Name="ClientGroupId" Type="int" Nullable="false" />
+    <Property Name="AgreeToThePrivacyPolicy" Type="bit" Nullable="false" />
+    <Property Name="AgreeToTheRatingsMayPublish" Type="bit" Nullable="false" />
+    <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="bit" Nullable="false" />
+    <Property Name="AcceptAGBS" Type="bit" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="NewPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepositInsuranceAmount" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="MinVolume" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubGroupName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fo_assignment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="send_email" Type="bit" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="kontakteIsProcessed" Type="bit" Nullable="false" />
+    <Property Name="Commission" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsLoggedIn" Type="bit" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="forsawebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="forsawebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblRateOfInterestOfBanks" EntityType="forsawebModel.tblRateOfInterestOfBank" />
+          <EntitySet Name="tblUsers" EntityType="forsawebModel.tblUser" />
+        </EntityContainer>
+        <EntityType Name="tblRateOfInterestOfBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+          <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+          <Property Name="MinValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="MaxValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="BaseCurve" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FractionRate2" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest2" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="FractionRate3" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="RateOfInterest3" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfCompany" Type="String" Nullable="false" />
+          <Property Name="Street" Type="String" Nullable="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" />
+          <Property Name="Place" Type="String" Nullable="false" />
+          <Property Name="AccountHolder" Type="String" Nullable="false" />
+          <Property Name="Bank" Type="String" Nullable="false" />
+          <Property Name="IBAN" Type="String" Nullable="false" />
+          <Property Name="BICCode" Type="String" Nullable="false" />
+          <Property Name="GroupIds" Type="String" Nullable="false" />
+          <Property Name="SubGroupId" Type="String" Nullable="false" />
+          <Property Name="LEINumber" Type="String" Nullable="false" />
+          <Property Name="FurtherField4" Type="String" Nullable="false" />
+          <Property Name="Salutation" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="SurName" Type="String" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="FurtherField1" Type="String" Nullable="false" />
+          <Property Name="FurtherField2" Type="String" Nullable="false" />
+          <Property Name="FurtherField3" Type="String" Nullable="false" />
+          <Property Name="UserTypeId" Type="String" Nullable="false" />
+          <Property Name="RatingAgentur1" Type="String" Nullable="false" />
+          <Property Name="RatingAgenturValue1" Type="String" Nullable="false" />
+          <Property Name="RatingAgentur2" Type="String" Nullable="false" />
+          <Property Name="RatingAgenturValue2" Type="String" Nullable="false" />
+          <Property Name="DepositInsurance" Type="Int32" Nullable="false" />
+          <Property Name="ClientGroupId" Type="Int32" Nullable="false" />
+          <Property Name="AgreeToThePrivacyPolicy" Type="Boolean" Nullable="false" />
+          <Property Name="AgreeToTheRatingsMayPublish" Type="Boolean" Nullable="false" />
+          <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="Boolean" Nullable="false" />
+          <Property Name="AcceptAGBS" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="NewPassword" Type="String" Nullable="false" />
+          <Property Name="DepositInsuranceAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MinVolume" Type="String" Nullable="false" />
+          <Property Name="SubGroupName" Type="String" Nullable="false" />
+          <Property Name="fo_assignment" Type="String" Nullable="false" />
+          <Property Name="send_email" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="kontakteIsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="Commission" Type="String" Nullable="false" />
+          <Property Name="IsLoggedIn" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="forsawebModelStoreContainer" CdmEntityContainer="forsawebEntities">
+    <EntitySetMapping Name="tblRateOfInterestOfBanks">
+      <EntityTypeMapping TypeName="IsTypeOf(forsawebModel.tblRateOfInterestOfBank)">
+        <MappingFragment StoreEntitySet="tblRateOfInterestOfBanks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+          <ScalarProperty Name="TimePeriodId" ColumnName="TimePeriodId" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="BaseCurve" ColumnName="BaseCurve" />
+          <ScalarProperty Name="FractionRate" ColumnName="FractionRate" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="FractionRate2" ColumnName="FractionRate2" />
+          <ScalarProperty Name="RateOfInterest2" ColumnName="RateOfInterest2" />
+          <ScalarProperty Name="FractionRate3" ColumnName="FractionRate3" />
+          <ScalarProperty Name="RateOfInterest3" ColumnName="RateOfInterest3" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(forsawebModel.tblUser)">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NameOfCompany" ColumnName="NameOfCompany" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="AccountHolder" ColumnName="AccountHolder" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="BICCode" ColumnName="BICCode" />
+          <ScalarProperty Name="GroupIds" ColumnName="GroupIds" />
+          <ScalarProperty Name="SubGroupId" ColumnName="SubGroupId" />
+          <ScalarProperty Name="LEINumber" ColumnName="LEINumber" />
+          <ScalarProperty Name="FurtherField4" ColumnName="FurtherField4" />
+          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FurtherField1" ColumnName="FurtherField1" />
+          <ScalarProperty Name="FurtherField2" ColumnName="FurtherField2" />
+          <ScalarProperty Name="FurtherField3" ColumnName="FurtherField3" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="RatingAgentur1" ColumnName="RatingAgentur1" />
+          <ScalarProperty Name="RatingAgenturValue1" ColumnName="RatingAgenturValue1" />
+          <ScalarProperty Name="RatingAgentur2" ColumnName="RatingAgentur2" />
+          <ScalarProperty Name="RatingAgenturValue2" ColumnName="RatingAgenturValue2" />
+          <ScalarProperty Name="DepositInsurance" ColumnName="DepositInsurance" />
+          <ScalarProperty Name="ClientGroupId" ColumnName="ClientGroupId" />
+          <ScalarProperty Name="AgreeToThePrivacyPolicy" ColumnName="AgreeToThePrivacyPolicy" />
+          <ScalarProperty Name="AgreeToTheRatingsMayPublish" ColumnName="AgreeToTheRatingsMayPublish" />
+          <ScalarProperty Name="AgreeThatInformationOfCompanyMayBePublished" ColumnName="AgreeThatInformationOfCompanyMayBePublished" />
+          <ScalarProperty Name="AcceptAGBS" ColumnName="AcceptAGBS" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+          <ScalarProperty Name="DepositInsuranceAmount" ColumnName="DepositInsuranceAmount" />
+          <ScalarProperty Name="MinVolume" ColumnName="MinVolume" />
+          <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+          <ScalarProperty Name="fo_assignment" ColumnName="fo_assignment" />
+          <ScalarProperty Name="send_email" ColumnName="send_email" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="kontakteIsProcessed" ColumnName="kontakteIsProcessed" />
+          <ScalarProperty Name="Commission" ColumnName="Commission" />
+          <ScalarProperty Name="IsLoggedIn" ColumnName="IsLoggedIn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

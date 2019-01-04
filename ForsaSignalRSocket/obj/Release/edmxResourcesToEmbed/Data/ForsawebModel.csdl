@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="forsawebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="forsawebEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblRateOfInterestOfBanks" EntityType="forsawebModel.tblRateOfInterestOfBank" />
+  </EntityContainer>
+  <EntityType Name="tblRateOfInterestOfBank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+    <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+    <Property Name="MinValue" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MaxValue" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="BaseCurve" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="FractionRate" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FractionRate2" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest2" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="FractionRate3" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="RateOfInterest3" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+  </EntityType>
+</Schema>

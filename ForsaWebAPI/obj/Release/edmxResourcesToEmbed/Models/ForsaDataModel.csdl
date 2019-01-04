@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ForsaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ForsaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCountries" EntityType="ForsaModel.tblCountry" />
+    <EntitySet Name="tblCustomerGroups" EntityType="ForsaModel.tblCustomerGroup" />
+    <EntitySet Name="tblDepositInsurances" EntityType="ForsaModel.tblDepositInsurance" />
+    <EntitySet Name="tblGroups" EntityType="ForsaModel.tblGroup" />
+    <EntitySet Name="tblLanguages" EntityType="ForsaModel.tblLanguage" />
+    <EntitySet Name="tblLenderDeselectedBanks" EntityType="ForsaModel.tblLenderDeselectedBank" />
+    <EntitySet Name="tblLenderSendRequests" EntityType="ForsaModel.tblLenderSendRequest" />
+    <EntitySet Name="tblLenderStartPages" EntityType="ForsaModel.tblLenderStartPage" />
+    <EntitySet Name="tblPages" EntityType="ForsaModel.tblPage" />
+    <EntitySet Name="tblRateOfInterestOfBanks" EntityType="ForsaModel.tblRateOfInterestOfBank" />
+    <EntitySet Name="tblRatingAgeNturs" EntityType="ForsaModel.tblRatingAgeNtur" />
+    <EntitySet Name="tblSalutations" EntityType="ForsaModel.tblSalutation" />
+    <EntitySet Name="tblSubGroups" EntityType="ForsaModel.tblSubGroup" />
+    <EntitySet Name="tblUsers" EntityType="ForsaModel.tblUser" />
+    <EntitySet Name="tblUser2" EntityType="ForsaModel.tblUser2" />
+    <EntitySet Name="tblUserTypes" EntityType="ForsaModel.tblUserType" />
+    <EntitySet Name="tblTimePeriods" EntityType="ForsaModel.tblTimePeriod" />
+    <EntitySet Name="tmptbls" EntityType="ForsaModel.tmptbl" />
+  </EntityContainer>
+  <EntityType Name="tblCountry">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblCustomerGroup">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblDepositInsurance">
+    <Key>
+      <PropertyRef Name="DepositInsuranceId" />
+    </Key>
+    <Property Name="DepositInsuranceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepositInsurance" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GroupName2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblLanguage">
+    <Key>
+      <PropertyRef Name="LanguageId" />
+    </Key>
+    <Property Name="LanguageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Language" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="LanguageCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblLenderDeselectedBank">
+    <Key>
+      <PropertyRef Name="DeselectedBankId" />
+    </Key>
+    <Property Name="DeselectedBankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="BankIds" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblLenderSendRequest">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LenderId" Type="Int32" Nullable="false" />
+    <Property Name="BorrowerId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NoOfDays" Type="Int32" Nullable="false" />
+    <Property Name="InterestConvention" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Payments" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsRequestAccepted" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="0" />
+    <Property Name="RequestCreatedBy" Type="Int32" />
+    <Property Name="RateOfInterestOfferred" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OfferredOn" Type="DateTime" Precision="3" />
+    <Property Name="IsAccepted" Type="Boolean" />
+    <Property Name="IsRejected" Type="Boolean" />
+    <Property Name="MessageForForsa" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsMessageSentToForsa" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblLenderStartPage">
+    <Key>
+      <PropertyRef Name="LenderStartPageId" />
+    </Key>
+    <Property Name="LenderStartPageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PageId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsStartPage" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPage">
+    <Key>
+      <PropertyRef Name="PageId" />
+    </Key>
+    <Property Name="PageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PageName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRateOfInterestOfBank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+    <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+    <Property Name="RateOfInterest" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="Modifiedby" Type="Int32" />
+    <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblRatingAgeNtur">
+    <Key>
+      <PropertyRef Name="RatingAgeNturId" />
+    </Key>
+    <Property Name="RatingAgeNturId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RatingAgeNtur" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSalutation">
+    <Key>
+      <PropertyRef Name="SalutationId" />
+    </Key>
+    <Property Name="SalutationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Salutation" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSubGroup">
+    <Key>
+      <PropertyRef Name="SubGroupId" />
+    </Key>
+    <Property Name="SubGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubGroupName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameOfCompany" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Place" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AccountHolder" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Bank" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IBAN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BICCode" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GroupIds" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SubGroupId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LEINumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FurtherField4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Salutation" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FurtherField1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FurtherField2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FurtherField3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserTypeId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RatingAgentur1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RatingAgenturValue1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RatingAgentur2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RatingAgenturValue2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DepositInsurance" Type="Int32" Nullable="false" />
+    <Property Name="ClientGroupId" Type="Int32" Nullable="false" />
+    <Property Name="AgreeToThePrivacyPolicy" Type="Boolean" />
+    <Property Name="AgreeToTheRatingsMayPublish" Type="Boolean" />
+    <Property Name="AgreeThatInformationOfCompanyMayBePublished" Type="Boolean" />
+    <Property Name="AcceptAGBS" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblUser2">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+    <Property Name="BankName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" />
+    <Property Name="LanguageId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LongTermRatingAgency" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LongTermRating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShortTermRatingAgency" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ShortTermRating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PromissaryNotesLenderOn" Type="Boolean" />
+    <Property Name="PromissaryNotesBorrower" Type="Boolean" />
+    <Property Name="MoneyMarket" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="GroupIds" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUserType">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblTimePeriod">
+    <Key>
+      <PropertyRef Name="TimePeriodId" />
+      <PropertyRef Name="TimePeriod" />
+    </Key>
+    <Property Name="TimePeriodId" Type="Int32" Nullable="false" />
+    <Property Name="TimePeriod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TimePeriodForGrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tmptbl">
+    <Key>
+      <PropertyRef Name="TimePeriod" />
+      <PropertyRef Name="Bank" />
+      <PropertyRef Name="RateOfInterest" />
+      <PropertyRef Name="SrNo" />
+    </Key>
+    <Property Name="TimePeriod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Bank" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RateOfInterest" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SrNo" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>
